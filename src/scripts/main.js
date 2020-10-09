@@ -1,13 +1,27 @@
 'use strict';
 
-function createPromise() {
+function resolvePromise() {
   const body = document.querySelector('body');
 
-  const resolver = (resolve, reject) => {
+  const resolver = resolve => {
     body.addEventListener('click', () => {
       resolve('Success');
     });
+  };
 
+  return new Promise(resolver);
+}
+
+const promise1 = resolvePromise();
+
+promise1
+  .then(result => {
+    // eslint-disable-next-line no-console
+    console.log(result);
+  });
+
+function rejectPromise() {
+  const resolver = (resolve, reject) => {
     setTimeout(() => {
       reject('Error');
     }, 5000);
@@ -16,13 +30,9 @@ function createPromise() {
   return new Promise(resolver);
 }
 
-const promise1 = createPromise();
+const promise2 = rejectPromise();
 
-promise1
-  .then(result => {
-    // eslint-disable-next-line no-console
-    console.log(result);
-  })
+promise2
   .catch(error => {
     // eslint-disable-next-line no-console
     console.error(error);
