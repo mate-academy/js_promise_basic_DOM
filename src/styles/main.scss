@@ -22,3 +22,27 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.resolve,
+.reject {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 10px;
+  border-radius: 15%;
+  font-size: 20px;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resolve {
+  left: 10px;
+  background-color: black;
+}
+
+.reject {
+  right: 10px;
+  background-color: orangered;
+}
