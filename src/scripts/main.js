@@ -1,10 +1,9 @@
 'use strict';
 
 function createPromise() {
-  const resolver = () => {
+  const resolver = (resolve) => {
     document.addEventListener('click', () => {
-      // eslint-disable-next-line no-console
-      console.log('Success');
+      resolve('Success');
     });
   };
 
@@ -12,10 +11,19 @@ function createPromise() {
 }
 
 function fail() {
-  document.addEventListener('click', () => {
-    // eslint-disable-next-line no-console
-    setTimeout(() => console.warn('Error'), 3000);
-  });
+  const resolver = (resolve, reject) => {
+    setTimeout(() => reject('Error'), 3000);
+  };
+
+  return new Promise(resolver);
 }
 
-createPromise().then(fail());
+createPromise().then(result => {
+  // eslint-disable-next-line no-console
+  console.log(result);
+});
+
+fail().catch(error => {
+  // eslint-disable-next-line no-console
+  console.warn(error);
+});
