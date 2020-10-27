@@ -2,24 +2,22 @@
 
 const getResolve = () => {
   return new Promise((resolve) => {
-    resolve('success');
+    document.addEventListener('click', () => {
+      resolve('success');
+    });
   });
 };
 
 const getReject = () => {
   return new Promise((resolve, reject) => {
-    reject(new Error('fail'));
+    setTimeout(() => {
+      reject(new Error('smth went wrong'));
+    }, 5000);
   });
 };
 
 const success = getResolve();
-
 const fail = getReject();
 
-document.addEventListener('click', () => {
-  success.then((res) => res);
-});
-
-setTimeout(() => {
-  fail.catch((err) => err);
-}, 5000);
+success.then((res) => res);
+fail.catch((err) => err);
