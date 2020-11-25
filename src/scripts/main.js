@@ -1,28 +1,21 @@
 'use strict';
 
-const body = document.querySelector('body');
+const logo = document.querySelector('.logo');
 
-const logoPromise = () => {
-  return new Promise((resolve, reject) => {
-    body.addEventListener('click', e => {
-      if (e.target.nodeName === 'H1') {
-        resolve('this is our logo');
-      } else {
-        setTimeout(() => reject(new Error('this is not a logo')), 5000);
-      }
-    });
+const firstPromise = new Promise(resolve => {
+  logo.addEventListener('click', e => {
+    resolve('this is logo');
   });
-};
+});
 
-function successCallback(result) {
-  // eslint-disable-next-line no-console
-  console.log('Успішно завершено з результатом ' + result);
-}
+// eslint-disable-next-line no-console
+firstPromise.then(result => console.log('succes:', result));
 
-function failureCallback(error) {
-  // eslint-disable-next-line no-console
-  console.log('Завершено з помилкою ' + error);
-}
+const secondPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('error'));
+  }, 5000);
+});
 
-logoPromise()
-  .then(successCallback, failureCallback);
+// eslint-disable-next-line no-console
+secondPromise.catch(error => console.warn(error));
