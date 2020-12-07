@@ -14,7 +14,7 @@ In this task you should create 2 promises.
 That's all.
 
 Implementation tips:
-- You have to use DOM to notify user;
-- Printed messages should not disappear;
-- The message is block element with class `message` for first promise and `error-message` for second promise; 
-- The message should have text `Promise was resolved!` and `Promise was rejected!`.
+- print two messages to notify a user about resolved or rejected promise;
+- the message is block element with class `message` for the resolved promise and `error-message` for the rejected promise; 
+- the message about resolved promise should not disappear;
+- the messages should have text `Promise was resolved!` and `Promise was rejected!`.
