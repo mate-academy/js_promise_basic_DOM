@@ -1,5 +1,14 @@
 'use strict';
 
+const showMessage = (result) => {
+  const success = document.createElement('div');
+
+  success.className = result.class;
+  success.innerText = result.msg;
+
+  document.body.append(success);
+};
+
 const resolver = (resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
     resolve({
@@ -10,32 +19,25 @@ const resolver = (resolve) => {
 };
 
 const rejector = (resolve, reject) => {
-  reject({
-    class: 'error-message',
-    msg: 'Promise was rejected!',
-  });
+  setTimeout(() => {
+    reject({
+      class: 'error-message',
+      msg: 'Promise was rejected!',
+    });
+  }, 3000);
 };
-
-function clickResolver(result) {
-  const success = document.createElement('div');
-
-  success.className = result.class;
-  success.innerText = result.msg;
-
-  document.body.append(success);
-}
 
 const promiseClick = new Promise(resolver);
 const promiseReject = new Promise(rejector);
 
 promiseClick
   .then((resolve) => {
-    clickResolver(resolve);
+    showMessage(resolve);
   });
 
 promiseReject
   .catch((error) => {
-    clickResolver(error);
+    showMessage(error);
 
     setTimeout(() => {
       const msgError = document.querySelector('.' + error.class);
