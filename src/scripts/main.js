@@ -10,23 +10,24 @@ function createMessage(messageClass, text) {
   document.body.append(div);
 }
 
-const promiseFirst = new Promise((resolve) => {
-  resolve(logo.addEventListener('click', e => {
-    createMessage('message', 'Promise was resolved!');
+function promiseFirst() {
+  return new Promise((resolve) => {
+    logo.addEventListener('click', e => {
+      createMessage('message', 'Promise was resolved!');
+    });
+    resolve();
   }
-  )
   );
 }
-);
 
-const promiseSecond = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(
-      createMessage('error-message', 'Promise was rejected!'));
-  }, 3000);
+function promiseSecond() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      createMessage('error-message', 'Promise was rejected!');
+    }, 3000);
+    reject(Error);
+  });
 }
-);
 
-promiseFirst.then();
-
-promiseSecond.catch();
+promiseFirst();
+promiseSecond();
