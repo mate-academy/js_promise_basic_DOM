@@ -12,22 +12,22 @@ function createMessage(messageClass, text) {
 
 function promiseFirst() {
   return new Promise((resolve) => {
-    logo.addEventListener('click', e => {
-      createMessage('message', 'Promise was resolved!');
+    logo.addEventListener('click', () => {
+      resolve();
     });
-    resolve();
-  }
-  );
+  });
 }
 
 function promiseSecond() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      createMessage('error-message', 'Promise was rejected!');
+      reject(Error);
     }, 3000);
-    reject(Error);
   });
 }
 
-promiseFirst();
-promiseSecond();
+promiseFirst()
+  .then(() => createMessage('message', 'Promise was resolved!'));
+
+promiseSecond()
+  .catch(() => createMessage('error-message', 'Promise was rejected!'));
