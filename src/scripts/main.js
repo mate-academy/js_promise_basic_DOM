@@ -10,11 +10,9 @@ const promiseResolve = new Promise(resolve => {
 });
 
 const promiseReject = new Promise((resolve, reject) => {
-  // btnResolve.addEventListener('click', () => {
   setTimeout(() => {
     reject(new Error('Promise was rejected!'));
   }, 3000);
-  // });
 });
 
 promiseResolve.then(result => {
