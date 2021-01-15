@@ -1,23 +1,40 @@
 'use strict';
 
+const body = document.querySelector('body');
 const btnResolve = document.querySelector('.logo');
 
-btnResolve.addEventListener('click', () => {
-  const promiseResolve = Promise.resolve('Promise was resolved!');
+const promiseResolve = new Promise(resolve => {
+  btnResolve.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
+});
 
-  promiseResolve
-    .then(result => {
-      // eslint-disable-next-line no-console
-      console.log('Successful', result);
-    });
+const promiseReject = new Promise((resolve, reject) => {
+  // btnResolve.addEventListener('click', () => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+  // });
+});
+
+promiseResolve.then(result => {
+  const el = document.createElement('div');
+
+  el.textContent = result;
+  el.classList.add('message');
+
+  body.append(el);
+});
+
+promiseReject.catch(error => {
+  const el = document.createElement('div');
+
+  el.textContent = error;
+  el.classList.add('error-message');
+
+  body.append(el);
 
   setTimeout(() => {
-    const promiseReject = Promise.reject(new Error('Promise was rejected!'));
-
-    promiseReject
-      .catch(error => {
-      // eslint-disable-next-line no-console
-        console.warn(error);
-      });
+    el.style.display = 'none';
   }, 3000);
 });
