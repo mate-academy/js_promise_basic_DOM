@@ -13,7 +13,7 @@ const firstPromise = new Promise((resolve, reject) => {
     const p = document.createElement('p');
 
     p.setAttribute('class', `message`);
-    p.innerHTML = 'resolve';
+    p.innerHTML = 'Promise was resolved!';
     document.body.append(p);
 
     resolve('Resolve');
@@ -27,7 +27,7 @@ const secondPromise = new Promise((resolve, reject) => {
     const rejected = document.createElement('p');
 
     rejected.classList.add('message', 'error-message');
-    rejected.innerHTML = 'reject';
+    rejected.innerHTML = 'Promise was rejected!';
     document.body.append(rejected);
 
     setTimeout(() => rejected.remove(), 2000);
