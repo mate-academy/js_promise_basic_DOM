@@ -2,25 +2,31 @@
 
 const logo = document.querySelector(`.logo`);
 
-function createNotification(bool) {
-  if (bool) {
-    const message = document.createElement('div');
+function createNotification(promiseMessage) {
+  switch (promiseMessage) {
+    case 'Promise was resolved!':
+      const message = document.createElement('div');
 
-    message.classList.add('message');
-    message.innerText = 'Promise was resolved!';
-    document.body.append(message);
-  } else {
-    const errorMessage = document.createElement('div');
+      message.classList.add('message');
+      message.innerText = promiseMessage;
+      document.body.append(message);
 
-    errorMessage.classList.add('error-message');
-    errorMessage.innerText = 'Promise was rejected!';
-    document.body.append(errorMessage);
+      break;
+
+    case 'Promise was rejected!':
+      const errorMessage = document.createElement('div');
+
+      errorMessage.classList.add('error-message');
+      errorMessage.innerText = promiseMessage;
+      document.body.append(errorMessage);
+
+      break;
   }
 }
 
 const firstPromise = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    resolve(true);
+    resolve('Promise was resolved!');
   });
 });
 
@@ -28,8 +34,8 @@ firstPromise.then(res => createNotification(res));
 
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('timeout'));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
-secondPromise.catch(() => createNotification(false));
+secondPromise.catch(() => createNotification('Promise was rejected!'));
