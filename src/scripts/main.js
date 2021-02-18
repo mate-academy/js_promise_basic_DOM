@@ -3,25 +3,23 @@
 const logo = document.querySelector(`.logo`);
 
 function createNotification(promiseMessage) {
+  const message = document.createElement('div');
+
+  message.innerText = promiseMessage;
+
   switch (promiseMessage) {
     case 'Promise was resolved!':
-      const message = document.createElement('div');
-
       message.classList.add('message');
-      message.innerText = promiseMessage;
-      document.body.append(message);
 
       break;
 
     case 'Promise was rejected!':
-      const errorMessage = document.createElement('div');
-
-      errorMessage.classList.add('error-message');
-      errorMessage.innerText = promiseMessage;
-      document.body.append(errorMessage);
+      message.classList.add('error-message');
 
       break;
   }
+
+  document.body.append(message);
 }
 
 const firstPromise = new Promise((resolve) => {
