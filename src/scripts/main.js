@@ -16,26 +16,13 @@ errorMessage.innerHTML = `
     Promise was rejected!
   </div>`;
 
-const p1 = new Promise((resolve) => {
-  resolve();
+const p1 = new Promise((resolve, reject) => {
+  logo.onclick = () => resolve();
+  setTimeout(() => reject(new Error()), 3000);
 });
 
-const p2 = new Promise((resolve) => {
-  setTimeout(() => resolve(), 2990);
-});
+p1
+  .then(() => body.insertAdjacentElement('afterbegin', message))
+  .catch(() => body.insertAdjacentElement('afterbegin', errorMessage));
 
-logo.onclick = () => {
-  p1
-    .then(() => {
-      body.insertAdjacentElement('afterbegin', message);
-    });
-};
-
-p2.then(() => {
-  body.insertAdjacentElement('afterbegin', errorMessage);
-
-  logo.onclick = () => {};
-}
-);
-
-//  I can`t understand this task ¯\_(ツ)_/¯
+// now I understood))
