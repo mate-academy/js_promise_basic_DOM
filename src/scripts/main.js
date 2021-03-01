@@ -25,7 +25,7 @@ promise1.then(result => {
 });
 
 promise2.catch(error => {
-  createMessage('error-message', error);
+  createMessage('error-message', formatError(error.toString()));
 });
 
 function createMessage(type, text) {
@@ -35,4 +35,8 @@ function createMessage(type, text) {
   message.innerText = text;
 
   root.append(message);
+}
+
+function formatError(error) {
+  return error.replace('Error: ', '');
 }
