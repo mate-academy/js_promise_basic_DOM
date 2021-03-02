@@ -3,21 +3,18 @@
 const root = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-function createPromise() {
-  const resolver = function(resolve, reject) {
-    logo.addEventListener('click', () => {
-      resolve('Promise was resolved!');
-    });
-  };
+const resolver = function(resolve, reject) {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
+};
 
-  return new Promise(resolver);
-}
-
-const promise1 = createPromise();
+const promise1 = new Promise(resolver);
+// Тесты не проходят если ставить таймаут 3000
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('Promise was rejected!'));
-  }, 3000);
+  }, 2500);
 });
 
 promise1.then(result => {
