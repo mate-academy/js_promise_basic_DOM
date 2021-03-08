@@ -19,7 +19,7 @@ const firstPromise = new Promise((resolve, reject) => {
 });
 
 const secondPromise = new Promise((resolve, reject) => {
-  reject(new Error());
+  reject(new Error('Promise was rejected!'));
 });
 
 firstPromise
@@ -28,9 +28,9 @@ firstPromise
   })
   .catch(() => {
     secondPromise
-      .catch(() => {
+      .catch((errorText) => {
         message.classList.add('error-message');
-        message.innerText = 'Promise was rejected!';
+        message.innerText = errorText;
       });
   })
   .finally(() => {
