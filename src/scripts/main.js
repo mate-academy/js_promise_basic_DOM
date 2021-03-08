@@ -8,22 +8,31 @@ const message = document.createElement('DIV');
 
 message.classList.add('message');
 
-const promise = new Promise((resolve, reject) => {
-  logo.onclick = () => {
-    resolve();
-  };
+const firstPromise = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
 
   setTimeout(() => {
     reject(new Error());
   }, 3000);
 });
 
-promise
-  .then(() => {
-    message.innerText = 'Promise was resolved!';
+const secondPromise = new Promise((resolve, reject) => {
+  reject(new Error());
+});
+
+firstPromise
+  .then((messageText) => {
+    message.innerText = messageText;
   })
   .catch(() => {
-    message.classList.add('error-message');
-    message.innerText = 'Promise was rejected!';
+    secondPromise
+      .catch(() => {
+        message.classList.add('error-message');
+        message.innerText = 'Promise was rejected!';
+      });
   })
-  .finally(() => body.prepend(message));
+  .finally(() => {
+    body.prepend(message);
+  });
