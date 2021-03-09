@@ -4,35 +4,32 @@
 
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
-const message = document.createElement('DIV');
+const resolveMessage = document.createElement('DIV');
+const rejectMessage = document.createElement('DIV');
 
-message.classList.add('message');
+resolveMessage.classList.add('message');
+rejectMessage.classList.add('message', 'error-message');
 
 const firstPromise = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
-
-  setTimeout(() => {
-    reject(new Error());
-  }, 3000);
 });
 
 const secondPromise = new Promise((resolve, reject) => {
-  reject(new Error('Promise was rejected!'));
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
 
 firstPromise
   .then((messageText) => {
-    message.innerText = messageText;
-  })
-  .catch(() => {
-    secondPromise
-      .catch((errorText) => {
-        message.classList.add('error-message');
-        message.innerText = errorText;
-      });
-  })
-  .finally(() => {
-    body.prepend(message);
+    resolveMessage.innerText = messageText;
+    body.prepend(resolveMessage);
+  });
+
+secondPromise
+  .catch((error) => {
+    rejectMessage.innerText = error;
+    body.prepend(rejectMessage);
   });
