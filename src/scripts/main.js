@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-function printMessage(type, text, check) {
+function printMessage(type, text, shouldDelete) {
   const message = document.createElement('div');
 
   message.classList.add(type);
@@ -10,7 +10,7 @@ function printMessage(type, text, check) {
 
   document.body.append(message);
 
-  if (check === true) {
+  if (shouldDelete === true) {
     setTimeout(() => message.remove(), 5000);
   }
 }
