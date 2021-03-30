@@ -3,23 +3,27 @@
 // write your code here
 const logo = document.querySelector('.logo');
 
-function createPromise() {
-  const resolver = (complete, cancel) => {
+function firstPromise() {
+  const resolver = (resolve) => {
     logo.addEventListener('click', () => {
-      complete();
+      resolve();
     });
+  };
 
+  return new Promise(resolver);
+}
+
+function secondPromise() {
+  const resolver = (_, rejected) => {
     setTimeout(() => {
-      cancel();
+      rejected();
     }, 3000);
   };
 
   return new Promise(resolver);
 }
 
-const promise = createPromise();
-
-promise
+firstPromise()
   .then(() => {
     const message = document.createElement('div');
 
@@ -27,7 +31,9 @@ promise
     message.innerText = 'Promise was resolved!';
 
     document.body.append(message);
-  })
+  });
+
+secondPromise()
   .catch(() => {
     const errorMessage = document.createElement('div');
 
