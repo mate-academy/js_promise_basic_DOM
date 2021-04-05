@@ -12,24 +12,24 @@ function createPromise(nameOfClass, textOfMessage) {
   body.append(message);
 }
 
-const promise1 = new Promise((resolve, reject) => {
+const firstPromise = new Promise((resolve, reject) => {
   button.addEventListener('click', () => {
     resolve();
   });
 });
 
-const promise2 = new Promise((resolve, reject) => {
+const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error());
   }, 3000);
 });
 
-promise1
+firstPromise
   .then(() => {
     createPromise('message', 'Promise was resolved!');
   });
 
-promise2
+secondPromise
   .catch(() => {
     createPromise('error-message', 'Promise was rejected!');
   });
