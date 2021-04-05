@@ -3,19 +3,17 @@
 const body = document.querySelector('body');
 const button = document.querySelector('.logo');
 
-function createMessage(nameOfClass, textOfMessage) {
+function createMessage(className, text) {
   const message = document.createElement('div');
 
-  message.className = nameOfClass;
-  message.textContent = textOfMessage;
+  message.className = className;
+  message.textContent = text;
 
   body.append(message);
 }
 
 const firstPromise = new Promise((resolve, reject) => {
-  button.addEventListener('click', () => {
-    resolve();
-  });
+  button.addEventListener('click', resolve);
 });
 
 const secondPromise = new Promise((resolve, reject) => {
