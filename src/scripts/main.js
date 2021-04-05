@@ -3,7 +3,7 @@
 const body = document.querySelector('body');
 const button = document.querySelector('.logo');
 
-function createPromise(nameOfClass, textOfMessage) {
+function createMessage(nameOfClass, textOfMessage) {
   const message = document.createElement('div');
 
   message.className = nameOfClass;
@@ -26,10 +26,10 @@ const secondPromise = new Promise((resolve, reject) => {
 
 firstPromise
   .then(() => {
-    createPromise('message', 'Promise was resolved!');
+    createMessage('message', 'Promise was resolved!');
   });
 
 secondPromise
   .catch(() => {
-    createPromise('error-message', 'Promise was rejected!');
+    createMessage('error-message', 'Promise was rejected!');
   });
