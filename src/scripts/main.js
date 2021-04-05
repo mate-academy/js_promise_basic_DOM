@@ -19,7 +19,7 @@ function createMessage(result, text, error) {
 
 const cancel = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error());
+    reject(new Error('Promise timeout'));
   }, 3000);
 });
 
