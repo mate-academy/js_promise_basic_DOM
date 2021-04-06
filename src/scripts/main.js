@@ -16,14 +16,16 @@ const error = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+const touchMessage = (element, className, textContent) => {
+  element.className = className;
+  element.textContent = textContent;
+  logo.after(element);
+};
+
 click.then(() => {
-  successMessage.className = 'message';
-  successMessage.textContent = 'Promise was resolved!';
-  logo.after(successMessage);
+  touchMessage(successMessage, 'message', 'Promise was resolved!');
 });
 
 error.catch(() => {
-  errorMessage.className = 'error-message';
-  errorMessage.textContent = 'Promise was rejected!';
-  logo.after(errorMessage);
+  touchMessage(errorMessage, 'error-message', 'Promise was rejected!');
 });
