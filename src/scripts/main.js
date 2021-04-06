@@ -7,18 +7,19 @@ const successPromise = new Promise(resolve => {
 });
 
 const errorPromise = new Promise((resolve, reject) => {
-  setInterval(() => {
+  setTimeout(() => {
     reject(new Error('Promise was rejected'));
   }, 3000);
 });
 
 const touchMessage = (element, className, textContent) => {
-  const message = window['message' + element]
-    = document.createElement('div');
+  const messages = {
+    [`${element}`]: document.createElement('div'),
+  };
 
-  message.className = className;
-  message.textContent = textContent;
-  logo.after(message);
+  messages[element].className = className;
+  messages[element].textContent = textContent;
+  logo.after(messages[element]);
 };
 
 successPromise.then(() => {
