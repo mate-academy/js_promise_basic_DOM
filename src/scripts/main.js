@@ -1,31 +1,30 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const successMessage = document.createElement('div');
-const errorMessage = document.createElement('div');
 
-const click = new Promise(resolve => {
-  logo.addEventListener('click', () => {
-    resolve();
-  });
+const successPromise = new Promise(resolve => {
+  logo.addEventListener('click', () => resolve());
 });
 
-const error = new Promise((resolve, reject) => {
+const errorPromise = new Promise((resolve, reject) => {
   setInterval(() => {
-    reject(new Error());
+    reject(new Error('Promise was rejected'));
   }, 3000);
 });
 
 const touchMessage = (element, className, textContent) => {
-  element.className = className;
-  element.textContent = textContent;
-  logo.after(element);
+  const message = window['message' + element]
+    = document.createElement('div');
+
+  message.className = className;
+  message.textContent = textContent;
+  logo.after(message);
 };
 
-click.then(() => {
-  touchMessage(successMessage, 'message', 'Promise was resolved!');
+successPromise.then(() => {
+  touchMessage(`Success`, 'message', 'Promise was resolved!');
 });
 
-error.catch(() => {
-  touchMessage(errorMessage, 'error-message', 'Promise was rejected!');
+errorPromise.catch(() => {
+  touchMessage(`Error`, 'error-message', 'Promise was rejected!');
 });
