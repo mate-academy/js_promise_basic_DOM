@@ -1,36 +1,30 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
+const errorMessage = 'Promise was rejected!';
 
-function onClickResolve() {
-  const block = document.createElement('div');
+function addMessage(className, text) {
+  const message = document.createElement('div');
 
-  block.classList.add('message');
-  block.textContent = 'Promise was resolved!';
-  document.body.append(block);
-}
-
-function onReject() {
-  const block = document.createElement('div');
-
-  block.classList.add('error-message');
-  block.textContent = 'Promise was rejected!';
-
-  return block;
+  message.classList.add(className);
+  message.textContent = text;
+  document.body.append(message);
 }
 
 const promiseOne = new Promise(resolve => {
   logo.addEventListener('click', resolve);
 });
 
-const promiseTwo = Promise.reject(onReject());
+const promiseTwo = Promise.reject(errorMessage);
 
 promiseOne
-  .then(onClickResolve);
+  .then(() => {
+    addMessage('message', 'Promise was resolved!');
+  });
 
 promiseTwo
   .catch((error) => {
     setTimeout(() => {
-      document.body.append(error);
+      addMessage('error-message', error);
     }, 3000);
   });
