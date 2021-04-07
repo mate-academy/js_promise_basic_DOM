@@ -1,7 +1,6 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const errorMessage = 'Promise was rejected!';
 
 function addMessage(className, text) {
   const message = document.createElement('div');
@@ -15,7 +14,11 @@ const promiseOne = new Promise(resolve => {
   logo.addEventListener('click', resolve);
 });
 
-const promiseTwo = Promise.reject(errorMessage);
+const promiseTwo = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error());
+  }, 3000);
+});
 
 promiseOne
   .then(() => {
@@ -23,8 +26,6 @@ promiseOne
   });
 
 promiseTwo
-  .catch((error) => {
-    setTimeout(() => {
-      addMessage('error-message', error);
-    }, 3000);
+  .catch(() => {
+    addMessage('error-message', 'Promise was rejected!');
   });
