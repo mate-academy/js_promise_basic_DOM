@@ -22,7 +22,7 @@ firstPromise
 
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error());
+    reject(new Error('Error occured'));
   }, 3000);
 });
 
