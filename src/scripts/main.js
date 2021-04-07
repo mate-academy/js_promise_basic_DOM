@@ -1,30 +1,40 @@
 'use strict';
 
-// write your code here
 const logo = document.querySelector('.logo');
 
-const message = document.createElement('div');
-const errorMessage = document.createElement('div');
+class Message {
+  constructor(className, text) {
+    const newMessage = document.createElement('div');
 
-message.className = 'message';
-message.innerText = 'Promise was resolved!';
+    newMessage.className = className;
+    newMessage.innerText = text;
 
-errorMessage.className = 'error-message';
-errorMessage.innerText = 'Promise was rejected!';
+    return newMessage;
+  }
+}
 
-const resolvedPromise = Promise.resolve(message);
-const rejectedPromise = Promise.reject(errorMessage);
+const resolvedPromise = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    const message = new Message('message', 'Promise was resolved!');
+
+    resolve(message);
+  });
+});
+
+const rejectedPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const errorMessage = new Message('error-message', 'Promise was rejected!');
+
+    reject(errorMessage);
+  }, 3000);
+});
 
 resolvedPromise
   .then(result => {
-    logo.addEventListener('click', () => {
-      document.body.append(result);
-    });
+    document.body.append(result);
   });
 
 rejectedPromise
   .catch(error => {
-    setTimeout(() => {
-      document.body.append(error);
-    }, 3000);
+    document.body.append(error);
   });
