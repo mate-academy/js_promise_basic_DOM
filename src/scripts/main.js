@@ -1,13 +1,9 @@
 'use strict';
 
-// eslint-disable-next-line no-unused-vars
-const firstPromise = new Promise((resolve, reject) => {
+const firstPromise = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', (e) => {
-    // eslint-disable-next-line no-console
-    console.log('preparing data...');
-
     const p = document.createElement('p');
 
     p.setAttribute('class', `message`);
@@ -17,11 +13,9 @@ const firstPromise = new Promise((resolve, reject) => {
     resolve('Resolve');
   });
 }).then(data => {
-  // eslint-disable-next-line no-console
   console.log(data);
 });
 
-// eslint-disable-next-line no-unused-vars
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     const rejected = document.createElement('p');
@@ -35,6 +29,5 @@ const secondPromise = new Promise((resolve, reject) => {
     reject(new Error('Reject'));
   }, 3000);
 }).catch(error => {
-  // eslint-disable-next-line no-console
   console.log(error);
 });
