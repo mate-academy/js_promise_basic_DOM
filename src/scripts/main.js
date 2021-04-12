@@ -19,7 +19,7 @@ const touchMessage = (element, className, textContent) => {
 
   messages[element].className = className;
   messages[element].textContent = textContent;
-  logo.after(messages[element]);
+  document.body.append(messages[element]);
 };
 
 successPromise.then(() => {
