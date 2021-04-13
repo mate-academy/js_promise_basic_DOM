@@ -2,27 +2,35 @@
 
 const logo = document.querySelector('.logo');
 
-const resolveDiv = document.createElement('div');
+function createElement(className, innerText) {
+  const element = document.createElement('div');
 
-resolveDiv.className = 'message';
-resolveDiv.innerText = 'Promise was resolved!';
+  element.className = className;
+  element.innerText = innerText;
 
-const rejectDiv = document.createElement('div');
+  return element;
+}
 
-rejectDiv.className = 'message error-message';
-rejectDiv.innerText = 'Promise was rejected!';
-
-logo.addEventListener('click', () => {
-  return new Promise((resolve, reject) => {
-    document.body.append(resolveDiv);
+const promiseResolve = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    document.body.append(
+      createElement('message', 'Promise was resolved!')
+    );
     resolve();
-  })
-    .then(() => {
-      setTimeout(() => {
-        return new Promise((resolve, reject) => {
-          document.body.append(rejectDiv);
-          reject(new Error('Promise was rejected!'));
-        });
-      }, 3000);
-    });
+  });
 });
+
+// eslint-disable-next-line no-console
+promiseResolve.then(() => console.log('Promise was resolved'));
+
+const promiseReject = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    document.body.append(
+      createElement('message error-message', 'Promise was resolved!')
+    );
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
+
+// eslint-disable-next-line no-console
+promiseReject.catch(error => console.log(error));
