@@ -1,15 +1,18 @@
 'use strict';
 
+const insert = (text, class1, class2) => {
+  const message = document.createElement('div');
+
+  message.classList.add(class1, class2);
+  message.innerHTML = text;
+  document.body.append(message);
+};
+
 const firstPromise = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', (e) => {
-    const messageResolved = document.createElement('div');
-
-    messageResolved.setAttribute('class', `message`);
-    messageResolved.innerHTML = 'Promise was resolved!';
-    document.body.append(messageResolved);
-
+    insert('Promise was resolved!', 'message');
     resolve('Resolve');
   });
 });
@@ -19,14 +22,11 @@ firstPromise.then(info => {console.log(info)});
 
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const meassageRejected = document.createElement('div');
+    insert('Promise was rejected!', 'message', 'error-message');
 
-    meassageRejected.classList.add('message', 'error-message');
-    meassageRejected.innerHTML = 'Promise was rejected!';
-    document.body.append(meassageRejected);
+    const errorMessage = document.querySelector('.error-message');
 
-    setTimeout(() => meassageRejected.remove(), 2000);
-
+    setTimeout(() => errorMessage.remove(), 2000);
     reject(new Error('Reject'));
   }, 3000);
 });
