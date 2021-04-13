@@ -26,7 +26,7 @@ promiseResolve.then(() => console.log('Promise was resolved'));
 const promiseReject = new Promise((resolve, reject) => {
   setTimeout(() => {
     document.body.append(
-      createElement('message error-message', 'Promise was resolved!')
+      createElement('message error-message', 'Promise was rejected!')
     );
     reject(new Error('Promise was rejected!'));
   }, 3000);
