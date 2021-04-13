@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 const logo = document.querySelector('.logo');
@@ -12,7 +13,7 @@ logo.addEventListener('click', () => {
 
     document.body.append(message);
     resolve(messageText);
-  }).then(message => alert(message));
+  }).then(message => console.log(message));
 });
 
 // eslint-disable-next-line
@@ -27,5 +28,8 @@ const rejected = new Promise((resolve, reject) => {
     document.body.append(errorMessage);
     reject(new Error(errorMessageText));
   }, 3000);
-  // eslint-disable-next-line
+
+  setTimeout(() => {
+    errorMessage.remove();
+  }, 6000);
 }).catch(error => console.error(error));
