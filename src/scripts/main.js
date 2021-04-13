@@ -1,16 +1,19 @@
 'use strict';
 
+function createTegs(className, text) {
+  const p = document.createElement('p');
+
+  p.setAttribute('class', className);
+  p.innerHTML = text;
+  document.body.append(p);
+}
+
 // eslint-disable-next-line no-unused-vars
 const firstPromise = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', (e) => {
-    const p = document.createElement('p');
-
-    p.setAttribute('class', `message`);
-    p.innerHTML = 'Promise was resolved!';
-    document.body.append(p);
-
+    createTegs('message', 'Promise was resolved!');
     resolve('Resolve');
   });
 }).then(data => {
@@ -21,13 +24,11 @@ const firstPromise = new Promise((resolve) => {
 // eslint-disable-next-line no-unused-vars
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const rejected = document.createElement('p');
+    createTegs('message error-message', 'Promise was rejected!');
 
-    rejected.classList.add('message', 'error-message');
-    rejected.innerHTML = 'Promise was rejected!';
-    document.body.append(rejected);
+    const errorMessage = document.querySelector('.error-message');
 
-    setTimeout(() => rejected.remove(), 2000);
+    setTimeout(() => errorMessage.remove(), 2000);
 
     reject(new Error('Reject'));
   }, 3000);
