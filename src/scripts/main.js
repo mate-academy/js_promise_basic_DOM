@@ -10,20 +10,18 @@ const addMessage = (messageText, className) => {
   document.body.append(message);
 };
 
-// eslint-disable-next-line no-unused-vars
 const firstPromise = new Promise(resolve => {
   logo.addEventListener('click', () => {
-    const messageText = 'Promise was resolved!';
-
-    addMessage(messageText, 'message');
+    resolve('Promise was resolved!');
   });
 });
-// eslint-disable-next-line no-unused-vars
-const secondPromise = new Promise((resolve, reject) => {
-  const errorMessageText = 'Promise was rejected!';
 
+firstPromise.then(value => addMessage(value, 'message'));
+
+const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    addMessage(errorMessageText, 'message error-message');
-    reject(new Error(errorMessageText));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
+
+secondPromise.catch(error => addMessage(error, 'message error-message'));
