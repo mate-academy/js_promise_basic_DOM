@@ -16,24 +16,22 @@ const createMessage = (type) => {
   return message;
 };
 
-const promiseOne = new Promise((resolve) => {
+const body = document.querySelector('body');
+
+new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => resolve());
-});
-
-const promiseTwo = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error('error')), 3000);
-});
-
-const body = document.querySelector('body');
-
-promiseOne
+})
   .then(
     (result) => body.append(createMessage(result))
   );
 
-promiseTwo
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('error'));
+  }, 3000);
+})
   .catch(
     (result) => body.append(createMessage(result))
   );
