@@ -1,6 +1,5 @@
 'use strict';
 
-const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
 const createMessage = (classes, description) => {
@@ -8,22 +7,25 @@ const createMessage = (classes, description) => {
 
   message.className = classes;
   message.innerHTML = description;
-  body.appendChild(message);
+  document.body.appendChild(message);
 
   return message;
 };
 
-logo.addEventListener('click', () => {
-  const message = createMessage('message', 'Promise was resolved!');
+new Promise((resolve, reject) => {
+  logo.addEventListener('click', (e) => {
+    resolve();
+  });
+})
+  .then(() => {
+    createMessage('message', 'Promise was resolved!');
+  });
 
-  Promise.resolve(message);
-});
-
-setTimeout(() => {
-  const message = createMessage(
-    'message error-message',
-    'Promise was rejected!'
-  );
-
-  Promise.reject(message);
-}, 3000);
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error());
+  }, 3000);
+})
+  .catch(() => {
+    createMessage('message error-message', 'Promise was rejected!');
+  });
