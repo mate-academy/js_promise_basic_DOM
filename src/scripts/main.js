@@ -1,18 +1,25 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const errorMessage = 'Promise was rejected!';
+
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    (logo.insertAdjacentHTML('beforebegin', `
-      <div class="message">Promise was resolved!</div>`));
-    resolve(errorMessage);
+    resolve();
   });
 });
 
-promise1.then((error) => {
+promise1.then(() => {
+  logo.insertAdjacentHTML('beforebegin', `
+    <div class="message">Promise was resolved!</div>`);
+});
+
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    Promise.reject(logo.insertAdjacentHTML('beforebegin', `
-      <div class="message error-message">${error}</div>`));
+    reject(new Error());
   }, 3000);
+});
+
+promise2.catch(() => {
+  logo.insertAdjacentHTML('beforebegin', `
+    <div class="message error-message">Promise was rejected!</div>`);
 });
