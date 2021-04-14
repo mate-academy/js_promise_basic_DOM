@@ -2,13 +2,18 @@
 
 const logo = document.querySelector('.logo');
 
+const createElement = (result, className) => {
+  const message = document.createElement('div');
+
+  message.textContent = result;
+  message.className = className;
+
+  return message;
+};
+
 logo.addEventListener('click', () => {
   return new Promise((resolve) => {
-    const message = document.createElement('div');
-
-    message.textContent = 'Promise was resolved!';
-    message.className = 'message';
-    resolve(message);
+    resolve(createElement('Promise was resolved!', 'message'));
   }).then(message => {
     document.body.append(message);
   });
@@ -16,12 +21,7 @@ logo.addEventListener('click', () => {
 
 new Promise((resolve, reject) => {
   setTimeout(() => {
-    const errorMessage = document.createElement('div');
-
-    errorMessage.textContent = 'Promise was rejected!';
-    errorMessage.className = 'message error-message';
-
-    reject(errorMessage);
+    reject(createElement('Promise was rejected!', 'message error-message'));
   }, 3000);
 }).catch(error => {
   document.body.append(error);
