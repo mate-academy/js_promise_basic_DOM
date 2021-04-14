@@ -17,32 +17,24 @@ function createErrorBlock() {
     </div>`);
 }
 
-function createSuccessPromise() {
-  const resolver = (resolve, reject) => {
-    logo.addEventListener('click', () => {
-      resolve(createSuccessBlock);
-    });
-  };
-
-  return new Promise(resolver);
-}
-
-const promise1 = createSuccessPromise();
-
-promise1.then(result => {
-  result();
+const successPromise = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve();
+  });
 });
 
-function createErrorPromise() {
-  const resolver = (resolve, reject) => {
-    reject(createErrorBlock);
-  };
+successPromise
+  .then(() => {
+    createSuccessBlock();
+  });
 
-  return new Promise(resolver);
-}
-
-const promise2 = createErrorPromise();
-
-promise2.catch(result => {
-  setTimeout(result, 3000);
+const errorPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Error'));
+  }, 3000);
 });
+
+errorPromise
+  .catch(() => {
+    createErrorBlock();
+  });
