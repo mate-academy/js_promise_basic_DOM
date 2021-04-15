@@ -3,18 +3,11 @@
 const logo = document.querySelector('.logo');
 const body = document.body;
 
-function createSuccessBlock() {
+function createMessageBlock(classes, message) {
   body.insertAdjacentHTML('beforebegin', `
-  <div class="message">
-    Promise was resolved!
+  <div class="${classes}">
+      ${message}
   </div>`);
-}
-
-function createErrorBlock() {
-  body.insertAdjacentHTML('beforebegin', `
-    <div class="message error-message">
-      Promise was rejected!
-    </div>`);
 }
 
 const successPromise = new Promise((resolve, reject) => {
@@ -25,7 +18,7 @@ const successPromise = new Promise((resolve, reject) => {
 
 successPromise
   .then(() => {
-    createSuccessBlock();
+    createMessageBlock('message', 'Promise was resolved!');
   });
 
 const errorPromise = new Promise((resolve, reject) => {
@@ -36,5 +29,5 @@ const errorPromise = new Promise((resolve, reject) => {
 
 errorPromise
   .catch(() => {
-    createErrorBlock();
+    createMessageBlock('message error-message', 'Promise was rejected!');
   });
