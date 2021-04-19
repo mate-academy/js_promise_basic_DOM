@@ -3,26 +3,28 @@
 const logo = document.querySelector('.logo');
 
 function notification(notifClass) {
-  const notif = document.createElement('div');
+  const container = document.createElement('div');
 
-  notif.className = notifClass;
+  container.className = notifClass;
 
-  notif.textContent = (notifClass === 'error-message')
+  container.textContent = (notifClass === 'error-message')
     ? 'Promise was rejected!'
     : 'Promise was resolved!';
 
-  logo.parentNode.append(notif);
+  logo.parentNode.append(container);
 }
 
-logo.addEventListener('click', () => {
-  return new Promise(resolve => {
+const firstPromise = new Promise(resolve => {
+  logo.addEventListener('click', () => {
     resolve('message');
-  })
-    .then(notClass => notification(notClass));
+  });
+});
+const secondPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // eslint-disable-next-line prefer-promise-reject-errors
+    reject('error-message');
+  }, 3000);
 });
 
-setTimeout(() => {
-  // eslint-disable-next-line promise/param-names
-  return new Promise(reject => reject('error-message'))
-    .then(notClass => notification(notClass));
-}, 3000);
+firstPromise.then(notClass => notification(notClass));
+secondPromise.catch(notClass => notification(notClass));
