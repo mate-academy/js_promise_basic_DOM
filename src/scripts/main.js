@@ -12,17 +12,17 @@ function notification(notifClass) {
     : 'Promise was resolved!';
 
   logo.parentNode.append(notif);
-
-  if (notifClass === 'error-message') {
-    setTimeout(() => {
-      notif.remove();
-    }, 3000);
-  }
 }
 
 logo.addEventListener('click', () => {
-  return new Promise((resolve, reject) => {
-    resolve(notification('message'));
-    reject(notification('error-message'));
-  });
+  return new Promise(resolve => {
+    resolve('message');
+  })
+    .then(notClass => notification(notClass));
 });
+
+setTimeout(() => {
+  // eslint-disable-next-line promise/param-names
+  return new Promise(reject => reject('error-message'))
+    .then(notClass => notification(notClass));
+}, 3000);
