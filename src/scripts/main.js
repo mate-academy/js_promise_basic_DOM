@@ -2,30 +2,43 @@
 
 const logo = document.querySelector('.logo');
 
+class PromiseWasRejected extends SyntaxError {
+  constructor(message) {
+    super(message);
+    this.name = 'PromiseWasRejected';
+  }
+}
+
+const err = new PromiseWasRejected(`Promise was rejected!`);
+
 const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', e => {
-    resolve(logo.insertAdjacentHTML('afterend', `
-      <div class="message">
-        <span>
-          Promise was resolved!
-        </span>
-      </div>
-    `));
+  logo.addEventListener('click', () => {
+    resolve(`Promise was resolved!`);
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(logo.insertAdjacentHTML('afterend', `
-      <div class="error-message">
-        <span>
-          Promise was rejected!
-        </span>
-      </div>
-    `));
+    reject(err.message);
   }, 3000);
 });
 
-promise1.then(() => {});
+promise1.then((result) => {
+  logo.insertAdjacentHTML('afterend', `
+      <div class="message">
+        <span>
+          ${result}
+        </span>
+      </div>
+    `);
+});
 
-promise2.catch(() => {});
+promise2.catch((message) => {
+  logo.insertAdjacentHTML('afterend', `
+      <div class="error-message">
+        <span>
+          ${message}
+        </span>
+      </div>
+    `);
+});
