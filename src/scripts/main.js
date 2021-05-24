@@ -3,6 +3,12 @@
 const logo = document.querySelector('.logo');
 
 const errorPromise = new Promise((resolve, reject) => {
+  logo.addEventListener('click', (e) => {
+    resolve({
+      text: 'Promise was resolved!', className: 'message',
+    });
+  });
+
   setTimeout(() => {
     // eslint-disable-next-line prefer-promise-reject-errors
     reject({
@@ -11,17 +17,7 @@ const errorPromise = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-errorPromise.catch(addMessage);
-
-logo.addEventListener('click', (e) => {
-  const successClickPromise = new Promise((resolve) => {
-    resolve({
-      text: 'Promise was resolved!', className: 'message',
-    });
-  });
-
-  successClickPromise.then(addMessage);
-});
+errorPromise.then(addMessage).catch(addMessage);
 
 function addMessage(params) {
   const errorMessage = document.createElement('div');
