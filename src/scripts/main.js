@@ -3,8 +3,8 @@
 const body = document.querySelector('body');
 const button = body.querySelector('.logo');
 
-function createPromise() {
-  return new Promise((resolve, reject) => {
+function promiseResolve() {
+  return new Promise((resolve) => {
     button.onclick = () => {
       const messageResolve = document.createElement('div');
 
@@ -13,16 +13,21 @@ function createPromise() {
 
       resolve(body.appendChild(messageResolve));
     };
+  });
+}
 
+function promiseReject() {
+  return new Promise((resolve) => {
     setTimeout(() => {
       const messageReject = document.createElement('div');
 
       messageReject.setAttribute('class', 'error-message');
       messageReject.innerText = 'Promise was rejected!';
 
-      reject(body.appendChild(messageReject));
+      resolve(body.appendChild(messageReject));
     }, 3000);
   });
 }
 
-createPromise();
+promiseResolve();
+promiseReject();
