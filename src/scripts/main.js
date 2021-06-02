@@ -3,7 +3,7 @@
 const body = document.querySelector('body');
 const button = body.querySelector('.logo');
 
-const promice = new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve) => {
   const message = document.createElement('div');
 
   button.onclick = () => {
@@ -12,8 +12,12 @@ const promice = new Promise((resolve, reject) => {
 
     resolve(message);
   };
+});
 
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
+    const message = document.createElement('div');
+
     message.setAttribute('class', 'error-message');
     message.innerText = 'Promise was rejected!';
 
@@ -21,10 +25,6 @@ const promice = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promice
-  .then(result => {
-    body.appendChild(result);
-  })
-  .catch(error => {
-    body.appendChild(error);
-  });
+promise1.then(result => body.appendChild(result));
+
+promise2.catch(error => body.appendChild(error));
