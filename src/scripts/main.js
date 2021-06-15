@@ -2,31 +2,30 @@
 
 const body = document.querySelector('body');
 
-function resolvePromise() {
-  return new Promise((resolve) => {
-    const logo = document.querySelector('.logo');
+const logo = document.querySelector('.logo');
 
-    logo.addEventListener('click', (e) => {
-      resolve(body.insertAdjacentHTML('afterbegin',
-        `<div class="message">
-          <p>Promise was resolved!</p>
-        </div>`));
-    });
-  });
-};
-
-function rejectedPromise() {
+function createPromise() {
   return new Promise((resolve, reject) => {
-    const rejected = () => {
-      body.insertAdjacentHTML('afterbegin',
-        `<div class="error-message">
-          <p>Promise was rejected!</p>
-        </div>`);
-    };
+    logo.addEventListener('click', (e) => {
+      resolve();
+    });
 
-    setTimeout(rejected, 3000);
+    setTimeout(reject, 3000);
   });
 };
 
-resolvePromise();
-rejectedPromise();
+const newPromise = createPromise();
+
+newPromise
+  .then(() => {
+    body.insertAdjacentHTML('afterbegin',
+      `<div class="message">
+        <p>Promise was resolved!</p>
+      </div>`);
+  })
+  .catch(() => {
+    body.insertAdjacentHTML('afterbegin',
+      `<div class="error-message">
+        <p>Promise was rejected!</p>
+      </div>`);
+  });
