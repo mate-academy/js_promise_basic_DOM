@@ -4,25 +4,13 @@ const body = document.querySelector('body');
 
 const logo = document.querySelector('.logo');
 
-function resolvePromise() {
-  return new Promise((resolve) => {
-    logo.addEventListener('click', (e) => {
-      resolve();
-    });
+const resolvePromise = new Promise((resolve) => {
+  logo.addEventListener('click', (e) => {
+    resolve();
   });
-};
+});
 
-function rejectPromise() {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 3000);
-  });
-};
-
-const resolvedPromise = resolvePromise();
-
-const rejectedPromise = rejectPromise();
-
-resolvedPromise
+resolvePromise
   .then(() => {
     body.insertAdjacentHTML('afterbegin',
       `<div class="message">
@@ -30,8 +18,13 @@ resolvedPromise
       </div>`);
   });
 
-rejectedPromise
-  .then(() => {
+const rejectPromise = new Promise((resolve, reject) => {
+  setTimeout(reject, 3000);
+});
+
+rejectPromise
+  .then()
+  .catch(() => {
     body.insertAdjacentHTML('afterbegin',
       `<div class="error-message">
         <p>Promise was rejected!</p>
