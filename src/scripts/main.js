@@ -16,19 +16,18 @@ const resolvedPromise = new Promise((resolve, reject) => {
 
 resolvedPromise
   .then((result) => {
-    const successMsg = document.createElement('div');
-
-    successMsg.classList.add('message');
-    successMsg.innerText = result;
-    document.body.appendChild(successMsg);
+    pushNotification('message', result);
   });
 
 rejectedPromise
   .catch((error) => {
-    const errorMsg = document.createElement('div');
-
-    errorMsg.innerText = error.message;
-    errorMsg.classList.add('message');
-    errorMsg.classList.add('error-message');
-    document.body.appendChild(errorMsg);
+    pushNotification('message error-message', error.message);
   });
+
+function pushNotification(className, message) {
+  const msg = document.createElement('div');
+
+  msg.className = className;
+  msg.innerText = message;
+  document.body.appendChild(msg);
+}
