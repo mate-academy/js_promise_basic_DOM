@@ -3,11 +3,11 @@
 const logo = document.querySelector('.logo');
 
 function makeDivBlock(className, text) {
-  const newDivBlock = document.createElement('div');
+  const createMessage = document.createElement('div');
 
-  newDivBlock.className = className;
-  newDivBlock.innerHTML = text;
-  document.body.appendChild(newDivBlock);
+  createMessage.className = className;
+  createMessage.innerHTML = text;
+  document.body.appendChild(createMessage);
 }
 
 new Promise((resolve) => {
