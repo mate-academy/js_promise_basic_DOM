@@ -11,13 +11,15 @@ errorMessage.className = 'error-message';
 message.innerText = 'Promise was resolved!';
 errorMessage.innerText = 'Promise was rejected!';
 
-document.querySelector('body').addEventListener('click', (even) => {
-  if (logo === even.target) {
-    return new Promise(function(resolve, reject) {
+const resolveMessage = new Promise(function(resolve, reject) {
+  document.querySelector('body').addEventListener('click', (even) => {
+    if (logo === even.target) {
       resolve(logo.append(message));
-    });
-  }
+    };
+  });
 });
+
+resolveMessage.then();
 
 const error = new Promise(function(resolve, reject) {
   setTimeout(() => reject(document.querySelector('body')
