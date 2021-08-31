@@ -3,10 +3,12 @@
 const body = document.body;
 const logo = body.querySelector('.logo');
 const message = document.createElement('div');
-const errorMessage = message.cloneNode(true);
+const errorMessage = document.createElement('div');
 
 message.className = 'message';
-errorMessage.className = 'message error-message';
+message.textContent = 'Promise was resolved!';
+errorMessage.className = `${message.className} error-message`;
+errorMessage.textContent = 'Promise was rejected!';
 
 const firstPromise = Promise.resolve(message);
 const secondPromise = Promise.reject(errorMessage);
