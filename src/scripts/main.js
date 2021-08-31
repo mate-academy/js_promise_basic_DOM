@@ -15,16 +15,15 @@ const firstPromise = new Promise((resolve) =>
     resolve(msg);
   }));
 
-const secondPromise = new Promise((resolve, reject) =>
-  target.addEventListener('click', () => {
-    const msgError = `
-      <div class="error-message message">
-        Promise was rejected!
-      </div>
-    `;
+const secondPromise = new Promise((resolve, reject) => {
+  const msgError = `
+    <div class="error-message message">
+      Promise was rejected!
+    </div>
+  `;
 
-    setTimeout(() => reject(msgError), 3000);
-  }));
+  setTimeout(() => reject(msgError), 3000);
+});
 
 firstPromise.then((msg) => rootElement
   .insertAdjacentHTML('afterbegin', msg));
