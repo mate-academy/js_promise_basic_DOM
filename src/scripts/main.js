@@ -15,10 +15,8 @@ function getPromise() {
     logo.addEventListener('click', () => {
       document.body.append(message);
 
-      resolve();
+      resolve(reject());
     });
-
-    reject();
   };
 
   return new Promise(resolver);
@@ -27,8 +25,7 @@ function getPromise() {
 const promisse = getPromise();
 
 promisse
-  .then(() => {
-  })
+  .then()
   .catch(() => {
     setTimeout(() => {
       document.body.append(messageError);
