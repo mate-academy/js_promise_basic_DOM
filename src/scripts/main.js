@@ -3,31 +3,32 @@
 const message = document.createElement('div');
 const messageError = document.createElement('div');
 
-message.classList.add('message');
-message.textContent = 'Promise was resolved!';
-messageError.classList.add('message', 'error-message');
-messageError.textContent = 'Promise was rejected!';
-
-function getPromise() {
+const firstPromise = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
-  const resolver = (resolve, reject) => {
-    logo.addEventListener('click', () => {
-      document.body.append(message);
+  logo.addEventListener('click', () => {
+    const text = 'Promise was resolved!';
 
-      resolve(reject());
-    });
-  };
-
-  return new Promise(resolver);
-};
-
-const promisse = getPromise();
-
-promisse
-  .then()
-  .catch(() => {
-    setTimeout(() => {
-      document.body.append(messageError);
-    }, 3000);
+    message.classList.add('message');
+    document.body.append(message);
+    resolve(text);
   });
+});
+
+firstPromise.then((result) => {
+  message.textContent = result;
+});
+
+const secondPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const text = 'Promise was rejected!';
+
+    messageError.classList.add('message', 'error-message');
+    document.body.append(messageError);
+    reject(text);
+  }, 3000);
+});
+
+secondPromise.catch((error) => {
+  messageError.textContent = error;
+});
