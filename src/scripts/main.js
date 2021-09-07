@@ -1,7 +1,7 @@
 'use strict';
 
 // write your code here
-const clicked = document.querySelector('.logo');
+const logo = document.querySelector('.logo');
 
 function newMessage(message, messageClass) {
   const newElement = document.createElement('div');
