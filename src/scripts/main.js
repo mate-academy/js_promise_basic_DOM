@@ -9,6 +9,7 @@ function printMessage(messageText, messageClass = '') {
   document.body.append(message);
 }
 
+// eslint-disable-next-line no-unused-vars
 const promise1 = new Promise((resolve) => {
   const logoButton = document.querySelector('.logo');
 
@@ -24,6 +25,4 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000));
 });
 
-promise1
-  .then(() => promise2)
-  .catch(() => {});
+promise2.catch(() => {});
