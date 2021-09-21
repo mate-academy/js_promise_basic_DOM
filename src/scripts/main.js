@@ -10,19 +10,22 @@ function printMessage(messageText, messageClass = '') {
 }
 
 // eslint-disable-next-line no-unused-vars
-const promise1 = new Promise((resolve) => {
+const promise1 = new Promise((resolve) => resolve());
+
+const promise2 = new Promise((resolve, reject) => {
+  reject(new Error());
+});
+
+promise1.then(() => {
   const logoButton = document.querySelector('.logo');
 
   logoButton.addEventListener('click', () => {
     printMessage('Promise was resolved!', 'message');
-    resolve();
   });
 });
 
-const promise2 = new Promise((resolve, reject) => {
-  reject(setTimeout(() => {
+promise2.catch(() => {
+  setTimeout(() => {
     printMessage('Promise was rejected!', 'error-message');
-  }, 3000));
+  }, 3000);
 });
-
-promise2.catch(() => {});
