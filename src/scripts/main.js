@@ -9,23 +9,25 @@ function printMessage(messageText, messageClass = '') {
   document.body.append(message);
 }
 
-// eslint-disable-next-line no-unused-vars
-const promise1 = new Promise((resolve) => resolve());
-
-const promise2 = new Promise((resolve, reject) => {
-  reject(new Error());
-});
-
-promise1.then(() => {
+const promise1 = new Promise((resolve) => {
   const logoButton = document.querySelector('.logo');
 
   logoButton.addEventListener('click', () => {
-    printMessage('Promise was resolved!', 'message');
+    resolve('Promise was resolved!');
   });
 });
 
-promise2.catch(() => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    printMessage('Promise was rejected!', 'error-message');
+    /* eslint-disable-next-line */
+    reject('Promise was rejected!');
   }, 3000);
+});
+
+promise1.then((messageText) => {
+  printMessage(messageText, 'message');
+});
+
+promise2.catch((messageText) => {
+  printMessage(messageText, 'error-message');
 });
