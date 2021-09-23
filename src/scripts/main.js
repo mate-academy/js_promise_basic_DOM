@@ -1,41 +1,41 @@
 'use strict';
 
-function createPromise() {
-  const root = document.querySelector('body');
+const logo = document.querySelector('.logo');
 
-  const resolver = (resolve, reject) => {
-    root.addEventListener('click', (e) => {
-      const target = e.target.closest('.logo');
-
-      if (target) {
-        resolve(root);
-      } else {
-        reject(root);
-      }
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve({
+      messageType: 'message',
+      message: 'Promise was resolved!',
     });
-  };
+  });
+});
 
-  return new Promise(resolver);
-};
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // eslint-disable-next-line
+    reject({
+      messageType: 'error-message',
+      message: 'Promise was rejected!',
+    });
+  }, 3000);
+});
 
-const promise = createPromise();
+function showMessage(messageType, message) {
+  const body = document.querySelector('body');
+  const notification = document.createElement('div');
 
-promise
-  .then((res) => {
-    const message = document.createElement('div');
+  notification.classList.add(messageType);
+  notification.innerText = message;
+  body.append(notification);
+}
 
-    message.classList.add('message');
-    message.innerText = 'Promise was resolved!';
-    res.append(message);
-  })
-  .catch((res) => {
-    const message = document.createElement('div');
+promise1
+  .then(({ messageType, message }) => {
+    showMessage(messageType, message);
+  });
 
-    message.classList.add('error-message');
-    message.innerText = 'Promise was rejected!';
-    res.append(message);
-
-    setTimeout(() => {
-      message.remove();
-    }, 3000);
+promise2
+  .catch(({ messageType, message }) => {
+    showMessage(messageType, message);
   });
