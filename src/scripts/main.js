@@ -11,23 +11,23 @@ function createElement(textMessage, classMessage) {
 }
 
 function createSuccessMessage() {
-  const resolve = (resolved, rejected) => {
+  const resolver = (resolved) => {
     logo.addEventListener('click', () => {
       resolved('Promise was resolved!');
     });
   };
 
-  return new Promise(resolve);
+  return new Promise(resolver);
 }
 
 function createErrorMessage() {
-  const reject = (resolved, rejected) => {
+  const resolver = (resolved, rejected) => {
     setTimeout(() => {
       rejected('Promise was rejected!');
     }, 3000);
   };
 
-  return new Promise(reject);
+  return new Promise(resolver);
 }
 
 createSuccessMessage()
