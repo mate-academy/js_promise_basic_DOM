@@ -10,7 +10,7 @@ function createElement(textMessage, classMessage) {
   document.body.append(message);
 }
 
-function createMessage() {
+function createSuccessMessage() {
   const resolve = (resolved, rejected) => {
     logo.addEventListener('click', () => {
       resolved('Promise was resolved!');
@@ -30,7 +30,7 @@ function createErrorMessage() {
   return new Promise(reject);
 }
 
-createMessage()
+createSuccessMessage()
   .then((result) => {
     createElement(result, 'message');
   });
