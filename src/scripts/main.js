@@ -21,13 +21,13 @@ function createMessage() {
 }
 
 function createErrorMessage() {
-  const resolve = (resolved, rejected) => {
+  const reject = (resolved, rejected) => {
     setTimeout(() => {
       rejected('Promise was rejected!');
     }, 3000);
   };
 
-  return new Promise(resolve);
+  return new Promise(reject);
 }
 
 createMessage()
