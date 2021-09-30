@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-30T08:51:25.494Z",
+    "end": "2021-09-30T08:51:29.184Z",
+    "duration": 3628,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f0227c6c-e332-4ee7-970d-bd67f56913d0",
+      "title": "",
+      "fullFile": "cypress\\integration\\promiseBasic.spec.js",
+      "file": "cypress\\integration\\promiseBasic.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a673fca5-006e-40cd-884e-fa34aa8a895a",
+          "title": "Promise basic app",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should resolve first promise by click on logo",
+              "fullTitle": "Promise basic app should resolve first promise by click on logo",
+              "timedOut": null,
+              "duration": 333,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.logo').click({\n  force: true\n});\ncy.get('.message').contains('Promise was resolved!');",
+              "err": {},
+              "uuid": "0752cc2a-fe13-4002-9589-da2c61ca7b90",
+              "parentUUID": "a673fca5-006e-40cd-884e-fa34aa8a895a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should reject second promise in 3 seconds",
+              "fullTitle": "Promise basic app should reject second promise in 3 seconds",
+              "timedOut": null,
+              "duration": 3112,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.error-message', {\n  timeout: 3000\n}).contains('Promise was rejected!');",
+              "err": {},
+              "uuid": "6f5e7a52-d59d-475a-b72a-98d91042d67f",
+              "parentUUID": "a673fca5-006e-40cd-884e-fa34aa8a895a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "shouldn't resolve any promise by right click",
+              "fullTitle": "Promise basic app shouldn't resolve any promise by right click",
+              "timedOut": null,
+              "duration": 183,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.logo').rightclick({\n  force: true\n});\ncy.get('.message').should('not.visible');",
+              "err": {},
+              "uuid": "d9638601-c7ac-4e3b-9d47-d93c416b4676",
+              "parentUUID": "a673fca5-006e-40cd-884e-fa34aa8a895a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0752cc2a-fe13-4002-9589-da2c61ca7b90",
+            "6f5e7a52-d59d-475a-b72a-98d91042d67f",
+            "d9638601-c7ac-4e3b-9d47-d93c416b4676"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3628,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "raw_reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}
