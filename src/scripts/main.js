@@ -19,9 +19,7 @@ const promiseResolved = new Promise(resolve => {
 });
 
 const promiseRejected = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
-  });
+  setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
 promiseResolved.then((result) => throwMessage(result));
