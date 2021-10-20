@@ -1,10 +1,8 @@
 'use strict';
 
-const logo = document.querySelector('.logo');
-
 const notify = (type, text) => {
   const message = `
-    <div class="message ${type}">
+    <div class="${type}">
       ${text}
     </div>
   `;
@@ -12,17 +10,20 @@ const notify = (type, text) => {
   document.body.insertAdjacentHTML('beforeend', message);
 };
 
-const logoPromise = new Promise((resolve) => {
+const logo = document.querySelector('.logo');
+
+const promise1 = new Promise(resolve => {
   logo.addEventListener('click', () => {
-    resolve({
-      type: '', text: 'Promise was resolved!',
-    });
+    resolve('Promise was resolved!');
   });
 });
 
-logoPromise.then(({ type, text }) => notify(type, text));
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
+});
 
-setTimeout(() => {
-  Promise.reject(new Error('Promise was rejected!'))
-    .catch(error => notify('error-message', error));
-}, 3000);
+const onSuccess = (text) => notify('message', text);
+const onError = (error) => notify('message error-message', error.message);
+
+promise1.then(onSuccess);
+promise2.catch(onError);
