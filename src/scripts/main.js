@@ -14,19 +14,19 @@ function notification(newClass, text) {
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    resolve(notification('message', 'Promise was resolved!'));
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error(notification('message error-message',
-      'Promise was rejected!')));
+    reject(new Error());
   }, 3000);
 });
 
 promise1
-  .then();
+  .then(() => notification('message', 'Promise was resolved!'));
 
 promise2
-  .catch();
+  .catch(() => notification('message error-message',
+    'Promise was rejected!'));
