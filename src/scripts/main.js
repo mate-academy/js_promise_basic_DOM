@@ -4,8 +4,8 @@
 const body = document.querySelector("body");
 const logo = document.querySelector(".logo");
 
-const promise1 = new Promise((resolve) => logo.addEventListener("click", res));
-const promise2 = new Promise((resolve, reject) => setTimeout(rej, 3000));
+const promise1 = new Promise((resolve) => logo.addEventListener("click", resolve));
+const promise2 = new Promise((resolve, reject) => setTimeout(reject, 3000));
 const promises = [promise1, promise2];
 
 function printNotification(className, text) {
