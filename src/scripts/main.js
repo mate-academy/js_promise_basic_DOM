@@ -9,7 +9,7 @@ const promise1 = new Promise(
 );
 
 promise1.then(
-  () =>  printNotification('message', 'Promise was resolved!')
+  () => printNotification('message', 'Promise was resolved!')
 );
 
 const promise2 = new Promise((resolve, reject) =>
