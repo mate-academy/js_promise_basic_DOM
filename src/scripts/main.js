@@ -6,7 +6,7 @@ const div = document.createElement('div');
 
 document.body.append(div);
 
-const divFormat = (element, className, message) => {
+const formatElement = (element, className, message) => {
   element.className = className;
   element.textContent = message;
 };
