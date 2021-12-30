@@ -14,13 +14,13 @@ const formatElement = (element, className, message) => {
 const onSuccess = result => {
   const [className, message] = result;
 
-  divFormat(div, className, message);
+  formatElement(div, className, message);
 };
 
 const onError = error => {
   const [className, message] = error;
 
-  divFormat(div, className, message);
+  formatElement(div, className, message);
 };
 
 const promise1 = new Promise(resolve => {
