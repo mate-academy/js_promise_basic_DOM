@@ -27,4 +27,5 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(promise2);
+promise1.then(onSuccess);
+promise2.then(onError);
