@@ -28,4 +28,4 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(onSuccess);
-promise2.then(onError);
+promise2.catch(onError);
