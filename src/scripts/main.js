@@ -30,7 +30,7 @@ function ok() {
 
 function cancel() {
   body.insertAdjacentHTML('afterbegin', `
-      <div class="error-message message">
+      <div class="error-message">
         Promise was rejected!
       </div>`);
 }
