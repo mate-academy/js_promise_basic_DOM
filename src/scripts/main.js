@@ -11,6 +11,11 @@ const promise1 = new Promise((resolve, reject) => {
 const createDiv = (text) => {
   const body = document.querySelector('body');
   const newDiv = document.createElement('div');
+  const oldMessage = body.querySelector('.message');
+
+  if (oldMessage) {
+    oldMessage.remove();
+  }
 
   newDiv.className = 'message';
   newDiv.innerHTML = text;
