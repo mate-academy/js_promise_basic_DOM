@@ -1,29 +1,31 @@
 'use strict';
 
 // write your code here
-const logo = document.querySelector('.logo');
+const body = document.querySelector('body');
+const logo = body.querySelector('.logo');
+
+function createNewMessage(newClass, text) {
+  body.insertAdjacentHTML('beforeend', `
+    <div class=${newClass}><p>${text}</p></div>
+  `);
+}
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    const success = document.createElement('div');
-
-    success.className = 'message';
-    success.textContent = 'Promise was resolved!';
-
-    document.body.append(success);
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    const error = document.createElement('div');
-
-    error.className = 'error-message';
-    error.textContent = 'Promise was rejected!';
-
-    document.body.append(error);
-  });
+  setTimeout(() => {
+    reject(new Error());
+  }, 3000);
 });
 
-promise1();
-promise2();
+promise1.then(() => {
+  createNewMessage('message', 'Promise was resolved!');
+});
+
+promise2.catch(() => {
+  createNewMessage('message', 'Promise was rejected!');
+});
