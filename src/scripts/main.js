@@ -24,12 +24,12 @@ function createPromise1() {
 
   const resolver = (resolve, reject) => {
     logo.addEventListener('click', (e) => {
-      resolve();
+      resolve('Promise was resolved!');
     });
 
     document.body.addEventListener('click', (e) => {
       setTimeout(() => {
-        reject();
+        reject('Promise was rejected!');
       }, 2000);
     });
   };
@@ -42,7 +42,7 @@ promise1
     const div = document.createElement('div');
 
     div.className = 'message';
-    div.textContent = 'Promise was resolved!';
+    div.textContent = result;
     document.body.append(div);
   })
   .catch(error => {
@@ -65,6 +65,6 @@ promise2
     const div = document.createElement('div');
 
     div.className = 'error-message';
-    div.textContent = `Promise was rejected! ${error}`;
+    div.textContent = error;
     document.body.append(div);
   });
