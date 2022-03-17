@@ -1,7 +1,6 @@
 'use strict';
 
 // write your code here
-
 const body = document.querySelector('body');
 const elemDiv = document.createElement('div');
 
