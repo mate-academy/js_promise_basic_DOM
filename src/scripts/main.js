@@ -39,7 +39,7 @@ function makeDom(eventType) {
       break;
 
     case 'rejected':
-      notification.classList.add('error-message');
+      notification.classList.add('message', 'error-message');
       notification.innerHTML = 'Promise was rejected!';
       break;
   }
