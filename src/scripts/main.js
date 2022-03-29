@@ -9,12 +9,6 @@ const resolver1 = (resolve) => {
 };
 
 const resolver2 = (resolve, reject) => {
-  const logoForClick = document.querySelector('.logo');
-
-  logoForClick.addEventListener('click', () => {
-    return resolve('resolved');
-  });
-
   setTimeout(() => {
     return reject('rejected');
   }, 3000);
@@ -24,9 +18,9 @@ const promise1 = new Promise(resolver1);
 
 const promise2 = new Promise(resolver2);
 
-promise1.then(result => makeDom(result)).catch(result => makeDom(result));
+promise1.then(result => makeDom(result));
 
-promise2.then(result => makeDom(result)).catch(result => makeDom(result));
+promise2.catch(result => makeDom(result));
 
 function makeDom(eventType) {
   const notification = document.createElement('div');
