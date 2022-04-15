@@ -3,26 +3,25 @@
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
-const good = document.createElement('div');
-const bad = document.createElement('div');
+const createMessage = (type, text) => {
+  const messageSay = document.createElement('div');
 
-good.className = 'message';
-good.innerHTML = 'Promise was resolved!';
+  messageSay.className = `${type}`;
+  // messageSay.setAttribute('data-qa', 'notification');
+  messageSay.innerText = `${text}`;
 
-bad.className = 'error-message';
-bad.innerHTML = 'Promise was rejected!';
+  body.append(messageSay);
+};
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    resolve(
-      body.append(good)
-    );
+    resolve('Promise was resolved!');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error(body.append(bad))), 3000);
+  setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
-promise1.then();
-promise2.then();
+promise1.then(resolve => createMessage(`message`, resolve));
+promise2.catch(resolve => createMessage(`error-message`, resolve));
