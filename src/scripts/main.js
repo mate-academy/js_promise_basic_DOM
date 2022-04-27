@@ -29,11 +29,9 @@ const errorHandler = () => {
 };
 
 promise1
-  .then(successHandler)
-  .catch(errorHandler);
+  .then(successHandler);
 
 promise2
-  .then(successHandler)
   .catch(setTimeout(() => {
     errorHandler();
   }, 3000));
