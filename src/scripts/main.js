@@ -24,9 +24,7 @@ promise1()
 
 function promise2() {
   const resolver = (resolve, reject) => {
-    logo.addEventListener('click', () => {
-      reject('Promise was rejected!');
-    });
+    setTimeout(() => reject('Promise was rejected!'), 3000);
   };
 
   return new Promise(resolver);
@@ -38,5 +36,5 @@ promise2()
 
     div.className = 'message error-message';
     div.textContent = result;
-    setTimeout(() => body.append(div), 3000);
+    body.append(div);
   });
