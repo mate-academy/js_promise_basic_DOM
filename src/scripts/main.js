@@ -5,37 +5,30 @@ const logo = document.querySelector('.logo');
 const promise1 = () => {
   return new Promise((resolve, reject) => {
     logo.addEventListener('click', () => {
-      resolve();
+      resolve('Promise was resolved!', 'message');
     });
   });
 };
 
 const promise2 = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(reject, 3000);
+    setTimeout(() => {
+      reject(new Error('Promise was rejected!', 'error-message'));
+    }, 3000);
   });
 };
 
-const onResolve = () => {
-  const message = document.createElement('div');
+const message = (text, className) => {
+  const messageItem = document.createElement('div');
 
-  message.classList.add('message');
-  message.innerText = 'Promise was resolved!';
+  messageItem.classList.add(className);
+  messageItem.innerText = text;
 
-  document.body.append(message);
-};
-
-const onReject = () => {
-  const message = document.createElement('div');
-
-  message.classList.add('error-message');
-  message.innerText = 'Promise was rejected!';
-
-  document.body.append(message);
+  document.body.append(messageItem);
 };
 
 promise1()
-  .then(onResolve);
+  .then(message);
 
 promise2()
-  .catch(onReject);
+  .catch(message);
