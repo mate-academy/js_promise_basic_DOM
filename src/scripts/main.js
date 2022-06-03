@@ -3,6 +3,12 @@
 const body = document.body;
 const logo = document.querySelector('.logo');
 
+function createNotification(message, className) {
+  return body.insertAdjacentHTML('afterbegin', `
+  <div class=${className}>${message}</div>
+`);
+}
+
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', e => {
     resolve('Promise was resolved!');
@@ -16,15 +22,7 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1
-  .then(result => {
-    body.insertAdjacentHTML('afterbegin', `
-      <div class="message">${result}</div>
-    `);
-  });
+  .then(result => createNotification(result, 'message'));
 
 promise2
-  .catch(result => {
-    body.insertAdjacentHTML('afterbegin', `
-      <div class="error-message">${result}</div>
-    `);
-  });
+  .catch(result => createNotification(result, 'error-message'));
