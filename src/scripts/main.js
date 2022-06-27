@@ -1,44 +1,21 @@
 'use strict';
 
-function createPromise1() {
-  const logo = document.querySelector('.logo');
+const logo = document.querySelector('.logo');
 
-  const resolver = (resolve) => {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
-  };
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', resolve);
+});
 
-  return new Promise(resolver);
-}
+promise1.then(() => document.body.insertAdjacentHTML('beforeend', `
+  <div class="message">Promise was resolved!</div>
+  `)
+);
 
-function createPromise2() {
-  const logo = document.querySelector('.logo');
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error()), 3000);
+});
 
-  const rejecter = (reject) => {
-    logo.addEventListener('click', () => {
-      setTimeout(() => {
-        reject();
-      }, 3000);
-    });
-  };
-
-  return new Promise(rejecter);
-}
-
-const promise1 = createPromise1();
-const promise2 = createPromise2();
-
-promise1
-  .then(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="message">Promise was resolved!</div>
-    `);
-  });
-
-promise2
-  .then(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="error-message">Promise was rejected!</div>
-    `);
-  });
+promise2.catch(() => document.body.insertAdjacentHTML('beforeend', `
+<div class="error-message">Promise was rejected!</div>
+`)
+);
