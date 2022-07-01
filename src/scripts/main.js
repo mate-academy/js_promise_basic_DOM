@@ -1,23 +1,26 @@
 'use strict';
 
-// write your code here
+const promise1 = new Promise((resolve, reject) => {
+  resolve();
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(Error()), 3000);
+});
 
 document.querySelector('.logo')
   .addEventListener('click', () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject(Error);
-
-        document.getElementsByTagName('body')[0]
-          .insertAdjacentHTML('beforeend', `
-            <div class="error-message">Promise was rejected!</div>
-        `);
-      }, 3000);
-      resolve();
-
+    promise1.then(
       document.getElementsByTagName('body')[0]
         .insertAdjacentHTML('beforeend', `
-          <div class="message">Promise was resolved!</div>
-        `);
-    });
+        <div class="message">Promise was resolved!</div>
+  `)
+    );
   });
+
+promise2.catch(
+  document.getElementsByTagName('body')[0]
+    .insertAdjacentHTML('beforeend', `
+      <div class="error-message">Promise was rejected!</div>
+  `)
+);
