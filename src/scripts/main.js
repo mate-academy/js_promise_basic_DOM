@@ -1,6 +1,5 @@
 'use strict';
 
-// write your code here
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
