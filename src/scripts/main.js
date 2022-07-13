@@ -12,11 +12,14 @@ const notification = (className, msg) => {
   );
 };
 
-const promise1 = new Promise((resolve) => {
+const successHandler = () => notification('message', 'Promise was resolved!');
+const errorHandler = () => (
+  notification('error-message', 'Promise was rejected!')
+);
+
+const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', resolve);
 });
-
-promise1.then(() => notification('message', 'Promise was resolved!'));
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -24,4 +27,10 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch(() => notification('error-message', 'Promise was rejected!'));
+promise1
+  .then(successHandler)
+  .catch(errorHandler);
+
+promise2
+  .then(successHandler)
+  .catch(errorHandler);
