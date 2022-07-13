@@ -14,15 +14,15 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(result => printMessage(result));
-promise2.catch(error => printMessage(error));
+promise1.then(result => printMessage(result, true));
+promise2.catch(error => printMessage(error, false));
 
-function printMessage(message) {
+function printMessage(message, result) {
   const messageForPrint = document.createElement('div');
 
   messageForPrint.innerText = message;
 
-  message === 'Promise was resolved!'
+  result
     ? messageForPrint.classList.add('message')
     : messageForPrint.classList.add('error-message');
 
