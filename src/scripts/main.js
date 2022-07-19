@@ -37,4 +37,5 @@ promise1
   .catch(error => generateErrorMessage(error));
 
 promise2
-  .then(result => generateSuccessMessage(result));
+  .then(result => generateSuccessMessage(result))
+  .catch(error => generateErrorMessage(error));
