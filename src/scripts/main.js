@@ -1,9 +1,9 @@
 'use strict';
 
 function createPromise1() {
-  const logo = document.querySelector('.logo');
+  const logo = document.querySelector('h1');
 
-  const resolve = (complete) => {
+  const resolve = (complete, cancel) => {
     logo.addEventListener('click', () => {
       complete('Promise was resolved!');
     });
@@ -18,11 +18,11 @@ createPromise1()
 
     addition.className = 'message';
     addition.innerHTML = result;
-    document.append(addition);
+    document.body.append(addition);
   });
 
 function createPromise2() {
-  const resolver = (cancel) => {
+  const resolver = (complete, cancel) => {
     setTimeout(() => {
       cancel('Promise was rejected!');
     }, 3000);
@@ -37,5 +37,5 @@ createPromise2()
 
     messageError.className = 'error-message';
     messageError.innerHTML = error;
-    document.append(messageError);
+    document.body.append(messageError);
   });
