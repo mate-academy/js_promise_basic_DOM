@@ -12,20 +12,20 @@ const promise2 = new Promise((resolve, reject) => {
 
 const body = document.querySelector('body');
 
-promise1
-  .then(() => {
-    body.insertAdjacentHTML('beforeend', `
-      <div class="message">Promise was resolved!</div>
-    `);
-  })
-  .catch(() => {
-    body.insertAdjacentHTML('beforeend', `
-      <div class="error-message">Promise was rejected!</div>
-    `);
-  });
-
-promise2.catch(() => {
+function errorMassage() {
   body.insertAdjacentHTML('beforeend', `
     <div class="error-message">Promise was rejected!</div>
   `);
-});
+}
+
+function successMassage() {
+  body.insertAdjacentHTML('beforeend', `
+    <div class="message">Promise was resolved!</div>
+  `);
+}
+
+promise1
+  .then(successMassage)
+  .catch(errorMassage);
+
+promise2.catch(errorMassage);
