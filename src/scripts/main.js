@@ -16,8 +16,8 @@ function creatPromise() {
   return new Promise(resolver);
 }
 
-const promise1 = creatPromise;
-const promise2 = creatPromise;
+const promise1 = creatPromise();
+const promise2 = creatPromise();
 
 promise1.then(() => document.body.insertAdjacentHTML('beforeend', `
   <div class="message">Promise was resolved!</div>`));
