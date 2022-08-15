@@ -15,23 +15,25 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const message = document.createElement('div');
-
-  message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
-
-  setTimeout(() => message.remove(), 3000);
-
-  body.insertAdjacentElement('beforeend', message);
+  createNotification('Promise was resolved!');
 });
 
 promise2.catch(() => {
+  createNotification('Promise was rejected!', 'error-message');
+});
+
+function createNotification(text, type) {
   const message = document.createElement('div');
 
-  message.classList.add('message', 'error-message');
-  message.textContent = 'Promise was rejected!';
+  message.classList.add('message');
+
+  if (type) {
+    message.classList.add(type);
+  }
+
+  message.textContent = text;
 
   setTimeout(() => message.remove(), 3000);
 
   body.insertAdjacentElement('beforeend', message);
-});
+}
