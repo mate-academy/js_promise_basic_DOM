@@ -18,7 +18,7 @@ const successHandler = (message) => {
   return (`<div class="message">${message}</div>`);
 };
 const errorHandler = (message) => {
-  return (`<div class="error-message">${message}</div>`);
+  return (`<div class="message error-message">${message}</div>`);
 };
 
 promise1.then(successHandler)
