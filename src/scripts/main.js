@@ -30,7 +30,7 @@ promise2
   .catch(() => {
     const div = document.createElement('div');
 
-    div.className = 'error-message';
+    div.className = 'message error-message';
     div.innerText = 'Promise was rejected!';
 
     document.body.append(div);
