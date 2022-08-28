@@ -21,9 +21,7 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    reject(new Error(error));
-  });
+  setTimeout(error(), 3000);
 });
 
 promise1.catch(error);
