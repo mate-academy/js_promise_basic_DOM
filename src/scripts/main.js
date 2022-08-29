@@ -3,9 +3,7 @@
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise(resolve => {
-  logo.addEventListener('click', () => {
-    resolve();
-  });
+  logo.addEventListener('click', resolve);
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -16,22 +14,21 @@ const promise2 = new Promise((resolve, reject) => {
   });
 });
 
+function createAndAppendElement(fullClassName, message) {
+  const div = document.createElement('div');
+
+  div.className = fullClassName;
+  div.innerText = message;
+
+  document.body.append(div);
+};
+
 promise1
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-
-    document.body.append(div);
+    createAndAppendElement('message', 'Promise was resolved!')
   });
 
 promise2
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.innerText = 'Promise was rejected!';
-
-    document.body.append(div);
+    createAndAppendElement('message error-message', 'Promise was rejected!');
   });
