@@ -1,7 +1,7 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const body = document.querySelector('body');
+const body = document.body;
 const message = document.createElement('div');
 
 const promise1 = new Promise((resolve) => {
@@ -11,9 +11,7 @@ const promise1 = new Promise((resolve) => {
 });
 
 promise1.then(() => {
-  message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
-  body.appendChild(message);
+  notification('message', 'resolved');
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -21,7 +19,11 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.catch(() => {
-  message.textContent = 'Promise was rejected!';
-  message.classList.add('error-message');
-  body.appendChild(message);
+  notification('error-message', 'rejected');
 });
+
+function notification(classList, state) {
+  message.classList.add(classList);
+  message.textContent = `Promise was ${state}!`;
+  body.appendChild(message);
+}
