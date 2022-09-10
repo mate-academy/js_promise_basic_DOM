@@ -2,7 +2,7 @@
 
 const rootElement = document.body;
 
-const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
@@ -32,5 +32,5 @@ function error() {
   `);
 };
 
-promise1.then(success, error);
+promise1.then(success);
 promise2.then(success, error);
