@@ -5,9 +5,15 @@ const root = document.body;
 const textSucces = 'Promise was resolved!';
 const textNotSucces = 'Promise was rejected!';
 
-const promise1 = new Promise((resolve, reject) => {
-  logoIkon.addEventListener('click', () => {
+logoIkon.addEventListener('click', () => {
+  const promise1 = new Promise((resolve, reject) => {
     resolve(textSucces);
+  });
+
+  promise1.then(result => {
+    root.insertAdjacentHTML('beforeend', `
+      <div class="message">${result}</div>
+    `);
   });
 });
 
@@ -15,14 +21,8 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error(textNotSucces)), 3000);
 });
 
-promise1.then(result =>
-  root.insertAdjacentHTML('afterbegin', `
-    <div class="message">${textSucces}</div>
-  `)
-);
-
-promise2.then().catch(error =>
-  root.insertAdjacentHTML('afterbegin', `
+promise2.catch(error =>
+  root.insertAdjacentHTML('beforeend', `
     <div class="error-message">${error}</div
   `)
 );
