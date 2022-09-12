@@ -3,40 +3,33 @@
 const body = document.body;
 const logo = document.querySelector('.logo');
 
-function getNewPromise() {
-  const resolver = (resolve, reject) => {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
+});
 
-    setTimeout(() => {
-      reject('Promise was rejected!');
-    }, 3000);
-  };
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
 
-  return new Promise(resolver);
-}
-
-function success() {
+function success(message) {
   body.insertAdjacentHTML('beforeend', `
     <div class="message">
-      Promise was resolved!
+      ${message}
     </div>
   `);
 };
 
-function error() {
+function error(message) {
   body.insertAdjacentHTML('beforeend', `
     <div class="error-message message">
-      Promise was rejected!
+      ${message}
     </div>
   `);
 };
 
-const promise1 = getNewPromise();
-
 promise1.then(success, error);
-
-const promise2 = getNewPromise();
-
 promise2.then(success, error);
