@@ -15,7 +15,7 @@ function error() {
   }, 3000);
 }
 
-const promise1 = new Promise((resolve) => {
+const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve(success());
   });
@@ -25,5 +25,5 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(error(), 3000);
 });
 
-promise1.finally(success);
-promise2.finally(error);
+promise1.finally(success, error);
+promise2.finally(success, error);
