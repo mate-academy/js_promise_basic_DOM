@@ -25,7 +25,7 @@ const promise2 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     const div = document.createElement('div');
 
-    div.classList = 'message';
+    div.classList = 'error-message';
     div.innerHTML = 'Promise was rejected!';
 
     setTimeout(() => reject(body.appendChild(div)), 3000);
