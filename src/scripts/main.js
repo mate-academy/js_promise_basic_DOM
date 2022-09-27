@@ -14,14 +14,14 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 const resolveMessage = () => {
-  logo.insertAdjacentHTML('afterend', `
+  document.body.insertAdjacentHTML('afterbegin', `
     <div class="message">
       Promise was resolved!
     </div>
   `);
 };
 const rejectedMessage = () => {
-  logo.insertAdjacentHTML('afterend', `
+  document.body.insertAdjacentHTML('afterbegin', `
   <div class="error-message">
     Promise was rejected!
   </div>
@@ -29,11 +29,9 @@ const rejectedMessage = () => {
 };
 
 promise1.then(
-  resolveMessage,
-  rejectedMessage
+  resolveMessage
 );
 
-promise2.then(
-  resolveMessage,
+promise2.catch(
   rejectedMessage
 );
