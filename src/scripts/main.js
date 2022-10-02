@@ -1,7 +1,7 @@
 'use strict';
 
 const body = document.querySelector('body');
-const promiseSuccess = createPromise('success');
+const promiseSuccess = createPromise();
 // eslint-disable-next-line prefer-promise-reject-errors
 const promiseReject = Promise.reject(`Promise was rejected!`);
 
