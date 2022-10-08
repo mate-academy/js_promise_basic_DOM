@@ -15,26 +15,18 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-function success(message) {
+function showMessage(message, className) {
   body.insertAdjacentHTML('beforeend', `
-    <div class="message">
-      ${message}
-    </div>
-  `);
-}
-
-function error(message) {
-  body.insertAdjacentHTML('beforeend', `
-    <div class="error-message">
+    <div class="${className}">
       ${message}
     </div>
   `);
 }
 
 promise1
-  .then(success)
-  .catch(error);
+  .then(success => showMessage(success, 'message'))
+  .catch(error => showMessage(error, 'error-message'));
 
 promise2
-  .then(success)
-  .catch(error);
+  .then(success => showMessage(success, 'message'))
+  .catch(error => showMessage(error, 'error-message'));
