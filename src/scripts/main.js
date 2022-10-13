@@ -14,10 +14,14 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+function AddElemBody(elem) {
+  document.body.insertAdjacentHTML('afterbegin', elem);
+}
+
 promise1.then(data => {
-  document.body.insertAdjacentHTML('afterbegin', data);
+  AddElemBody(data);
 });
 
 promise2.catch(data => {
-  document.body.insertAdjacentHTML('afterbegin', data);
+  AddElemBody(data);
 });
