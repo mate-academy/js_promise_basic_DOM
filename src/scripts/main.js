@@ -28,9 +28,9 @@ promise1.then(result => {
 });
 
 promise2.catch(er => {
-  body.innerHTML = `
+  body.insertAdjacentHTML('afterbegin', `
     <div class="error-message">
       Promise was rejected!
     </div>
-  `;
+  `);
 });
