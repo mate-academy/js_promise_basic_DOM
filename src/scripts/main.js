@@ -4,7 +4,7 @@ const logo = document.querySelector('.logo');
 const message = document.createElement('div');
 const body = document.body;
 
-new Promise((resolve, reject) => {
+new Promise((resolve) => {
   logo.addEventListener('click', () => {
     resolve();
   });
