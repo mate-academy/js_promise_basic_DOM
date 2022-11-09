@@ -4,26 +4,24 @@ const logo = document.querySelector('.logo');
 
 const promise1 = new Promise(function(resolve) {
   logo.addEventListener('click', () => {
-    document.body.innerHTML += `
-    <div class="message">
-      Promise was resolved!
-    </div>
-    `;
-
-    resolve();
+    resolve(`<div class="message">
+    Promise was resolved!
+  </div>`);
   });
 });
 
-const promise2 = new Promise(function(resolve, reject) {
-  resolve(null);
-
-  setTimeout(() => {
-    document.body.innerHTML += `
-    <div class="error-message">
-      Promise was rejected!
-    </div>
-  `;
-
-    reject(Error());
-  }, 3000);
+promise1.then(data => {
+  document.body.insertAdjacentHTML('beforeend', data);
 });
+
+const promise2 = new Promise(function(resolve, reject) {
+  setTimeout(() => reject(new Error(`
+      <div class="error-message">
+        Promise was rejected!
+      </div>
+    `)), 3000);
+});
+
+promise2.catch(
+  error => document.body.insertAdjacentHTML('beforeend', error),
+);
