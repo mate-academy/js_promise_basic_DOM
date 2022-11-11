@@ -4,13 +4,13 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve) => {
+const resolvedPromise = new Promise((resolve) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
 });
 
-promise1
+resolvedPromise
   .then(text => (
     body.insertAdjacentHTML(
       'beforeend',
@@ -18,16 +18,16 @@ promise1
     )
   ));
 
-const promise2 = new Promise((resolve, reject) => {
+const rejectedPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('Promise was rejected'));
   }, 3000);
 });
 
-promise2
+rejectedPromise
   .catch(error => (
     body.insertAdjacentHTML(
       'beforeend',
-      `<div class="message">${error}</div>`
+      `<div class="error-message">${error}</div>`
     )
   ));
