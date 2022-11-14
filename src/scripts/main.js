@@ -1,14 +1,5 @@
 'use strict';
 
-// function createPromise () {
-//   const logo = document.getElementByClassName('logo');
-
-//   const resolver = () => {};
-//   return new Promise(resolver);
-// }
-
-// const promise1  = createPromise();
-
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
