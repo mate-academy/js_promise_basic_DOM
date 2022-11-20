@@ -2,9 +2,9 @@
 
 const body = document.querySelector('body');
 
-const promise1 = new Promise(resolver1);
+const promise1 = new Promise(firstCallback);
 
-function resolver1(complete, eror) {
+function firstCallback(complete, eror) {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
@@ -12,9 +12,9 @@ function resolver1(complete, eror) {
   });
 }
 
-const promise2 = new Promise(resolver2);
+const promise2 = new Promise(secondCallback);
 
-function resolver2(complete, eror) {
+function secondCallback(complete, eror) {
   setTimeout(eror, 3000);
 };
 
