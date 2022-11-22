@@ -27,6 +27,7 @@ function getSuccessMessage() {
 
 function getErrorMessage() {
   message.className = 'error-message';
+  message.classList.add('message');
   message.innerText = 'Promise was rejected!';
   body.append(message);
 }
