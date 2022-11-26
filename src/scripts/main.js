@@ -14,20 +14,19 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+const message = document.createElement('div');
+
 promise1.then(result => {
-  const divSuccess = document.createElement('div');
+  message.className = 'message';
+  message.innerText = result;
 
-  divSuccess.classList.add('message');
-  divSuccess.textContent = result;
-
-  document.body.append(divSuccess);
+  document.body.append(message);
 });
 
 promise2.catch(result => {
-  const divError = document.createElement('div');
+  message.className = 'error-message';
+  message.classList.add('message');
+  message.innerText = result;
 
-  divError.classList.add('error-message');
-  divError.textContent = result;
-
-  document.body.append(divError);
+  document.body.append(message);
 });
