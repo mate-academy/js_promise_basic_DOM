@@ -4,18 +4,18 @@ const body = document.querySelector('body');
 
 const promise1 = new Promise(firstCallback);
 
-function firstCallback(complete, eror) {
+function firstCallback(resolved, rejected) {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    complete();
+    resolved();
   });
 }
 
 const promise2 = new Promise(secondCallback);
 
-function secondCallback(complete, eror) {
-  setTimeout(eror, 3000);
+function secondCallback(resolved, rejected) {
+  setTimeout(rejected, 3000);
 };
 
 promise1.then(() => {
