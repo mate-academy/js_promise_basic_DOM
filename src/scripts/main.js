@@ -1,39 +1,29 @@
 'use strict';
 
+const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => resolve('promise1 resolved'));
-});
+function getSuccessMessage(message) {
+  return body.insertAdjacentHTML(
+    'beforeend',
+    `<div class="message">${message}</div>`
+  );
+}
 
-promise1
-  .then(() => {
-    logo.insertAdjacentHTML(
-      'afterend',
-      '<div class="message">Promise was resolved!</div>'
-    );
-  })
-  .catch(() => {
-    logo.insertAdjacentHTML(
-      'afterend',
-      '<div class="error-message">Promise was rejected!</div>'
-    );
-  }); // never returned
+function getErrorMessage(message) {
+  return body.insertAdjacentHTML(
+    'beforeend',
+    `<div class="message error-message">${message.message}</div>`
+  );
+}
+
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => resolve('Promise was resolved!'));
+});
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error('promise2 rejected')), 3000);
+  setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
-promise2
-  .then(() => {
-    logo.insertAdjacentHTML(
-      'afterend',
-      '<div class="message">Promise was resolved!</div>'
-    );
-  }) // never returned
-  .catch(() => {
-    logo.insertAdjacentHTML(
-      'afterend',
-      '<div class="message error-message">Promise was rejected!</div>'
-    );
-  });
+promise1.then(getSuccessMessage).catch(getErrorMessage);
+promise2.then(getSuccessMessage).catch(getErrorMessage);
