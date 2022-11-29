@@ -22,4 +22,4 @@ promise1
   .then(data => generateNotification('message', data));
 
 promise2
-  .catch(error => generateNotification('error-message', error));
+  .catch(error => generateNotification('message error-message', error));
