@@ -8,20 +8,24 @@ const errorBlock = `
     Promise was rejected!
   </div>`;
 
-new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve();
   });
-}).then(() => {
-  root.insertAdjacentHTML('beforeend', successBlock);
 });
 
-new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error());
-    }, 3000);
-  });
-}).catch(() => {
-  root.insertAdjacentHTML('beforeend', errorBlock);
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error());
+  }, 3000);
 });
+
+promise1
+  .then(() => {
+    root.insertAdjacentHTML('beforeend', successBlock);
+  });
+
+promise2
+  .catch(() => {
+    root.insertAdjacentHTML('beforeend', errorBlock);
+  });
