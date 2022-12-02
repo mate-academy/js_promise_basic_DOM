@@ -14,11 +14,6 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then((resolvedText) => makeANotification('message', resolvedText));
-
-promise2.catch((errorText) => makeANotification('message error-message',
-  errorText));
-
 function makeANotification(classType, text) {
   const body = document.querySelector('body');
 
@@ -30,3 +25,8 @@ function makeANotification(classType, text) {
         </div>
       `);
 }
+
+promise1.then((resolvedText) => makeANotification('message', resolvedText));
+
+promise2.catch((errorText) => makeANotification('message error-message',
+  errorText));
