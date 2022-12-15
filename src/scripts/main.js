@@ -11,8 +11,8 @@ function createMessage(message, type) {
   body.append(block);
 }
 
-function createPromiss() {
-  const resolver = (succes, error) => {
+function createPromise() {
+  const resolver = (succes) => {
     logo.addEventListener('click', () => {
       const obj = {
         text: `Promise was resolved!`,
@@ -21,31 +21,13 @@ function createPromiss() {
 
       succes(obj);
     });
-
-    logo.addEventListener('click', () => {
-      const obj = {
-        text: 'Promise was rejected!',
-        class: 'error-message',
-      };
-
-      error(obj);
-    });
   };
 
   return new Promise(resolver);
 };
 
-function createPromiss2() {
+function createPromise2() {
   const resolver = (succes, error) => {
-    const succesMessage = {
-      text: `Promise was resolved!`,
-      class: 'message',
-    };
-
-    setTimeout(() => {
-      succes(succesMessage);
-    }, 4000);
-
     const errorMessage = {
       text: 'Promise was rejected!',
       class: 'error-message',
@@ -59,13 +41,11 @@ function createPromiss2() {
   return new Promise(resolver);
 };
 
-const promise1 = createPromiss();
-const promise2 = createPromiss2();
+const promise1 = createPromise();
+const promise2 = createPromise2();
 
 promise1
-  .then((result) => createMessage(result.text, result.class))
-  .catch((error) => createMessage(error.text, error.class));
+  .then((result) => createMessage(result.text, result.class));
 
 promise2
-  .then((result) => createMessage(result.text, result.class))
   .catch((error) => createMessage(error.text, error.class));
