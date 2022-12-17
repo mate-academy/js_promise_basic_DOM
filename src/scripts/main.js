@@ -3,16 +3,16 @@
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
-function createPromise() { 
+function createPromise() {
   const resolver = (resolved, canceled) => {
     logo.addEventListener('click', () => {
-      resolved() 
+      resolved();
     });
 
     setTimeout(() => {
       canceled();
     }, 3000);
-  }
+  };
 
   return new Promise(resolver);
 }
@@ -23,7 +23,7 @@ const showMessage = (type, text) => {
   seccessMessage.className = type;
   seccessMessage.textContent = text;
   body.append(seccessMessage);
-}
+};
 
 const promise1 = createPromise();
 const promise2 = createPromise();
