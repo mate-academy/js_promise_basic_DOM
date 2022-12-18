@@ -42,6 +42,13 @@ body {
 }
 
 .error-message {
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  width: 250px;
+
+  text-align: center;
+  border-radius: 5px;
+
   background-color: rgba(204, 51, 0, 0.5);
-  right: 350px;
 }
