@@ -30,9 +30,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1
-  .then(result => onSuccess(result))
-  .catch(error => onError(error));
+  .then(onSuccess)
+  .catch(onError);
 
 promise2
-  .then(result => onSuccess(result))
-  .catch(error => onError(error));
+  .then(onSuccess)
+  .catch(onError);
