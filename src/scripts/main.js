@@ -3,25 +3,17 @@
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
-function promise1() {
-  const resolver = (resolved, canceled) => {
-    logo.addEventListener('click', () => {
-      resolved();
-    });
-  };
+const promise1 = new Promise(resolve => {
+  logo.addEventListener('click', () => {
+    resolve();
+  });
+});
 
-  return new Promise(resolver);
-}
-
-function promise2() {
-  const resolver = (resolved, canceled) => {
-    setTimeout(() => {
-      canceled();
-    }, 3000);
-  };
-
-  return new Promise(resolver);
-}
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Error'));
+  }, 3000);
+});
 
 const showMessage = (type, text) => {
   const seccessMessage = document.createElement('div');
@@ -31,13 +23,10 @@ const showMessage = (type, text) => {
   body.append(seccessMessage);
 };
 
-const firstPromise = promise1();
-const secondPromise = promise2();
-
-firstPromise.then(() => {
+promise1.then(() => {
   showMessage('message', 'Promise was resolved!');
-}, null);
+});
 
-secondPromise.then(null, () => {
+promise2.catch(() => {
   showMessage('error-message', 'Promise was rejected!');
 });
