@@ -2,33 +2,33 @@
 
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
-    resolve('Promise was resolved!');
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(Error('Promise was rejected!'));
+    reject(Error());
   }, 3000);
 });
 
-function showNotification(text) {
+const showNotification = (className, text) => {
   const message = document.createElement('div');
 
-  message.classList.add('message');
+  message.classList.add(className);
   message.textContent = text;
 
-  if (text instanceof Error) {
-    message.classList.add('error-message');
-  }
-
   document.body.append(message);
-}
+};
 
-promise1
-  .then(result => showNotification(result))
-  .catch(error => showNotification(error));
+const successHandler = () => {
+  showNotification('message', 'Promise was resolved!');
+};
 
-promise2
-  .then(result => showNotification(result))
-  .catch(error => showNotification(error));
+const errorHandler = () => {
+  showNotification('error-message', 'Promise was rejected!');
+};
+
+promise1.then(successHandler).catch(errorHandler);
+
+promise2.then(successHandler).catch(errorHandler);
