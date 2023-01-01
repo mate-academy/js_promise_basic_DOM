@@ -3,7 +3,7 @@
 const body = document.querySelector('body');
 const logo = body.querySelector('.logo');
 
-const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise(resolve => {
   logo.addEventListener('click', () => {
     resolve();
   });
