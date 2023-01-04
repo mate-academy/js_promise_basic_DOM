@@ -4,12 +4,12 @@ const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve, reject) => {
-  return resolve('Promise was resolved!');
+  resolve('Promise was resolved!');
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    return reject(new Error('Promise was rejected!'));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
