@@ -3,19 +3,18 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const resolver = (resolve) => {
+const resolver = (resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve();
   });
+
+  setTimeout(() => {
+    reject();
+  }, 3000);
 };
 
 const promise1 = new Promise(resolver);
-
-const rejector = (reject) => {
-  setTimeout(reject(), 3000);
-};
-
-const promise2 = new Promise(rejector);
+const promise2 = new Promise(resolver);
 
 promise1
   .then(result => {
@@ -27,7 +26,7 @@ promise1
   });
 
 promise2
-  .then(result => {
+  .catch(result => {
     const message = document.createElement('div');
 
     message.className = 'error-message';
