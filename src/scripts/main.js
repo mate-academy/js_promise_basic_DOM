@@ -23,7 +23,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1
-  .then((result) => addElement(result, 'message'));
+  .then((result) => addElement(result, 'message'))
+  .catch(() => addElement(null, 'message error-message'));
 
 promise2
+  .then(() => addElement(null, 'message'))
   .catch((result) => addElement(result, 'message error-message'));
