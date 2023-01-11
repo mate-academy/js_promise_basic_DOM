@@ -20,10 +20,12 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
-const promise2 = promise1.then(reject => {
-  setTimeout(() => {
-    reject(error.style.display = 'block');
-  }, 3000);
+const promise2 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    setTimeout(() => {
+      reject(new Error(error.style.display = 'block'));
+    }, 3000);
+  });
 });
 
 promise2();
