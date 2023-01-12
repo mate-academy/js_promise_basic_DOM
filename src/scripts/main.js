@@ -16,16 +16,14 @@ succses.style.display = 'none';
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    resolve(succses.style.display = 'block');
+    resolve(succses.style.display = '');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error(error.style.display = 'block'));
-    }, 3000);
-  });
+  setTimeout(() => {
+    reject(new Error(error.style.display = ''));
+  }, 3000);
 });
 
 promise2();
