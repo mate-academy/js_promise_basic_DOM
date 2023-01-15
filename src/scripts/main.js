@@ -12,20 +12,19 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
+function getMassage(message, classMassage) {
+  const div = document.createElement('div');
+  const body = document.querySelector('body');
+
+  div.innerText = message;
+  div.className = classMassage;
+  body.lastElementChild.before(div);
+};
+
 promise1.then(resolve => {
-  const div = document.createElement('div');
-  const body = document.querySelector('body');
-
-  div.innerText = resolve;
-  div.className = 'message';
-  body.lastElementChild.before(div);
+  getMassage(resolve, 'message');
 }).catch(reject => {
-  const div = document.createElement('div');
-  const body = document.querySelector('body');
-
-  div.innerText = 'Promise was rejected!';
-  div.className = 'error-message';
-  body.lastElementChild.before(div);
+  getMassage('Promise was rejected!', 'error-message');
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -33,19 +32,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.then(resolve => {
-  const div = document.createElement('div');
-  const body = document.querySelector('body');
-
-  div.innerText = resolve;
-  div.className = 'message';
-  body.lastElementChild.before(div);
+  getMassage(resolve, 'message');
 }).catch(reject => {
-  const div = document.createElement('div');
-  const body = document.querySelector('body');
-
   setTimeout(() => {
-    div.innerText = 'Promise was rejected!';
-    div.className = 'error-message';
-    body.lastElementChild.before(div);
+    getMassage('Promise was rejected!', 'error-message');
   }, 2000);
 });
