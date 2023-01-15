@@ -8,33 +8,36 @@ const promise1 = new Promise((resolve, reject) => {
   });
 
   document.addEventListener('click', () => {
-    reject(Error);
+    reject(new Error());
   });
 });
 
-function getMassage(message, classMassage) {
+function getMessage(message, classMessage) {
   const div = document.createElement('div');
   const body = document.querySelector('body');
 
   div.innerText = message;
-  div.className = classMassage;
+  div.className = classMessage;
   body.lastElementChild.before(div);
 };
 
-promise1.then(resolve => {
-  getMassage(resolve, 'message');
-}).catch(reject => {
-  getMassage('Promise was rejected!', 'error-message');
-});
+promise1
+  .then(message => {
+    getMessage(message, 'message');
+  })
+  .catch(reject => {
+    getMessage('Promise was rejected!', 'error-message');
+  });
 
 const promise2 = new Promise((resolve, reject) => {
-  reject(Error);
+  reject(new Error());
 });
 
-promise2.then(resolve => {
-  getMassage(resolve, 'message');
-}).catch(reject => {
-  setTimeout(() => {
-    getMassage('Promise was rejected!', 'error-message');
-  }, 2000);
-});
+promise2
+  .then(message => {
+    getMessage(message, 'message');
+  }).catch(reject => {
+    setTimeout(() => {
+      getMessage('Promise was rejected!', 'error-message');
+    }, 2000);
+  });
