@@ -36,7 +36,8 @@ const promise2 = new Promise((resolve, reject) => {
 promise2
   .then(message => {
     getMessage(message, 'message');
-  }).catch(reject => {
+  })
+  .catch(reject => {
     setTimeout(() => {
       getMessage('Promise was rejected!', 'error-message');
     }, 2000);
