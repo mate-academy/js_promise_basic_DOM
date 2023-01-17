@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-const message = (className, text) => {
+const showMessage = (className, text) => {
   const div = document.createElement('div');
 
   div.className = className;
@@ -10,26 +10,22 @@ const message = (className, text) => {
   document.body.append(div);
 };
 
-function promise1() {
-  return new Promise((resolve) => {
-    logo.addEventListener('click', () => {
-      resolve('Promise was resolved!');
-    });
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
   });
-};
+});
 
-function promise2() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
-  });
-};
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
 
-promise1()
-  .then(result => message('message', result))
-  .catch(error => message('error-message', error));
+promise1
+  .then(result => showMessage('message', result))
+  .catch(error => showMessage('error-message', error));
 
-promise2()
-  .then(result => message('message', result))
-  .catch(error => message('error-message', error));
+promise2
+  .then(result => showMessage('message', result))
+  .catch(error => showMessage('error-message', error));
