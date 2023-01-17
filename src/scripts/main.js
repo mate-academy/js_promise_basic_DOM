@@ -5,12 +5,12 @@ const logo = document.querySelector('.logo');
 const showMessage = (className, text) => {
   const div = document.createElement('div');
 
-  div.className = className;
+  div.classList.add(className);
   div.textContent = text;
   document.body.append(div);
 };
 
-const promise1 = new Promise((resolve) => {
+const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
