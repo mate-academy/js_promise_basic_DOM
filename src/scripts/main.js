@@ -10,27 +10,23 @@ const showMessage = (className, text) => {
   div.textContent = text;
 };
 
-function createPromise() {
-  const resolver = (resolve, reject) => {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
-
-    setTimeout(() => {
-      reject();
-    }, 3000);
-  };
-
-  return new Promise(resolver);
-}
-
-const promise1 = createPromise();
-const promise2 = createPromise();
-
-promise1.then(() => {
-  showMessage('message', `Promise was resolved!`);
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
 });
 
-promise2.catch(() => {
-  showMessage('error-message', 'Promise was rejected!');
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
+
+const promiseResult = (promise) => {
+  promise
+    .then(result => showMessage('message', result))
+    .catch(error => showMessage('error-message', error));
+};
+
+promiseResult(promise1);
+promiseResult(promise2);
