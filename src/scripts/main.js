@@ -1,7 +1,6 @@
 'use strict';
 
 const body = document.body;
-const message = document.createElement('div');
 
 function createPromise() {
   const logo = document.querySelector('.logo');
@@ -9,7 +8,13 @@ function createPromise() {
     logo.addEventListener('click', () => {
       resolve('Promise was resolved!');
     });
+  };
 
+  return new Promise(resolver);
+}
+
+function createPromise2() {
+  const resolver = (resolve, reject) => {
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         reject('Promise was rejected!');
@@ -21,18 +26,26 @@ function createPromise() {
 }
 
 const promise1 = createPromise();
-const promise2 = createPromise();
+const promise2 = createPromise2();
+
+function appendMessage(textOfMessage, classOfMessage = '') {
+  const message = document.createElement('div');
+
+  message.className = 'message';
+
+  if (classOfMessage.length !== 0) {
+    message.classList.add(classOfMessage);
+  }
+  message.textContent = textOfMessage;
+  body.append(message);
+};
 
 promise1
   .then(result => {
-    message.className = 'message';
-    message.textContent = result;
-    body.append(message);
+    appendMessage(result);
   });
 
 promise2
   .catch(error => {
-    message.className = 'error-message';
-    message.textContent = error;
-    body.append(message);
+    appendMessage(error, 'error-message');
   });
