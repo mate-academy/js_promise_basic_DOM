@@ -5,27 +5,32 @@ const logo = document.querySelector('.logo');
 const showMessage = (className, text) => {
   const div = document.createElement('div');
 
+  document.body.append(div);
   div.classList.add(className);
   div.textContent = text;
-  document.body.append(div);
 };
 
-const promise1 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    resolve('Promise was resolved!');
-  });
+function createPromise() {
+  const resolver = (resolve, reject) => {
+    logo.addEventListener('click', () => {
+      resolve();
+    });
+
+    setTimeout(() => {
+      reject();
+    }, 3000);
+  };
+
+  return new Promise(resolver);
+}
+
+const promise1 = createPromise();
+const promise2 = createPromise();
+
+promise1.then(() => {
+  showMessage('message', `Promise was resolved!`);
 });
 
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
-  }, 3000);
+promise2.catch(() => {
+  showMessage('error-message', 'Promise was rejected!');
 });
-
-promise1
-  .then(result => showMessage('message', result))
-  .catch(error => showMessage('error-message', error));
-
-promise2
-  .then(result => showMessage('message', result))
-  .catch(error => showMessage('error-message', error));
