@@ -10,34 +10,26 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => setTimeout(reject, 3000));
 
-promise1.then(() => {
+function solution() {
   const message = document.createElement('div');
 
   message.classList.add('message');
   message.textContent = 'Promise was resolved!';
   document.body.appendChild(message);
-});
+}
 
-promise1.catch(() => {
+function errorFound() {
   const errorMessage = document.createElement('div');
 
   errorMessage.classList.add('error-message');
   errorMessage.textContent = 'Promise was rejected!';
   document.body.appendChild(errorMessage);
-});
+}
 
-promise2.then(() => {
-  const message = document.createElement('div');
+promise1.then(solution);
 
-  message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
-  document.body.appendChild(message);
-});
+promise1.catch(errorFound);
 
-promise2.catch(() => {
-  const errorMessage = document.createElement('div');
+promise2.then(solution);
 
-  errorMessage.classList.add('error-message');
-  errorMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
-});
+promise2.catch(errorFound);
