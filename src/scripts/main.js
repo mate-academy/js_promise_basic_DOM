@@ -15,11 +15,11 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 function promiseHandler(className, message) {
-  document.body.insertAdjacentHTML('beforeend', `
-    <div class=${className}>
-      Promise was ${message}!
-    </div>
- `);
+  const messageElement = document.createElement('div');
+
+  messageElement.classList.add(className);
+  messageElement.textContent = 'Promise was ' + message;
+  document.body.append(messageElement);
 }
 
 promise1
