@@ -2,7 +2,7 @@
 
 const logo = document.body.querySelector('.logo');
 
-const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
     resolve('resolve');
   });
@@ -14,18 +14,21 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(() => {
+const newDivElement = function(text, class1, class2) {
   const div = document.createElement('div');
 
-  div.classList.add('message');
-  div.textContent = 'Promise was resolved!';
+  div.classList.add(class1, class2);
+  div.textContent = text;
   logo.append(div);
-});
+};
 
-promise2.catch(() => {
-  const div = document.createElement('div');
+const successHandler = function() {
+  newDivElement('Promise was resolved!', 'message');
+};
 
-  div.classList.add('message', 'error-message');
-  div.textContent = 'Promise was rejected!';
-  logo.append(div);
-});
+const errorHandler = function() {
+  newDivElement('Promise was rejected!', 'message', 'error-message');
+};
+
+promise1.then(successHandler);
+promise2.catch(errorHandler);
