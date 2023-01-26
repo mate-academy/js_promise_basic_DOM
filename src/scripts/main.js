@@ -27,33 +27,41 @@ function createPromise2() {
   return new Promise(resolver);
 }
 
+function createNotification() {
+  const message = document.createElement('div');
+
+  body.appendChild(message);
+  message.classList.add('message');
+
+  return message;
+}
+
+function createError(error) {
+  const message = createNotification();
+
+  message.textContent = error;
+  message.classList.add('error-message');
+}
+
+function createSuccess(res) {
+  const message = createNotification();
+
+  message.textContent = res;
+}
+
 const promise1 = createPromise1();
 
 promise1
   .then(res => {
-    const message = document.createElement('div');
-
-    body.appendChild(message);
-    message.textContent = res;
-    message.classList.add('message');
+    createSuccess(res);
   })
   .catch(error => {
-    const message = document.createElement('div');
-
-    body.appendChild(message);
-    message.textContent = error;
-    message.classList.add('message');
-    message.classList.add('error-message');
+    createError(error);
   });
 
 const promise2 = createPromise2();
 
 promise2
   .catch(error => {
-    const message = document.createElement('div');
-
-    body.appendChild(message);
-    message.textContent = error;
-    message.classList.add('message');
-    message.classList.add('error-message');
+    createError(error);
   });
