@@ -1,9 +1,8 @@
 'use strict';
 
-const logo = document.querySelector('.logo');
-const body = document.querySelector('body');
+const promise1 = new Promise((resolve) => {
+  const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
@@ -15,34 +14,33 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1
-  .then((data) => {
-    const successDiv = document.createElement('div');
+const createSuccessMessage = (data) => {
+  const body = document.querySelector('body');
+  const successDiv = document.createElement('div');
 
-    successDiv.classList.add('message');
-    successDiv.innerText = data;
-    body.appendChild(successDiv);
-  })
-  .catch((err) => {
-    const errorDiv = document.createElement('div');
+  successDiv.classList.add('message');
+  successDiv.innerText = data;
+  body.appendChild(successDiv);
+};
 
-    errorDiv.classList.add('error-message');
-    errorDiv.innerText = err;
-    body.appendChild(errorDiv);
-  });
+const createErrorMessage = (err) => {
+  const body = document.querySelector('body');
+  const errorDiv = document.createElement('div');
 
-promise2
-  .then((data) => {
-    const successDiv = document.createElement('div');
+  errorDiv.classList.add('error-message');
+  errorDiv.innerText = err;
+  body.appendChild(errorDiv);
+};
 
-    successDiv.classList.add('message');
-    successDiv.innerText = data;
-    body.appendChild(successDiv);
-  })
-  .catch((err) => {
-    const errorDiv = document.createElement('div');
+const resolver = (promise) => {
+  promise
+    .then((data) => {
+      createSuccessMessage(data);
+    })
+    .catch((err) => {
+      createErrorMessage(err);
+    });
+};
 
-    errorDiv.classList.add('error-message');
-    errorDiv.innerText = err;
-    body.appendChild(errorDiv);
-  });
+resolver(promise1);
+resolver(promise2);
