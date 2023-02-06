@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-const success = () => {
+const showSuccessMessage = () => {
   const div = document.createElement('div');
 
   div.classList.add('message');
@@ -10,7 +10,7 @@ const success = () => {
   document.body.append(div);
 };
 
-const error = () => {
+const showErrorMessage = () => {
   const div = document.createElement('div');
 
   div.classList.add('error-message');
@@ -26,10 +26,10 @@ const promise1 = new Promise((resolve, reject) => {
 
 promise1
   .then(() => {
-    success();
+    showSuccessMessage();
   })
   .catch(() => {
-    error();
+    showErrorMessage();
   });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -40,8 +40,8 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise2
   .then(() => {
-    success();
+    showSuccessMessage();
   })
   .catch(() => {
-    error();
+    showErrorMessage();
   });
