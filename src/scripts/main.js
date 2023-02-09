@@ -28,9 +28,6 @@ function createPromise2() {
   });
 }
 
-const promise1 = createPromise1();
-const promise2 = createPromise2();
-
 function onSucces() {
   return createMessage(classSucces, resolveMessage);
 }
@@ -38,6 +35,9 @@ function onSucces() {
 function onError() {
   return createMessage(classError, rejectMessage);
 }
+
+const promise1 = createPromise1();
+const promise2 = createPromise2();
 
 promise1.then(onSucces, onError);
 promise2.then(onSucces, onError);
