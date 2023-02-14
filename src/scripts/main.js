@@ -3,36 +3,33 @@
 const logo = document.querySelector('.logo');
 const body = document.body;
 
+function render(text, className) {
+  const message = document.createElement('div');
+
+  message.classList.add(className);
+  message.innerText = text;
+
+  body.append(message);
+}
+
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('1'));
+    reject(new Error('error'));
   }, 3000);
 });
 
 promise1
   .then(() => {
-    const message = document.createElement('div');
-
-    message.classList.add('message');
-    message.innerText = 'Promise was resolved!';
-
-    body.append(message);
+    render('Promise was resolved!', 'message');
   });
 
 promise2
   .catch(() => {
-    const message = document.createElement('div');
-
-    message.classList.add('error-message');
-    message.innerText = 'Promise was rejected!';
-
-    body.append(message);
+    render('Promise was rejected!', 'error-message');
   });
