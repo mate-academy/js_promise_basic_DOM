@@ -5,6 +5,22 @@
 const logoMa = document.querySelector('.logo');
 const body = document.querySelector('body');
 
+let isDsabled = true;
+
+function addText() {
+  const text = isDsabled
+    ? body.insertAdjacentHTML(
+      'afterbegin', `
+      <div class="message">Promise was resolved!<div>
+    `)
+    : body.insertAdjacentHTML(
+      'afterbegin', `
+      <div class="message error-message">Promise was rejected!<div>
+    `);
+
+  return text;
+}
+
 const promise1 = new Promise((resolve, reject) => {
   logoMa.addEventListener('click', () => {
     resolve();
@@ -14,12 +30,9 @@ const promise1 = new Promise((resolve, reject) => {
 promise1
   .then(
     () => {
-      body.insertAdjacentHTML(
-        'afterbegin', `
-        <div class="message">Promise was resolved!<div>
-      `);
-    })
-  .catch();
+      isDsabled = true;
+      addText();
+    });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error()), 3000);
@@ -28,8 +41,6 @@ const promise2 = new Promise((resolve, reject) => {
 promise2
   .then()
   .catch(() => {
-    body.insertAdjacentHTML(
-      'afterbegin', `
-        <div class="message error-message">Promise was rejected!<div>
-      `);
+    isDsabled = false;
+    addText();
   });
