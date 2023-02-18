@@ -5,20 +5,11 @@
 const logoMa = document.querySelector('.logo');
 const body = document.querySelector('body');
 
-let isDsabled = true;
-
-function addText() {
-  const text = isDsabled
-    ? body.insertAdjacentHTML(
-      'afterbegin', `
-      <div class="message">Promise was resolved!<div>
-    `)
-    : body.insertAdjacentHTML(
-      'afterbegin', `
-      <div class="message error-message">Promise was rejected!<div>
+function showMessage(text, className = '') {
+  body.insertAdjacentHTML(
+    'afterbegin', `
+      <div class="message ${className}">${text}<div>
     `);
-
-  return text;
 }
 
 const promise1 = new Promise((resolve, reject) => {
@@ -30,8 +21,7 @@ const promise1 = new Promise((resolve, reject) => {
 promise1
   .then(
     () => {
-      isDsabled = true;
-      addText();
+      showMessage('Promise was resolved!');
     });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -41,6 +31,5 @@ const promise2 = new Promise((resolve, reject) => {
 promise2
   .then()
   .catch(() => {
-    isDsabled = false;
-    addText();
+    showMessage('Promise was rejected!', 'error-message');
   });
