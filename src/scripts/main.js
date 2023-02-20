@@ -7,11 +7,9 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then(() => {
-  success();
-}).catch(() => {
-  error();
-});
+promise1
+  .then(success)
+  .catch(error);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -19,11 +17,9 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.then(() => {
-  success();
-}).catch(() => {
-  error();
-});
+promise2
+  .then(success)
+  .catch(error);
 
 function success() {
   const message = document.createElement('div');
