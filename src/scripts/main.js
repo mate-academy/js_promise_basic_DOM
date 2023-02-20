@@ -5,7 +5,7 @@ const logo = document.querySelector('.logo');
 function complete(result) {
   const div = document.createElement('div');
 
-  div.innerHTML = 'Promise was resolved!';
+  div.textContent = 'Promise was resolved!';
   div.className = 'message';
   document.body.appendChild(div);
 }
@@ -13,7 +13,7 @@ function complete(result) {
 function error(data) {
   const div = document.createElement('div');
 
-  div.innerHTML = 'Promise was rejected!';
+  div.textContent = 'Promise was rejected!';
   div.className = 'error-message';
   document.body.appendChild(div);
 }
@@ -31,9 +31,7 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1
-  .then(complete)
-  .catch(error);
+  .then(complete);
 
 promise2
-  .then(complete)
   .catch(error);
