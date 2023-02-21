@@ -25,10 +25,10 @@ promise1
   });
 
 promise2
-  .catch(err => {
+  .catch(() => {
     const div = document.createElement('div');
 
     div.className = 'message error-message';
-    div.textContent = err;
+    div.textContent = 'Promise was rejected!';
     body.append(div);
   });
