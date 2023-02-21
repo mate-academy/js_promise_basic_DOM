@@ -2,9 +2,7 @@
 
 const logo = document.querySelector('.logo');
 const promise1 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    resolve();
-  });
+  logo.addEventListener('click', resolve);
 });
 
 promise1
