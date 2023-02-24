@@ -27,9 +27,9 @@ promise1
 
 promise2
   .catch(result => {
-    const errorMessage = document.createElement('div');
+    const message = document.createElement('div');
 
-    errorMessage.className = 'error-message';
-    errorMessage.innerText = 'Promise was rejected!';
-    body.append(errorMessage);
+    message.className = 'error-message';
+    message.innerText = 'Promise was rejected!';
+    body.append(message);
   });
