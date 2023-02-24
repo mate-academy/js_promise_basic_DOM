@@ -3,18 +3,20 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const resolver = (resolve, reject) => {
+const resolver1 = (resolve) => {
   logo.addEventListener('click', () => {
     resolve();
   });
+};
 
+const resolver2 = (resolve, reject) => {
   setTimeout(() => {
     reject();
   }, 3000);
 };
 
-const promise1 = new Promise(resolver);
-const promise2 = new Promise(resolver);
+const promise1 = new Promise(resolver1);
+const promise2 = new Promise(resolver2);
 
 promise1
   .then(result => {
