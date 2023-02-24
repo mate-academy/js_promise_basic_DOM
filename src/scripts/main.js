@@ -11,12 +11,21 @@ function showNotification(message, cls) {
   body.append(div);
 };
 
-const promise1 = Promise.resolve(() => {});
-const promise2 = Promise.reject(new Error());
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
+});
 
-promise2.catch(() => setTimeout(() =>
-  showNotification('Promise was rejected!', 'error-message'), 3000));
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() =>
+    reject(new Error('Promise was rejected!')), 3000);
+});
 
-logo.addEventListener('click', () => {
-  promise1.then(() => showNotification('Promise was resolved!', 'message'));
+promise1.then(result => {
+  showNotification(result, 'message');
+});
+
+promise2.catch(result => {
+  showNotification(result, 'error-message');
 });
