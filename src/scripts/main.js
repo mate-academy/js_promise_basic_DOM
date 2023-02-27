@@ -4,36 +4,29 @@ const promise1 = new Promise(resolve => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve();
+    resolve('Promise was resolved!');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error());
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
-function printMessage(className, result) {
-  document.body.insertAdjacentHTML('beforeend', `
-    <div class="${className}">
-      ${result}
-    </div>
-  `);
+function printMessage(className, text) {
+  const div = document.createElement('div');
+
+  div.className = `${className}`;
+  div.textContent = `${text}`;
+
+  document.body.append(div);
 }
 
-const succesHandler = () => {
-  printMessage('message', 'Promise was resolved!');
-};
-
-const errorHandler = () => {
-  printMessage('error-message message', 'Promise was rejected!');
-};
-
-promise1.then((succes) => {
-  succesHandler(succes);
+promise1.then((result) => {
+  printMessage('message', result);
 });
 
 promise2.catch((error) => {
-  errorHandler(error);
+  printMessage('error-message message', error);
 });
