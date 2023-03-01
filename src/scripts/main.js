@@ -14,7 +14,7 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const createElement = (classForDiv, text) => {
+const createMessage = (classForDiv, text) => {
   const message = document.createElement('div');
 
   message.classList.add(classForDiv);
@@ -25,11 +25,11 @@ const createElement = (classForDiv, text) => {
 };
 
 promise1.then(() => {
-  createElement('message', 'Promise was resolved!');
+  createMessage('message', 'Promise was resolved!');
 });
 
 promise2.catch(() => {
-  createElement('error-message', 'Promise was rejected!');
+  createMessage('error-message', 'Promise was rejected!');
 });
 
 // write your code here
