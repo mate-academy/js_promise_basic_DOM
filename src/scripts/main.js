@@ -14,7 +14,7 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const messageContainer = (message, className) => {
+const createMessage = (message, className) => {
   const div = document.createElement('div');
 
   div.innerText = message;
@@ -23,9 +23,9 @@ const messageContainer = (message, className) => {
 };
 
 promise1.then((message) => {
-  messageContainer(message, 'message');
+  createMessage(message, 'message');
 });
 
 promise2.catch((message) => {
-  messageContainer(message, 'error-message');
+  createMessage(message, 'error-message');
 });
