@@ -1,46 +1,33 @@
 'use strict';
 
-// write your code here
-// Create promise1
 const promise1 = new Promise((resolve, reject) => {
   document.querySelector('.logo').addEventListener('click', () => {
     resolve();
   });
 });
 
-// Add success and error handlers for promise1
+function renderMessage(className, message) {
+  const messageElement = document.createElement('div');
+
+  messageElement.className = className;
+  messageElement.textContent = message;
+  document.body.appendChild(messageElement);
+};
+
 promise1.then(() => {
-  const message = document.createElement('div');
-
-  message.className = 'message';
-  message.textContent = 'Promise was resolved!';
-  document.body.appendChild(message);
+  renderMessage('message', 'Promise was resolved!');
 }).catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.className = 'error-message';
-  errorMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
+  renderMessage('error-message', 'Promise was rejected!');
 });
 
-// Create promise2
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error());
   }, 3000);
 });
 
-// Add success and error handlers for promise2
 promise2.then(() => {
-  const message = document.createElement('div');
-
-  message.className = 'message';
-  message.textContent = 'Promise was resolved!';
-  document.body.appendChild(message);
+  renderMessage('message', 'Promise was resolved!');
 }).catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.className = 'error-message';
-  errorMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
+  renderMessage('error-message', 'Promise was rejected!');
 });
