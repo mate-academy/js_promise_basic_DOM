@@ -1,15 +1,18 @@
 'use strict';
 
 const logoElement = document.querySelector('.logo');
-const divElement = document.createElement('div');
 
 function success() {
+  const divElement = document.createElement('div');
+
   divElement.classList.add('message');
   divElement.textContent = 'Promise was resolved!';
   document.body.append(divElement);
 }
 
 function error() {
+  const divElement = document.createElement('div');
+
   divElement.classList.add('error-message');
   divElement.textContent = 'Promise was rejected!';
   document.body.append(divElement);
