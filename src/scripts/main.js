@@ -1,24 +1,52 @@
 'use strict';
 
-function promise1() {
-  return new Promise((resolve) => {
-    const logo = document.getElementById('logo')
-    const message1 = document.getElementById('message1')
+function firstDiv() {
 
-    logo.addEventListener('click', () => {
-      resolve(message1.innertext = 'Promise was resolved!')
-    })
-  })
+  logo.addEventListener('click', AddNew);
+
+  function AddNew() {
+    const newDiv1 = document.createElement('div');
+    newDiv1.classList.add('message')
+  }
+
+  logo.addEventListener('click', AddNew);
+
+  function AddNew() {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('error-message')
+  }
 }
 
-function promise2() {
-  return new Promise((reject) => {
-    const logo = document.getElementById('logo')
-    const message2 = document.getElementById('message2')
-
-    logo.addEventListener('click', () => {
-      reject(message2.innertext = 'Promise was rejected!')
-    })
+const promise1 = new Promise((resolve, reject) => {
+  const logo = document.querySelector('.logo');
+  logo.addEventListener('click', () => {
+    resolve()
   })
-}
+  reject()
+})
 
+promise1.then(() => {
+  newDiv.textContent = 'Promise was resolved!';
+})
+
+promise1.catch(() => {
+  newDiv.textContent = 'Promise was rejected!';
+
+})
+
+const promise2 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve()
+  })
+  setTimeout(() => {
+    reject();
+  }, 3000);
+});
+
+promise1.then(() => {
+  newDiv.textContent = 'Promise was resolved!';
+})
+
+promise2.catch(() => {
+  newDiv.textContent = 'Promise was rejected!';
+});
