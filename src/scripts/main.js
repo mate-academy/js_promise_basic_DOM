@@ -9,7 +9,7 @@
 
     const box2 = document.createElement('div');
     document.body.appendChild(box2);
-    box2.className += 'error-message';
+    box2.className += 'eror-message';
 
     const promise1 = new Promise((resolve, reject) => {
       logo.addEventListener('click', () => {
