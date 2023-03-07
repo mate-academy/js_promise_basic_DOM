@@ -2,20 +2,20 @@
 
 const logoElement = document.querySelector('.logo');
 
-function success() {
+function action(classList, textContext) {
   const divElement = document.createElement('div');
 
-  divElement.classList.add('message');
-  divElement.textContent = 'Promise was resolved!';
+  divElement.classList.add(classList);
+  divElement.textContent = textContext;
   document.body.append(divElement);
 }
 
-function error() {
-  const divElement = document.createElement('div');
+function success() {
+  action('message', 'Promise was resolved!');
+}
 
-  divElement.classList.add('error-message');
-  divElement.textContent = 'Promise was rejected!';
-  document.body.append(divElement);
+function error() {
+  action('error-message', 'Promise was rejected!');
 }
 
 const promise1 = new Promise(resolve => {
