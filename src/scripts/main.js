@@ -1,52 +1,47 @@
 'use strict';
 
-function firstDiv() {
+  const logo = document.getElementById('logo');
 
-  logo.addEventListener('click', AddNew);
-
-  function AddNew() {
-    const newDiv1 = document.createElement('div');
-    newDiv1.classList.add('message')
-  }
-
-  logo.addEventListener('click', AddNew);
-
-  function AddNew() {
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('error-message')
-  }
-}
-
-const promise1 = new Promise((resolve, reject) => {
-  const logo = document.querySelector('.logo');
   logo.addEventListener('click', () => {
-    resolve()
-  })
-  reject()
-})
+    const box1 = document.createElement('div');
+    document.body.appendChild(box1);
+    box1.className += 'message';
 
-promise1.then(() => {
-  newDiv.textContent = 'Promise was resolved!';
-})
+    const box2 = document.createElement('div');
+    document.body.appendChild(box2);
+    box2.className += 'error-message';
 
-promise1.catch(() => {
-  newDiv.textContent = 'Promise was rejected!';
+    const promise1 = new Promise((resolve, reject) => {
+      logo.addEventListener('click', () => {
+        resolve()
+        reject()
+      })
+    })
 
-})
+    promise1.then(() => {
+      box1.textContent += 'Promise was resolved!';
+    })
 
-const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    resolve()
-  })
-  setTimeout(() => {
-    reject();
-  }, 3000);
-});
+    promise1.catch(() => {
+      box1.textContent += 'Promise was rejected!';
 
-promise1.then(() => {
-  newDiv.textContent = 'Promise was resolved!';
-})
+    })
 
-promise2.catch(() => {
-  newDiv.textContent = 'Promise was rejected!';
-});
+    const promise2 = new Promise((resolve, reject) => {
+      logo.addEventListener('click', () => {
+        resolve()
+      })
+      setTimeout(() => {
+        reject();
+      }, 3000);
+    });
+
+    promise1.then(() => {
+      box2.textContent += 'Promise was resolved!';
+    })
+
+    promise2.catch(() => {
+      box2.textContent += 'Promise was rejected!';
+    });
+  });
+
