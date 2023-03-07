@@ -1,7 +1,5 @@
 'use strict';
 
-const logoElement = document.querySelector('.logo');
-
 function action(classList, textContext) {
   const divElement = document.createElement('div');
 
@@ -19,7 +17,7 @@ function error() {
 }
 
 const promise1 = new Promise(resolve => {
-  logoElement.addEventListener('click', () => {
+  document.querySelector('.logo').addEventListener('click', () => {
     resolve();
   });
 });
