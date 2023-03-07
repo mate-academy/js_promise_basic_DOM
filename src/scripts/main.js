@@ -1,28 +1,28 @@
 'use strict';
 
 // write your code here
-
-const successHandler = document.createElement('div');
-const errorHandler = document.createElement('div');
-
-successHandler.className = 'message';
-successHandler.textContent = 'Promise was resolved!';
-errorHandler.className = 'error-message';
-errorHandler.textContent = 'Promise was rejected!';
-
-const logo = document.querySelector('.logo');
+const successMessage = document.createElement('div');
+const errorMessage = document.createElement('div');
 
 const promise1 = new Promise(function(resolve) {
+  const logo = document.querySelector('.logo');
+
+  successMessage.className = 'message';
+  successMessage.textContent = 'Promise was resolved!';
+
   logo.addEventListener('click', () => {
-    resolve(document.body.append(successHandler));
+    resolve(document.body.append(successMessage));
   });
 });
 
 const promise2 = new Promise(function(resolve, reject) {
+  errorMessage.textContent = 'Promise was rejected!';
+  errorMessage.className = 'error-message';
+
   setTimeout(() => {
-    reject(document.body.append(errorHandler));
+    reject(document.body.append(errorMessage));
   }, 3000);
 });
 
-promise1.then(successHandler);
-promise2.catch(errorHandler);
+promise1.then(successMessage);
+promise2.catch(errorMessage);
