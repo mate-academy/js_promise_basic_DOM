@@ -24,9 +24,5 @@ const promise2 = new Promise(function(resolve, reject) {
   }, 3000);
 });
 
-promise1().then(() => {
-  promise2();
-});
-
 promise1.then(successHandler);
 promise2.catch(errorHandler);
