@@ -1,25 +1,21 @@
 'use strict';
 
+function insertMessage(messageClass, message) {
+  document.body.insertAdjacentHTML('beforeend',
+    `<div class="${messageClass}"> ${message} </div>`
+  );
+};
+
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise(function(resolve, reject) {
-  logo.addEventListener('click', () => {
-    resolve();
-  });
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => resolve());
 });
 
-promise1.then(function() {
-  document.body.insertAdjacentHTML('beforeend',
-    '<div class="message"> Promise was resolved! </div>'
-  );
-}).catch();
+promise1.then(
+  insertMessage('message', 'Promise was resolved!')).catch();
 
-const promise2 = new Promise(function(resolve, reject) {
-  setTimeout(() => reject(Error), 3000);
-});
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(() => reject(Error), 3000));
 
-promise2.then().catch(function() {
-  document.body.insertAdjacentHTML('beforeend',
-    '<div class="error-message"> Promise was rejected! </div>'
-  );
-});
+promise2.then().catch(insertMessage('error-message', 'Promise was rejected!'));
