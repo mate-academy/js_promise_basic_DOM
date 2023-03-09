@@ -9,7 +9,7 @@ const promise1 = new Promise(resolve => {
   });
 });
 
-const promise2 = new Promise(( resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() =>
     reject(new Error()), 3000);
 });
@@ -19,11 +19,22 @@ promise1.then(() => {
     `<div class="message">
       Promise was resolved!
     </div>`);
+}).catch(() => {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="message error-message">
+      Promise was rejected!
+    </div>
+  `);
 });
 
-promise2.catch(() => {
+promise2.then(() => {
   body.insertAdjacentHTML('beforeend',
-    `<div class="error-message">
+    `<div class="message">
+      Promise was resolved!
+    </div>`);
+}).catch(() => {
+  body.insertAdjacentHTML('beforeend',
+    `<div class="message error-message">
       Promise was rejected!
     </div>`);
 });
