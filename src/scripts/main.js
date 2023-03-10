@@ -7,7 +7,7 @@ const promise1 = new Promise(resolve => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => PromiseRejectionEvent(Error), 3000);
+  setTimeout(() => reject(Error), 3000);
 });
 
 promise1.then(() => {
