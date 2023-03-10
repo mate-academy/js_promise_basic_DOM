@@ -12,7 +12,7 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1.then(() => {
   document.body.insertAdjacentHTML('beforeend', `
-    <div class="error-message">
+    <div class="message">
       Promise was resolved!
     </div>
   `);
