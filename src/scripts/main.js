@@ -5,8 +5,29 @@
 const logo = document.querySelector('.logo');
 const bd = document.querySelector('body');
 
-logo.addEventListener('click', () => {
-  const success = () => new Promise((resolve, reject) => {
+const rejected = (resolve, reject) => {
+  const newDivError = document.createElement('div');
+
+  function rejectHandler() {
+    setTimeout(() => {
+      newDivError.className = 'error-message';
+      newDivError.innerText = 'Promise was rejected!';
+      bd.appendChild(newDivError);
+      reject(new Error('not ok'));
+    }, 3000);
+
+    setTimeout(() => {
+      newDivError.remove();
+    }, 3000);
+  }
+
+  return rejectHandler();
+};
+
+const firstPromise = new Promise(rejected);
+
+const resolver = (resolve, reject) => {
+  logo.addEventListener('click', () => {
     function resolveHandler() {
       const newDiv = document.createElement('div');
 
@@ -22,26 +43,9 @@ logo.addEventListener('click', () => {
 
     return resolveHandler();
   });
+};
 
-  const fail = () => new Promise((resolve, reject) => {
-    function rejectHandler() {
-      const newDivError = document.createElement('div');
+const secondPromise = new Promise(resolver);
 
-      newDivError.className = 'error-message';
-      newDivError.innerText = 'Promise was rejected!';
-      bd.appendChild(newDivError);
-      reject(new Error('not ok'));
-    }
-
-    return rejectHandler();
-  });
-
-  success().then((v) => {
-    setTimeout(() => {
-      return fail();
-    }, 3000);
-  }).catch(() => {
-    fail();
-  }
-  );
-});
+firstPromise.then();
+secondPromise.then();
