@@ -37,7 +37,7 @@
     });
 
     promise1.then(() => {
-      box2.textContent += 'Promise was resolved!';
+      box2.textContent += 'Promise was resolved!!';
     })
 
     promise2.catch(() => {
