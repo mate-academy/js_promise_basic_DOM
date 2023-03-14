@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2023-03-14T13:39:04.857Z",
-    "end": "2023-03-14T13:39:08.611Z",
-    "duration": 3697,
+    "start": "2023-03-14T20:18:43.257Z",
+    "end": "2023-03-14T20:18:47.044Z",
+    "duration": 3737,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "02ed89c1-9c5c-41c0-8c9e-02fab20ae85c",
+      "uuid": "6e280394-9ca8-4307-815f-a0f4244ef3f9",
       "title": "",
       "fullFile": "cypress\\integration\\promiseBasic.spec.js",
       "file": "cypress\\integration\\promiseBasic.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "0b4a8a23-87d2-41f2-8436-11b85f455cb4",
+          "uuid": "1d951a58-4320-471b-a764-76f7cbb2100c",
           "title": "Promise basic app",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should resolve first promise by click on logo",
               "fullTitle": "Promise basic app should resolve first promise by click on logo",
               "timedOut": null,
-              "duration": 372,
+              "duration": 407,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.get('.logo').click({\n  force: true\n});\ncy.get('.message').contains('Promise was resolved!');",
               "err": {},
-              "uuid": "d058a91d-57f6-4859-873d-aec35f8f5470",
-              "parentUUID": "0b4a8a23-87d2-41f2-8436-11b85f455cb4",
+              "uuid": "aee0b81d-ff1f-4239-ad55-8786ab95ca8a",
+              "parentUUID": "1d951a58-4320-471b-a764-76f7cbb2100c",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should reject second promise in 3 seconds",
               "fullTitle": "Promise basic app should reject second promise in 3 seconds",
               "timedOut": null,
-              "duration": 3118,
+              "duration": 3124,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "cy.get('.error-message', {\n  timeout: 3000\n}).contains('Promise was rejected!');",
               "err": {},
-              "uuid": "341c391a-fa14-4d7a-b68f-31ed7510c72c",
-              "parentUUID": "0b4a8a23-87d2-41f2-8436-11b85f455cb4",
+              "uuid": "d282825f-63e9-471a-b64a-657d30c2281a",
+              "parentUUID": "1d951a58-4320-471b-a764-76f7cbb2100c",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "shouldn't resolve any promise by right click",
               "fullTitle": "Promise basic app shouldn't resolve any promise by right click",
               "timedOut": null,
-              "duration": 207,
+              "duration": 206,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "cy.get('.logo').rightclick({\n  force: true\n});\ncy.get('.message').should('not.visible');",
               "err": {},
-              "uuid": "48fee85a-2ef6-41e2-bbd0-d17842894c28",
-              "parentUUID": "0b4a8a23-87d2-41f2-8436-11b85f455cb4",
+              "uuid": "6f49539b-ecd1-4dc0-b0b8-6a75dcd598a1",
+              "parentUUID": "1d951a58-4320-471b-a764-76f7cbb2100c",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "d058a91d-57f6-4859-873d-aec35f8f5470",
-            "341c391a-fa14-4d7a-b68f-31ed7510c72c",
-            "48fee85a-2ef6-41e2-bbd0-d17842894c28"
+            "aee0b81d-ff1f-4239-ad55-8786ab95ca8a",
+            "d282825f-63e9-471a-b64a-657d30c2281a",
+            "6f49539b-ecd1-4dc0-b0b8-6a75dcd598a1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3697,
+          "duration": 3737,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

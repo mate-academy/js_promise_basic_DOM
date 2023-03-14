@@ -4,35 +4,29 @@ const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
 const promise1 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    resolve('Success');
-  });
+  logo.addEventListener('click', resolve);
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(reject, 3000);
+  setTimeout(() => {
+    reject(new Error(),);
+  }, 3000);
 });
 
 promise1
-  .then(successHandler)
-  .catch(errorHandler);
+  .then(() => {
+    return handler('Promise was resolved!', 'message');
+  });
 
 promise2
-  .then(successHandler)
-  .catch(errorHandler);
+  .catch(() => {
+    return handler('Promise was rejected!', 'error-message');
+  });
 
-function successHandler() {
+function handler(message, type) {
   const success = document.createElement('div');
 
-  success.classList.add('message');
-  success.textContent = 'Promise was resolved!';
+  success.classList.add(type, 'message');
+  success.textContent = message;
   body.append(success);
-};
-
-function errorHandler() {
-  const error = document.createElement('div');
-
-  error.classList.add('error-message', 'message');
-  error.textContent = 'Promise was rejected!';
-  body.append(error);
 };
