@@ -22,7 +22,7 @@ promise1.catch(() => {
 
   document.body.appendChild(box2);
   box2.className += 'eror-message';
-  box2.textContent += 'Promise was rejected!';
+  box2.textContent += 'Promise was rejected!!';
 });
 
 const promise2 = new Promise((resolve, reject) => {
