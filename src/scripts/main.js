@@ -27,12 +27,10 @@ promise1.catch(() => {
 
 const promise2 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    resolve();
+    setTimeout(() => {
+      reject(new Error('Promise was rejected!'));
+    }, 3000);
   });
-
-  setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
-  }, 3000);
 });
 
 promise2.then(() => {
