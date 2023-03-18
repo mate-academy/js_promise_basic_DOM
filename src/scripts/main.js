@@ -2,17 +2,17 @@
 
 const logo = document.getElementById('logo');
 
-function boxes(order) {
-  const box1 = document.createElement('div');
+function createMessageBox(order) {
+  const messageBox = document.createElement('div');
 
-  document.body.appendChild(box1);
-  box1.textContent = `${order}`;
+  document.body.appendChild(messageBox);
+  messageBox.textContent = `${order}`;
 
-  box1.className += 'error-message';
+  messageBox.className += 'error-message';
 
   order.split(' ').includes('resolved!')
-    ? box1.className = 'message'
-    : box1.className = 'error-message';
+    ? messageBox.className = 'message'
+    : messageBox.className = 'error-message';
 }
 
 const promise1 = new Promise((resolve, reject) => {
@@ -23,10 +23,11 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 promise1.then((message) => {
-  boxes(message);
-}).catch((message) => {
-  boxes(message);
-});
+  createMessageBox(message);
+})
+  .catch((message) => {
+    createMessageBox(message);
+  });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -35,7 +36,8 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.then((message) => {
-  boxes(message);
-}).catch((message) => {
-  boxes(message);
-});
+  createMessageBox(message);
+})
+  .catch((message) => {
+    createMessageBox(message);
+  });
