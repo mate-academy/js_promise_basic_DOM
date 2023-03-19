@@ -1,6 +1,6 @@
 'use strict';
 
-const logo = document.getElementById('logo');
+const logo = document.querySelector('.logo');
 
 function createMessageBox(order) {
   const messageBox = document.createElement('div');
@@ -18,7 +18,6 @@ function createMessageBox(order) {
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
-    reject(new Error('Promise was rejected!'));
   });
 });
 
