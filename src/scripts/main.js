@@ -29,8 +29,8 @@ function handleError() {
 }
 
 promise1
-  .then(onSuccess);
+  .then(handleSuccess);
 
 promise2
   .then()
-  .catch(onError);
+  .catch(handleError);
