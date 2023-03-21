@@ -20,11 +20,11 @@ function createMessage(text, type) {
   document.body.append(message);
 }
 
-function onSuccess() {
+function handleSuccess() {
   createMessage('Promise was resolved!', 'message');
 }
 
-function onError() {
+function handleError() {
   createMessage('Promise was rejected!', 'error-message');
 }
 
