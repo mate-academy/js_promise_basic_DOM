@@ -2,37 +2,43 @@
 
 const logoButton = document.querySelector('.logo');
 
-function createPromise() {
-  const result = (resolve, reject) => {
-    logoButton.addEventListener('click', (e) => {
-      resolve(logoButton);
-    });
+function newMessage(text, result) {
+  const div = document.createElement('div');
 
+  div.classList.add(result);
+  div.textContent = text;
+  logoButton.after(div);
+};
+
+function firstPromise() {
+  const result1 = (resolve, reject) => {
+    logoButton.addEventListener('click', (e) => {
+      resolve('Promise was resolved!');
+    });
+  };
+
+  return new Promise(result1);
+}
+
+function secondPromise() {
+  const result2 = (resolve, reject) => {
     setTimeout(() => {
-      reject();
+      reject('Promise was rejected!');
     }, 3000);
   };
 
-  return new Promise(result);
+  return new Promise(result2);
 }
 
-const promise1 = createPromise();
+const promise1 = firstPromise();
+const promise2 = secondPromise();
 
 promise1
-  .then(successOne, failOne);
+  .then((message1) => newMessage(message1, 'message'))
+  .catch();
 
-function successOne(result) {
-  const div = document.createElement('div');
+promise2
+  .then()
+  .catch((message2) => newMessage(message2, 'error-message'));
 
-  div.classList.add('message');
-  div.textContent = 'Promise was resolved!';
-  logoButton.after(div);
-};
-
-function failOne() {
-  const div = document.createElement('div');
-
-  div.classList.add('error-message');
-  div.textContent = 'Promise was rejected!';
-  logoButton.after(div);
-};
+//
