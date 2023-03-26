@@ -1,68 +1,33 @@
 'use strict';
 
-const createMessage = (text, type) => {
-  const newMessage = document.createElement('div');
+const promise1 = new Promise((resolve) => {
+  const logo = document.querySelector('.logo');
 
-  newMessage.dataset.qa = 'notification';
-
-  newMessage.className = `message ${type}`;
-
-  newMessage.textContent = text;
-
-  document.body.append(newMessage);
-};
-
-const firstPromise = new Promise((resolve, reject) => {
-  let click = false;
-
-  document.addEventListener('click', e => {
-    click = true;
-
-    resolve('First promise was resolved');
+  logo.addEventListener('click', e => {
+    resolve();
   });
+});
 
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    if (click === false) {
-      reject(new Error('First promise was rejected'));
-    }
+    reject(Error);
   }, 3000);
 });
 
-const secondPromise = new Promise((resolve) => {
-  document.addEventListener('contextmenu', e => {
-    resolve('Second promise was resolved');
-  });
+const createMessage = (classForDiv, text) => {
+  const message = document.createElement('div');
 
-  document.addEventListener('click', e => {
-    resolve('Second promise was resolved');
-  });
+  message.classList.add(classForDiv);
+
+  message.textContent = text;
+
+  document.body.append(message);
+};
+
+promise1.then(() => {
+  createMessage('message', 'Promise was resolved!');
 });
 
-const thirdPromise = new Promise((resolve) => {
-  let clickLeft = false;
-  let clickRight = false;
-
-  document.addEventListener('mousedown', e => {
-    if (e.button === 0) {
-      clickLeft = true;
-    }
-
-    if (e.button === 2) {
-      clickRight = true;
-    }
-
-    if (clickLeft && clickRight) {
-      resolve('Third promise was resolved');
-    }
-  });
+promise2.catch(() => {
+  createMessage('error-message', 'Promise was rejected!');
 });
-
-firstPromise
-  .then(result => createMessage(result, 'success'))
-  .catch(error => createMessage(error, 'warning'));
-
-secondPromise
-  .then(result => createMessage(result, 'success'));
-
-thirdPromise
-  .then(result => createMessage(result, 'success'));
