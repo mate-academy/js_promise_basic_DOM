@@ -1,17 +1,13 @@
 'use strict';
 
-function createPromise1(button, message) {
-  return new Promise((resolve, reject) => {
+function createPromise1(button) {
+  return new Promise((resolve) => {
     button.addEventListener('click', first);
 
-    function first(e) {
+    function first() {
       resolve();
       button.removeEventListener('click', first);
     }
-
-    setTimeout(() => {
-      reject(message);
-    }, 3000);
   });
 }
 
@@ -33,13 +29,11 @@ function createMessage(className, text) {
   document.body.append(element);
 }
 
-const promise1 = createPromise1(button1, 'Error');
+const promise1 = createPromise1(button1);
 const promise2 = createPromise2('Error');
 
 promise1.then(() => {
   createMessage('message', 'Promise was resolved');
-}).catch(() => {
-  createMessage('error-message', 'Promise was rejected');
 });
 
 promise2.catch(() => {
