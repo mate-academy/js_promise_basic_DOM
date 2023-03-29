@@ -7,8 +7,8 @@ Create 2 promises `promise1` and `promise2`.
 - error handler should append a `<div class="error-message">` with the text `Promise was rejected!` to the body
 
 ## Instructions
-1. Replace `<your_account>` with your Github username in the link
-    - [DEMO LINK](https://<your_account>.github.io/js_promise_basic_DOM/)
+1. Replace `JulyaPetrovskaya` with your Github username in the link
+    - [DEMO LINK](https://JulyaPetrovskaya.github.io/js_promise_basic_DOM/)
 2. Follow [this instructions](https://mate-academy.github.io/layout_task-guideline/)
     - Run `npm run test` command to test your code;
     - Run `npm run test:only -- -n` to run fast test ignoring linter;
