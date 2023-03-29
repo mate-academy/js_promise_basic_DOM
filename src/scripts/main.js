@@ -2,12 +2,16 @@
 
 const logoButton = document.querySelector('.logo');
 
-logoButton.addEventListener('click', () => {
-  const div1 = document.createElement('div');
-  div1.classList.add('message');
-  div1.textContent = 'Promise was resolved!';
-  document.body.appendChild(div1);
+const promise1 = new Promise(resolve => {
+  logoButton.addEventListener('click', () => {
+    const div1 = document.createElement('div');
+    div1.classList.add('message');
+    div1.textContent = 'Promise was resolved!';
+    document.body.appendChild(div1);
+  });
+});
 
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     const div2 = document.createElement('div');
     div2.classList.add('error-message');
@@ -16,3 +20,6 @@ logoButton.addEventListener('click', () => {
     document.body.appendChild(div2);
   }, 3000);
 });
+
+promise1.then();
+promise2.then();
