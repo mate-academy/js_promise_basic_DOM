@@ -1,5 +1,12 @@
 'use strict';
 
+function createMessage(messageText, elementClasses, parentElement) {
+  const newElement = document.createElement('div');
+  newElement.classList.add(...elementClasses);
+  newElement.textContent = messageText;
+  parentElement.appendChild(newElement);
+}
+
 const logoButton = document.querySelector('.logo');
 
 const promise1 = new Promise(resolve => {
@@ -15,18 +22,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const div1 = document.createElement('div');
-
-  div1.classList.add('message');
-  div1.textContent = 'Promise was resolved!';
-  document.body.appendChild(div1);
+  createMessage('Promise was resolved!', ['message'], document.body);
 });
 
-promise2.catch((message) => {
-  const div2 = document.createElement('div');
-
-  div2.classList.add('error-message');
-  div2.classList.add('message');
-  div2.textContent = message;
-  document.body.appendChild(div2);
+promise2.catch((error) => {
+  createMessage(error.message, ['error-message', 'message'], document.body);
 });
