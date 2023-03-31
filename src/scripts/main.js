@@ -12,26 +12,31 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(reject, 3000);
 });
 
+const message = (type) => {
+  const notification = document.createElement('div');
+
+  notification.classList = 'message';
+
+  if (type === 'suxess') {
+    notification.textContent = 'Promise was resolved!';
+
+    return document.body.appendChild(notification);
+  } else if (type === 'error') {
+    notification.classList.add('error-message');
+    notification.textContent = 'Promise was rejected!';
+
+    return document.body.appendChild(notification);
+  }
+};
+
 promise1.then(() => {
-  const successMessage = document.createElement('div');
-
-  successMessage.classList = 'message';
-  successMessage.textContent = 'Promise was resolved!';
-  document.body.appendChild(successMessage);
+  message('suxess');
 }).catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.classList = 'message';
-  errorMessage.classList.add('error-message');
-  errorMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
+  message('error');
 });
 
-promise2.catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.classList = 'message';
-  errorMessage.classList.add('error-message');
-  errorMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
+promise2.then(() => {
+  message('suxess');
+}).catch(() => {
+  message('error');
 });
