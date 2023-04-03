@@ -16,19 +16,15 @@ function createDiv(divClass) {
   return div;
 }
 
-const promise1 = new Promise(resolve => resolve(createDiv('message')));
+const promise1 = new Promise(resolve => {
+  logo.addEventListener('click', () => resolve(createDiv('message')));
+});
 
 const promise2 = new Promise(
   (resolve, reject) => setTimeout(() => {
     reject(createDiv('error-message'));
   }, 3000));
 
-logo.addEventListener(
-  'click',
-  () => promise1.then(successDiv => {
-    document.body.append(successDiv);
-  }),
-  { once: true }
-);
+promise1.then(result => document.body.append(result));
 
 promise2.catch(errorDiv => document.body.append(errorDiv));
