@@ -2,29 +2,36 @@
 
 const logo = document.querySelector('.logo');
 
-function createDiv(divClass) {
+function createDiv(divClass, message) {
   const div = document.createElement('div');
 
   div.className = divClass;
-
-  if (divClass === 'message') {
-    div.textContent = 'Promise was resolved!';
-  } else {
-    div.textContent = 'Promise was rejected!';
-  }
+  div.textContent = message;
 
   return div;
 }
 
+function successHandler(message) {
+  const successDiv = createDiv('message', message);
+
+  document.body.append(successDiv);
+}
+
+function errorHandler(message) {
+  const errorDiv = createDiv('error-message', message);
+
+  document.body.append(errorDiv);
+}
+
 const promise1 = new Promise(resolve => {
-  logo.addEventListener('click', () => resolve(createDiv('message')));
+  logo.addEventListener('click', () => resolve('Promise was resolved!'));
 });
 
 const promise2 = new Promise(
   (resolve, reject) => setTimeout(() => {
-    reject(createDiv('error-message'));
+    reject(new Error('Promise was rejected!'));
   }, 3000));
 
-promise1.then(result => document.body.append(result));
+promise1.then(successHandler);
 
-promise2.catch(errorDiv => document.body.append(errorDiv));
+promise2.catch(errorHandler);
