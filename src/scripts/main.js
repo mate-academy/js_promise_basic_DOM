@@ -12,7 +12,7 @@ function addThenCatchToPromise(promise) {
     })
     .catch(() => {
       body.insertAdjacentHTML('beforeend', `
-      <div class="error-message">Promise was rejected!</div>
+      <div class="error-message message">Promise was rejected!</div>
     `);
     });
 }
