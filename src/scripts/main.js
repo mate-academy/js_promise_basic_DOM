@@ -24,11 +24,7 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const error = true;
-
-    reject(error);
-  }, 3000);
+  setTimeout(reject, 3000);
 });
 
 addThenCatchToPromise(promise2);
