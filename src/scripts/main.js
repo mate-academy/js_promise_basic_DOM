@@ -8,19 +8,7 @@ function createDiv(divClass, message) {
   div.className = divClass;
   div.textContent = message;
 
-  return div;
-}
-
-function successHandler(message) {
-  const successDiv = createDiv('message', message);
-
-  document.body.append(successDiv);
-}
-
-function errorHandler(message) {
-  const errorDiv = createDiv('error-message', message);
-
-  document.body.append(errorDiv);
+  document.body.append(div);
 }
 
 const promise1 = new Promise(resolve => {
@@ -32,6 +20,10 @@ const promise2 = new Promise(
     reject(new Error('Promise was rejected!'));
   }, 3000));
 
-promise1.then(successHandler);
+promise1
+  .then(result => createDiv('message', result))
+  .catch(error => createDiv('error-message', error));
 
-promise2.catch(errorHandler);
+promise2
+  .then(result => createDiv('message', result))
+  .catch(error => createDiv('error-message', error));
