@@ -5,30 +5,34 @@ const body = document.body;
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.textContent = 'Promise was resolved!';
-    body.append(div);
-
-    resolve('succes');
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const errorDiv = document.createElement('div');
-
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = 'Promise was rejected!';
-    body.append(errorDiv);
-
     reject(Error);
   }, 3000);
 });
 
+function succesMessage() {
+  const div = document.createElement('div');
+
+  div.className = 'message';
+  div.textContent = 'Promise was resolved!';
+  body.append(div);
+};
+
+const cancelMessage = () => {
+  const errorDiv = document.createElement('div');
+
+  errorDiv.className = 'error-message';
+  errorDiv.textContent = 'Promise was rejected!';
+  body.append(errorDiv);
+};
+
 promise1
-  .then();
+  .then(succesMessage);
 
 promise2
-  .catch();
+  .catch(cancelMessage);
