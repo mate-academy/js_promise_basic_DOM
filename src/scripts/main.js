@@ -1,44 +1,28 @@
 'use strict';
 
-const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
+const successContainer = document.createElement('div');
+const errorContainer = document.createElement('div');
 
-function createErrorMessage() {
-  const errorMessage = document.createElement('div');
+successContainer.classList.add('message');
+successContainer.textContent = 'Promise was resolved!';
 
-  errorMessage.className = 'error-message';
-  errorMessage.textContent = 'Promise was rejected!';
-  body.append(errorMessage);
-}
+errorContainer.classList.add('error-message');
+errorContainer.classList.add('message');
+errorContainer.textContent = 'Promise was rejected!';
 
-const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise(resolve => {
   logo.addEventListener('click', () => {
-    const success = document.createElement('div');
-
-    success.className = 'message';
-    success.textContent = 'Promise was resolved!';
-
-    resolve(
-      body.append(success)
-    );
-  }
-  );
-});
-
-promise1
-  .then(result => { })
-  .catch(() => {
-    createErrorMessage();
+    resolve(document.body.append(successContainer));
   });
+});
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout((error) => {
-    reject(error);
+  setTimeout(() => {
+    reject(document.body.append(errorContainer));
   }, 3000);
-});
+}
+);
 
-promise2
-  .then(result => { })
-  .catch(() => {
-    createErrorMessage();
-  });
+promise1.then();
+promise2.then();
