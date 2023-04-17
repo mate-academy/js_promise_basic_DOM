@@ -13,7 +13,7 @@ promise1.then(resolution => {
   div.classList.add('message');
   div.textContent = resolution;
   document.body.append(div);
-}).catch(Error('error'));
+}).catch(Error('error!'));
 
 const promise2 = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error(`Promise was rejected!`)), 3000);
