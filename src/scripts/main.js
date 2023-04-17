@@ -4,36 +4,30 @@ const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve();
+    resolve('Promise was resolved!');
   });
 });
 
 promise1
-  .then(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="message">Promise was resolved!</div>
-    `);
-  })
-  .catch(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="message error-message">Promise was rejected!</div>
-    `);
-  });
+  .then(onFulfilled, onRejected);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise rejected'));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
 promise2
-  .then(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="message">Promise was resolved!</div>
-    `);
-  })
-  .catch(() => {
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="message error-message">Promise was rejected!</div>
-  `);
-  });
+  .then(onFulfilled, onRejected);
+
+function onFulfilled(result) {
+  document.body.insertAdjacentHTML('beforeend', `
+ <div class="message">${result}</div>
+ `);
+};
+
+function onRejected(result) {
+  document.body.insertAdjacentHTML('beforeend', `
+ <div class="message error-message">${result.toString().slice(6)}</div>
+ `);
+};
