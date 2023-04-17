@@ -8,42 +8,34 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
+const createMessage = (message, className) => {
+  const div = document.createElement('div');
+
+  div.className = className;
+  div.innerText = message;
+  document.body.append(div);
+};
+
 promise1
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-    document.body.append(div);
+    createMessage('Promise was resolved!', 'message');
   })
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'error-message';
-    div.innerText = 'Promise was rejected!';
-    document.body.append(div);
+    createMessage('Promise was rejected!', 'error-message');
   });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const er = 'Promise was rejected!';
+    const mesage = 'Promise was rejected!';
 
-    reject(er);
+    reject(mesage);
   }, 3000);
 });
 
 promise2
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-    document.body.append(div);
+    createMessage('Promise was resolved!', 'message');
   })
-  .catch((er) => {
-    const div = document.createElement('div');
-
-    div.className = 'error-message';
-    div.innerText = er;
-    document.body.append(div);
+  .catch((message) => {
+    createMessage('Promise was rejected!', 'error-message');
   });
