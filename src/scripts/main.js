@@ -10,21 +10,13 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
-const onSuccess = () => {
-  const resolveMessage = document.createElement('div');
+const showMessage = (success) => {
+  const message = document.createElement('div');
 
-  resolveMessage.classList.add('message');
-  resolveMessage.textContent = 'Promise was resolved!';
-  document.body.appendChild(resolveMessage);
+  message.classList.add(success ? 'message' : 'error-message');
+  message.textContent = `Promise was ${success ? 'resolved' : 'rejected'}!`;
+  document.body.appendChild(message);
 };
 
-const onError = () => {
-  const rejectMessage = document.createElement('div');
-
-  rejectMessage.classList.add('error-message');
-  rejectMessage.textContent = 'Promise was rejected!';
-  document.body.appendChild(rejectMessage);
-};
-
-promise1.then(onSuccess, onError);
-promise2.then(onSuccess, onError);
+promise1.then(() => showMessage(true), () => showMessage(false));
+promise2.then(() => showMessage(true), () => showMessage(false));
