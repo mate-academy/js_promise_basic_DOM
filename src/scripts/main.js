@@ -4,7 +4,9 @@ const promise1 = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve();
+    const result = 'Promise was resolved!';
+
+    resolve(result);
   });
 });
 
@@ -17,8 +19,8 @@ const createMessage = (message, className) => {
 };
 
 promise1
-  .then(() => {
-    createMessage('Promise was resolved!', 'message');
+  .then((result) => {
+    createMessage(result, 'message');
   })
   .catch(() => {
     createMessage('Promise was rejected!', 'error-message');
@@ -26,9 +28,9 @@ promise1
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const mesage = 'Promise was rejected!';
+    const message = 'Promise was rejected!';
 
-    reject(mesage);
+    reject(message);
   }, 3000);
 });
 
@@ -36,6 +38,6 @@ promise2
   .then(() => {
     createMessage('Promise was resolved!', 'message');
   })
-  .catch((message) => {
-    createMessage('Promise was rejected!', 'error-message');
+  .catch((result) => {
+    createMessage(result, 'error-message');
   });
