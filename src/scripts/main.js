@@ -12,19 +12,19 @@ const promise2 = new Promise((resolve, reject) => {
 
 const body = document.querySelector('body');
 
-function Success() {
+function handleSuccess() {
   body.insertAdjacentHTML('beforeend',
     `<div class="message">Promise was resolved!</div>`);
 }
 
-function Problem() {
+function handleReject() {
   body.insertAdjacentHTML('beforeend',
     `<div class="error-message">Promise was rejected!</div>`);
 }
 
 promise1
-  .then(Success)
-  .catch(Problem);
+  .then(handleSuccess)
+  .catch(handleReject);
 
 promise2
-  .catch(Problem);
+  .catch(handleReject);
