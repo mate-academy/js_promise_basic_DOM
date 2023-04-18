@@ -1,7 +1,7 @@
 'use strict';
 
 let div;
-const logo = document.querySelector('logo');
+const logo = document.querySelector('.logo');
 const promise1 = new Promise(function(resolve, reject) {
   logo.addEventListener('click', () => {
     resolve(`Promise was resolved!`);
