@@ -26,7 +26,7 @@ function makeSuccessMessage() {
 
 function makeErrorMessage() {
   logo.insertAdjacentHTML('afterend', `
-  <div class="error-message">Promise was rejected!</div>
+  <div class="message error-message">Promise was rejected!</div>
   `);
 }
 
