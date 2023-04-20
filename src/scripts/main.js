@@ -1,29 +1,28 @@
-'use strict'
+'use strict';
+
+const logo = document.querySelector('.logo');
+const body = document.querySelector('body');
 
 const promise1 = new Promise((resolve, reject) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    resolve('Promise was resolved!');
-  });
-});
-
-promise1.then((result) => {
-  const message = document.createElement('div');
-
-  message.classList.add('message');
-  message.textContent = result;
-  document.body.appendChild(message);
-
-  const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('Promise was rejected!');
-    }, 3000);
+  logo.addEventListener('click', resolve)
   });
 
-  return promise2;
-}).then((result) => {
-  const message = document.createElement('div');
 
-  message.classList.add('message', 'error-message');
-  message.textContent = result;
-  document.body.appendChild(message);
-});
+const promise2 = new Promise((resolve, reject) => {
+    setTimeout(reject, 3000);
+  });
+
+const success = () => {
+  body.insertAdjacentHTML('beforeend', 
+  `<div class="message">Promise was resolved!</div>`
+  )
+}
+
+const error = () => {
+  body.insertAdjacentHTML('beforeend', 
+  `<div class="message error-message">Promise was rejected!</div>`
+  )
+}
+
+promise1.then(success, error);
+promise2.then(success, error);
