@@ -16,9 +16,10 @@ const promise2 = new Promise((resolve, reject) => {
 
 const message = document.createElement('div');
 
+message.classList.add('message');
+
 promise1
   .then(result => {
-    message.classList.add('message');
     message.innerHTML = result;
     document.body.appendChild(message);
   })
