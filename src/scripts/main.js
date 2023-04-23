@@ -16,19 +16,23 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 const successHandler = () => {
-  body.insertAdjacentHTML('beforeend', `
-    <div class="message">
-      Promise was resolved!
-    </div>
-  `);
+  messageHandler('resolved');
 };
 const errorHandler = () => {
+  messageHandler('rejected');
+};
+
+function messageHandler(text) {
+  if (document.querySelector('.message')) {
+    document.querySelector('.message').remove();
+  }
+
   body.insertAdjacentHTML('beforeend', `
     <div class="message">
-      Promise was rejected!
+      Promise was ${text}!
     </div>
   `);
-};
+}
 
 promise1
   .then(successHandler)
