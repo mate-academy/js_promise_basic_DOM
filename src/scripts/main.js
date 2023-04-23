@@ -16,20 +16,16 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 const successHandler = () => {
-  messageHandler('resolved');
+  messageHandler('message', 'resolved');
 };
 const errorHandler = () => {
-  messageHandler('rejected');
+  messageHandler('error-message', 'rejected');
 };
 
-function messageHandler(text) {
-  if (document.querySelector('.message')) {
-    document.querySelector('.message').remove();
-  }
-
+function messageHandler(classText, messageText) {
   body.insertAdjacentHTML('beforeend', `
-    <div class="message">
-      Promise was ${text}!
+    <div class="${classText}">
+      Promise was ${messageText}!
     </div>
   `);
 }
