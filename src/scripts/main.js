@@ -10,7 +10,7 @@ const promise1 = new Promise((resolve) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
+    reject(Error('Promise was rejected!'));
   }, 3000);
 });
 
@@ -21,10 +21,10 @@ promise1
 
 promise2
   .catch((data) => {
-    showMessage(data, 'error-message');
+    showMessage(data.toString().slice(6), 'error-message');
   });
 
-function showMessage(message, className) {
+function showMessage(message, className = '') {
   const page = document.querySelector('body');
 
   page.insertAdjacentHTML('beforeend',
