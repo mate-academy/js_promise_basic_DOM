@@ -6,31 +6,34 @@ const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    resolve(12);
+    resolve(`Promise was resolved!`);
   });
 });
 
-promise1
-  .then(() => {
-    body.append(div);
+function message(item) {
+  body.append(div);
+
+  if (item === 'Promise was resolved!') {
     div.classList = 'message';
-    div.textContent = 'Promise was resolved!';
+  } else {
+    div.classList = 'error-message';
+  }
+
+  div.textContent = item;
+}
+
+promise1
+  .then((resolve) => {
+    message(resolve);
   });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Error'));
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
 promise2
-  .catch(() => {
-    body.append(div);
-    div.classList = 'error-message';
-    div.textContent = 'Promise was rejected!';
+  .catch((reject) => {
+    message(reject);
   });
-
-// logo.addEventListener('click', (e) => {
-//     console.log(e.tagret);
-//  console.log('11');
-//         });
