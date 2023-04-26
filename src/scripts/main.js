@@ -19,6 +19,8 @@ function createPromise() {
 const promise1 = createPromise();
 const promise2 = promise1.then(success, error);
 
+promise2.catch(error);
+
 function success(result) {
   document.body.insertAdjacentHTML('beforebegin', `
     <div class="message">Promise was resolved!</div
