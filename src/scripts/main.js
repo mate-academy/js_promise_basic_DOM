@@ -4,12 +4,12 @@
 const handleSuccess = (success) => showMessage(success);
 const handleError = (error) => showMessage(error, true);
 
-function showMessage(message, messageIsError) {
+function showMessage(message, isError) {
   const div = document.createElement('div');
 
   div.classList.add('message');
 
-  if (messageIsError) {
+  if (isError) {
     div.classList.add('error-message');
   };
   div.innerText = message;
