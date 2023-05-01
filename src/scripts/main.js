@@ -18,12 +18,15 @@ const promise1 = new Promise(resolve => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    setTimeout(() => {
-      reject(body.append(errorDiv));
-    }, 3000);
-  });
+  setTimeout(() => {
+    reject(body.append(errorDiv));
+  }, 3000);
 });
 
-promise1.then();
-promise2.catch();
+promise1
+  .then()
+  .catch();
+
+promise2
+  .then()
+  .catch();
