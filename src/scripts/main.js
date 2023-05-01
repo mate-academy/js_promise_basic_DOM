@@ -11,12 +11,19 @@ errorDiv.classList.add('message');
 errorDiv.classList.add('error-message');
 errorDiv.innerText = 'Promise was rejected!';
 
-logo.addEventListener('click', () => {
-  return new Promise((resolve, reject) => {
+const promise1 = new Promise(resolve => {
+  logo.addEventListener('click', () => {
     resolve(body.append(successDiv));
+  });
+});
 
+const promise2 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
     setTimeout(() => {
       reject(body.append(errorDiv));
     }, 3000);
   });
 });
+
+promise1.then();
+promise2.catch();
