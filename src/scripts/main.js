@@ -8,22 +8,13 @@ function createPromise() {
     }, 3000);
   });
 }
+const promise2 = createPromise();
 
 const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', (e) => {
-    const promise2 = createPromise();
-
     resolve();
-
-    promise2.then(null, () => {
-      document.body.insertAdjacentHTML(
-        'beforeend', `<div class='message error-message'>
-                        Promise was rejected!
-                      </div>`
-      );
-    });
   });
 });
 
@@ -34,3 +25,11 @@ promise1.then((result) => {
                   </div>`
   );
 }, null);
+
+promise2.then(null, () => {
+  document.body.insertAdjacentHTML(
+    'beforeend', `<div class='message error-message'>
+                    Promise was rejected!
+                  </div>`
+  );
+});
