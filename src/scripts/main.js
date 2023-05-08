@@ -1,21 +1,17 @@
 'use strict';
 
-function createPromise() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // eslint-disable-next-line prefer-promise-reject-errors
-      reject();
-    }, 3000);
-  });
-}
-const promise2 = createPromise();
-
 const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', (e) => {
     resolve();
   });
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 100);
 });
 
 promise1.then((result) => {
@@ -26,10 +22,10 @@ promise1.then((result) => {
   );
 }, null);
 
-promise2.then(null, () => {
+promise2.catch(error => {
   document.body.insertAdjacentHTML(
     'beforeend', `<div class='message error-message'>
-                    Promise was rejected!
+                    ${error.message}
                   </div>`
   );
 });
