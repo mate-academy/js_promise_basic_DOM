@@ -37,6 +37,3 @@ promise1
 promise2
   .then(() => {})
   .catch(() => addErrorMessage());
-
-// promise1.then(addSuccessMessage);
-// promise2.catch(addErrorMessage);
