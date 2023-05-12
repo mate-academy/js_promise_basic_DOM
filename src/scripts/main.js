@@ -26,9 +26,9 @@ const promise1 = createPromise1();
 
 promise1.then(() => {
   document.body.innerHTML += `
-  <div class="message">
-  Promise was resolved!
-  </div>
+    <div class="message">
+      Promise was resolved!
+    </div>
   `;
 });
 
@@ -36,8 +36,8 @@ const promise2 = createPromise2();
 
 promise2.catch(() => {
   document.body.innerHTML += `
-  <div class="message error-message">
-  Promise was rejected!
-  </div>
+    <div class="message error-message">
+      Promise was rejected!
+    </div>
   `;
 });
