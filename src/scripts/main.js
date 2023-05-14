@@ -12,7 +12,7 @@ message.innerText = 'Promise was resolved!';
 errorMessage.classList = 'message error-message';
 errorMessage.innerText = 'Promise was rejected!';
 
-function createPromise() {
+function createResolvePromise() {
   const resolver = (resolve, reject) => {
     logo.addEventListener('click', () => {
       resolve();
@@ -26,13 +26,25 @@ function createPromise() {
   return new Promise(resolver);
 }
 
-const promice1 = createPromise();
-const promice2 = createPromise();
+function createRejectPromise() {
+  const resolver = (resolve, reject) => {
+    setTimeout(() => {
+      reject();
+    }, 3000);
+  };
 
-promice1.then(() => {
+  return new Promise(resolver);
+}
+
+const promise1 = createResolvePromise();
+
+promise1.then(() => {
   body.append(message);
-});
 
-promice2.catch(() => {
-  body.append(errorMessage);
-});
+  const promise2 = createRejectPromise();
+
+  return promise2;
+})
+  .catch(() => {
+    body.append(errorMessage);
+  });
