@@ -40,11 +40,12 @@ const promise1 = createResolvePromise();
 
 promise1.then(() => {
   body.append(message);
-
-  const promise2 = createRejectPromise();
-
-  return promise2;
 })
+  .catch(() => {});
+
+const promise2 = createRejectPromise();
+
+promise2.then(() => {})
   .catch(() => {
     body.append(errorMessage);
   });
