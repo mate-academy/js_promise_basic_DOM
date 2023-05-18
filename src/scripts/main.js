@@ -24,5 +24,10 @@ function onError() {
   `);
 }
 
-promise1.then(onSuccess);
-promise2.catch(onError);
+promise1
+  .then(onSuccess)
+  .catch();
+
+promise2
+  .then()
+  .catch(onError);
