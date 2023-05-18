@@ -17,7 +17,11 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-const promise2 = Promise.reject;
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error(errorMessage));
+  }, 3000);
+});
 
 promise1
   .then(() => {
@@ -26,7 +30,7 @@ promise1
   });
 
 promise2
-  .catch(setTimeout(() => {
+  .catch(() => {
     errorDiv.appendChild(errorMessage);
     document.body.appendChild(errorDiv);
-  }, 3000));
+  });
