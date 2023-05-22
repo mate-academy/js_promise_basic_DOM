@@ -4,7 +4,9 @@ const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
-  logo.addEventListener('clik', resolve);
+  logo.addEventListener('clik', () => {
+    resolve();
+  });
 });
 
 const promise2 = new Promise((resolve, reject) => {
