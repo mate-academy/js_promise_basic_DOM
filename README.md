@@ -1,4 +1,5 @@
 # First promises
+fff
 Create 2 promises `promise1` and `promise2`.
 - `promise1` should be resolved on a `click` on `.logo`.
 - `promise2` promise should be rejected in 3 seconds.
