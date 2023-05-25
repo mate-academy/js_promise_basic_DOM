@@ -1,39 +1,39 @@
 'use strict';
 
+const errorMessage = () => {
+  const message = document.createElement('div');
+
+  message.classList.add('message', 'error-message');
+  message.innerHTML = 'Promise was rejected!';
+  document.body.append(message);
+};
+
+const succesMessage = () => {
+  const message = document.createElement('div');
+
+  message.classList.add('message');
+  message.innerHTML = 'Promise was resolved!';
+  document.body.append(message);
+};
+
 const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve('Promise was resolved!');
+    resolve(succesMessage);
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
+    reject(errorMessage);
   }, 3000);
 });
 
 promise1
-  .then(result => {
-    const message = createMessage(result);
-
-    document.body.append(message);
-  });
+  .then(succesMessage)
+  .catch(errorMessage);
 
 promise2
-  .catch(result => {
-    const message = createMessage(result);
-
-    message.classList.add('error-message');
-    document.body.append(message);
-  });
-
-function createMessage(innerMessage) {
-  const message = document.createElement('div');
-
-  message.classList.add('message');
-  message.innerHTML = `<p>${innerMessage}</p>`;
-
-  return message;
-}
+  .then(succesMessage)
+  .catch(errorMessage);
