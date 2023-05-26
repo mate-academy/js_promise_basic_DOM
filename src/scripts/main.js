@@ -1,18 +1,20 @@
 'use strict';
 
-const errorMessage = () => {
-  const message = document.createElement('div');
+const showMessage = (type) => {
+  const messageText = {
+    success: 'Promise was resolved!',
+    error: 'Promise was rejected!',
+  };
 
-  message.classList.add('message', 'error-message');
-  message.innerHTML = 'Promise was rejected!';
-  document.body.append(message);
-};
-
-const succesMessage = () => {
   const message = document.createElement('div');
 
   message.classList.add('message');
-  message.innerHTML = 'Promise was resolved!';
+  message.innerHTML = messageText[type];
+
+  if (type === 'error') {
+    message.classList.add('error-message');
+  };
+
   document.body.append(message);
 };
 
@@ -20,20 +22,20 @@ const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve(succesMessage);
+    resolve('success');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(errorMessage);
+    reject('error');
   }, 3000);
 });
 
 promise1
-  .then(succesMessage)
-  .catch(errorMessage);
+  .then(success => showMessage(success))
+  .catch(error => showMessage(error));
 
 promise2
-  .then(succesMessage)
-  .catch(errorMessage);
+  .then(success => showMessage(success))
+  .catch(error => showMessage(error));
