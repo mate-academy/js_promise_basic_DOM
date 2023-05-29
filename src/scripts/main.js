@@ -3,7 +3,7 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const notification = (message, type) => {
+const notification = (message) => {
   body.insertAdjacentHTML('beforeend', `
     <div class="message">${message}</div>
   `);
