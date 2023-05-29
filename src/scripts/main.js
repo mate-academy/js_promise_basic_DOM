@@ -3,9 +3,9 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const notification = (message) => {
+const notification = (message, className) => {
   body.insertAdjacentHTML('beforeend', `
-    <div class="message">${message}</div>
+    <div class="${className}">${message}</div>
   `);
 };
 
@@ -20,9 +20,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then((message) => {
-  notification(message);
+  notification(message, 'message');
 });
 
 promise2.catch((message) => {
-  notification(message);
+  notification(message, 'message error-message');
 });
