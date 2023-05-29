@@ -4,7 +4,7 @@ const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    resolve();
+    resolve('Promise was resolved!');
   });
 });
 
@@ -16,9 +16,10 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1.then(success => {
   document.body.insertAdjacentHTML(
-    'beforeend', `<div class='message'>
-                    Promise was resolved!
-                  </div>`
+    'beforeend',
+    `<div class='message'>
+      Promise was resolved!
+    </div>`
   );
 });
 
