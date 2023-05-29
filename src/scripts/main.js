@@ -3,29 +3,26 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const successHandler = () => {
-  const messageSuccess = document.createElement('div');
-
-  messageSuccess.classList.add('message');
-  messageSuccess.textContent = 'Promise was resolved!';
-  body.appendChild(messageSuccess);
-};
-
-const errorHandler = () => {
-  const messageError = document.createElement('div');
-
-  messageError.classList.add('message');
-  messageError.textContent = 'Promise was resolved!';
-  body.appendChild(messageError);
+const notification = (message, type) => {
+  body.insertAdjacentHTML('beforeend', `
+    <div class="message">${message}</div>
+  `);
 };
 
 const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', resolve);
+  logo.addEventListener('click', (e) => {
+    resolve('Promise was resolved');
+  });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(errorHandler), 3000);
+  setTimeout(() => reject(new Error('Promise was rejected')), 3000);
 });
 
-promise1.then(successHandler);
-promise2.catch(errorHandler);
+promise1.then((message) => {
+  notification(message);
+});
+
+promise2.catch((message) => {
+  notification(message);
+});
