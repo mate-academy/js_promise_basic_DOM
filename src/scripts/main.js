@@ -16,10 +16,12 @@ logo.addEventListener('click', () => {
   });
 
   promise2.catch((reject) => {
-    const div = document.createElement('div');
+    setTimeout(() => {
+      const div = document.createElement('div');
 
-    div.classList = 'message error-message';
-    div.textContent = reject;
-    body.append(div);
+      div.classList = 'message error-message';
+      div.textContent = reject;
+      body.append(div);
+    }, 3000);
   });
 });
