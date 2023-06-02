@@ -1,9 +1,15 @@
 'use strict';
 
+const createMessage = (text, isError) => {
+  const message = document.createElement('div');
+
+  message.classList.add('message', isError ? 'error-message' : '');
+  message.textContent = text;
+  document.body.appendChild(message);
+};
+
 const promise1 = new Promise((resolve) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    resolve();
-  });
+  document.querySelector('.logo').addEventListener('click', resolve);
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -13,29 +19,13 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const message = document.createElement('div');
-
-  message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
-  document.body.appendChild(message);
+  createMessage('Promise was resolved!');
 }).catch((error) => {
-  const message = document.createElement('div');
-
-  message.classList.add('message', 'error-message');
-  message.textContent = error.message;
-  document.body.appendChild(message);
+  createMessage(error.message, true);
 });
 
 promise2.then(() => {
-  const message = document.createElement('div');
-
-  message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
-  document.body.appendChild(message);
+  createMessage('Promise was resolved!');
 }).catch((error) => {
-  const message = document.createElement('div');
-
-  message.classList.add('message', 'error-message');
-  message.textContent = error.message;
-  document.body.appendChild(message);
+  createMessage(error.message, true);
 });
