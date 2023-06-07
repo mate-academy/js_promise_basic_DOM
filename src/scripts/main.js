@@ -18,33 +18,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   });
 
+  // Функція для додавання повідомлення
+  function addMessage(text, className = 'message') {
+    const message = document.createElement('div');
+
+    message.className = className;
+    message.textContent = text;
+    body.appendChild(message);
+  }
+
   // Обробники успіху та помилки для promise1
   promise1.then(function() {
-    const message = document.createElement('div');
-
-    message.className = 'message';
-    message.textContent = 'Promise was resolved!';
-    body.appendChild(message);
+    addMessage('Promise was resolved!');
   }).catch(function() {
-    const message = document.createElement('div');
-
-    message.className = 'message error-message';
-    message.textContent = 'Promise was rejected!';
-    body.appendChild(message);
+    addMessage('Promise was rejected!', 'message error-message');
   });
 
   // Обробники успіху та помилки для promise2
   promise2.then(function() {
-    const message = document.createElement('div');
-
-    message.className = 'message';
-    message.textContent = 'Promise was resolved!';
-    body.appendChild(message);
+    addMessage('Promise was resolved!');
   }).catch(function() {
-    const message = document.createElement('div');
-
-    message.className = 'message error-message';
-    message.textContent = 'Promise was rejected!';
-    body.appendChild(message);
+    addMessage('Promise was rejected!', 'message error-message');
   });
 });
