@@ -2,7 +2,6 @@
 
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
-const div = document.createElement('div');
 
 const promise1 = new Promise(function(resolve, reject) {
   logo.addEventListener('click', () => {
@@ -19,6 +18,8 @@ const promise2 = new Promise(function(resolve, reject) {
 promise1
   .then(
     success => {
+      const div = document.createElement('div');
+
       div.className = 'message';
       div.textContent = success;
 
@@ -31,6 +32,8 @@ promise2
   .then()
   .catch(
     error => {
+      const div = document.createElement('div');
+
       div.classList.add('message', 'error-message');
       div.textContent = error;
 
