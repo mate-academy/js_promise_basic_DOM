@@ -1,29 +1,30 @@
 'use strict';
 
-const resolve = () => {
-  const logo = document.querySelector('.logo');
+const logo = document.querySelector('.logo');
 
+function createNotification(message, className) {
+  const notification = document.createElement('div');
+
+  notification.classList.add(...className);
+  notification.textContent = message;
+  document.body.append(notification);
+}
+
+const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    const message = document.createElement('div');
-
-    message.classList.add('message');
-    message.textContent = 'Promise was resolved!';
-    document.body.append(message);
+    resolve('Promise was resolved!');
   });
-};
+});
 
-const reject = () => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const message = document.createElement('div');
-
-    message.classList.add('message', 'error-message');
-    message.textContent = 'Promise was rejected!';
-    document.body.append(message);
+    reject(new Error('Promise was rejected!'));
   }, 3000);
-};
+});
 
-const promise1 = new Promise(resolve);
-const promise2 = new Promise(reject);
+promise1
+  .then(result => createNotification(result, ['message']));
 
-promise1.then();
-promise2.catch();
+promise2
+  .catch(error =>
+    createNotification(error, ['message', 'error-message']));
