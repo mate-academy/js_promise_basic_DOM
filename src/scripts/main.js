@@ -12,7 +12,7 @@ const errorResolver = () => {
     `<div class="message error-message">Promise was rejected!</div>`);
 };
 
-const promise1 = new Promise(
+const succesedPromise = new Promise(
   (resolve) => {
     const button = document.querySelector('.logo');
 
@@ -22,13 +22,13 @@ const promise1 = new Promise(
   }
 );
 
-const promise2 = new Promise((resolve, reject) => {
+const rejectedPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('error'));
   }, 3000);
 }
 );
 
-promise1.then(succesResolver, errorResolver);
+succesedPromise.then(succesResolver, errorResolver);
 
-promise2.then(succesResolver, errorResolver);
+rejectedPromise.then(succesResolver, errorResolver);
