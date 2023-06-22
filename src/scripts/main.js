@@ -8,7 +8,7 @@ const promise1 = new Promise((resolve, reject) => {
       e.stopPropagation();
       resolve('Promise was resolved!');
     });
-  };
+  }
 
   document.addEventListener('click', (e) => {
     reject(new Error('Promise was rejected!'));
@@ -35,7 +35,6 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('Promise was rejected!'));
   }, 3000);
-
 });
 
 promise2
@@ -43,13 +42,13 @@ promise2
     const newDiv = document.createElement('DIV');
 
     newDiv.classList.add('message');
-    newDiv.innerHTML = result;
+    newDiv.textContent = result;
     document.body.appendChild(newDiv);
   })
   .catch((error) => {
     const newDiv = document.createElement('DIV');
 
     newDiv.classList.add('message', 'error-message');
-    newDiv.innerHTML = error;
+    newDiv.textContent = error;
     document.body.appendChild(newDiv);
   });
