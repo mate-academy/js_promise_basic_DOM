@@ -20,21 +20,15 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
-  });
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
 
 promise1.then(() => {
   createMessage('Promise was resolved!');
-}).catch(() => {
-  createMessage('Promise was rejected!', true);
 });
 
-promise2.then(() => {
-  createMessage('Promise was resolved!');
-}).catch(() => {
+promise2.catch(() => {
   createMessage('Promise was rejected!', true);
 });
