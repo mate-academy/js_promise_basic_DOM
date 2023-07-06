@@ -1,7 +1,6 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const message = document.createElement('div');
 
 const promise1 = new Promise(resolve => {
   logo.addEventListener('click', () => {
@@ -17,28 +16,20 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1
   .then(() => {
-    message.classList.add('message');
-    message.innerText = 'Promise was resolved!';
+    const success = document.createElement('div');
 
-    document.body.append(message);
-  })
-  .catch(() => {
-    message.className = 'message error-message';
-    message.innerText = 'Promise was rejected!';
+    success.classList.add('message');
+    success.innerText = 'Promise was resolved!';
 
-    document.body.append(message);
+    document.body.append(success);
   });
 
 promise2
-  .then(() => {
-    message.classList.add('message');
-    message.innerText = 'Promise was resolved!';
-
-    document.body.append(message);
-  })
   .catch(() => {
-    message.className = 'message error-message';
-    message.innerText = 'Promise was rejected!';
+    const error = document.createElement('div');
 
-    document.body.append(message);
+    error.className = 'message error-message';
+    error.innerText = 'Promise was rejected!';
+
+    document.body.append(error);
   });
