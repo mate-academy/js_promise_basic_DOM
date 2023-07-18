@@ -4,29 +4,29 @@ const div = document.getElementById('div');
 const logo = document.getElementById('logo');
 
 function handler() {
-  const promise1 = (resolve, reject) => {
+  const promise1 = new Promise((resolve) => {
     logo.addEventListener('click', () => {
-      resolve('<div class="message">Promise was resolved!</div>')
+      resolve('<div class="message">Promise was resolved!</div>');
     });
-  };
+  });
 
-  return new Promise(promise1);
+  return promise1;
 }
 
-handler().then(function(result) {
+handler().then(result => {
   div.innerHTML = result;
 });
 
 function handler2() {
-  const promise2 = (resolve, reject) => {
+  const promise2 = new Promise((resolve, reject) => {
     setTimeout(() => {
       reject('<div class="message error-message">Promise was rejected!<div>');
     }, 2999);
-  };
+  });
 
-  return new Promise(promise2);
+  return promise2;
 }
 
-handler2().catch(function(result) {
+handler2().catch(result => {
   div.innerHTML = result;
 });
