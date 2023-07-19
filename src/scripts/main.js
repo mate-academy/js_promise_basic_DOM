@@ -1,32 +1,32 @@
 'use strict';
 
-const div = document.getElementById('div');
+// const div = document.getElementById('div');
 const logo = document.getElementById('logo');
 
-function handler() {
-  const promise1 = new Promise((resolve) => {
-    logo.addEventListener('click', () => {
-      resolve('<div class="message">Promise was resolved!</div>');
-    });
+const addMessage = (text, className, className2) => {
+  const div = document.createElement('div');
+
+  document.body.append(div);
+  div.dataset.qa = 'notification';
+  div.classList.add(className);
+  div.classList.add(className2);
+  div.textContent = text;
+};
+
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    // resolve('<div class="message">Promise was resolved!</div>');
+    resolve();
   });
-
-  return promise1;
-}
-
-handler().then(result => {
-  div.innerHTML = result;
 });
 
-function handler2() {
-  const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject('<div class="message error-message">Promise was rejected!<div>');
-    }, 2999);
-  });
+promise1.then(() => addMessage('Promise was resolved!', 'message'));
 
-  return promise2;
-}
-
-handler2().catch(result => {
-  div.innerHTML = result;
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error());
+  }, 3000);
 });
+
+promise2
+  .catch(() => addMessage('Promise was rejected!', 'message', 'error-message'));
