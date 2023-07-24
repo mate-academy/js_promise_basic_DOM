@@ -1,26 +1,27 @@
 'use strict';
 
-// const div = document.getElementById('div');
 const logo = document.getElementById('logo');
 
-const addMessage = (text, className, className2) => {
+const printMessage = (text, isError = false) => {
   const div = document.createElement('div');
 
-  document.body.append(div);
   div.dataset.qa = 'notification';
-  div.classList.add(className);
-  div.classList.add(className2);
+  div.classList.add('message');
+
+  if (isError) {
+    div.classList.add('error-message');
+  }
   div.textContent = text;
+  document.body.append(div);
 };
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
-    // resolve('<div class="message">Promise was resolved!</div>');
     resolve();
   });
 });
 
-promise1.then(() => addMessage('Promise was resolved!', 'message'));
+promise1.then(() => printMessage('Promise was resolved!'));
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -29,4 +30,4 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2
-  .catch(() => addMessage('Promise was rejected!', 'message', 'error-message'));
+  .catch(() => printMessage('Promise was rejected!', true));
