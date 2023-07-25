@@ -2,27 +2,32 @@
 
 const body = document.querySelector('body');
 
+function showMessage(message, isError = false) {
+  const messageBlock = document.createElement('div');
+
+  messageBlock.className = isError ? 'error-message' : 'message';
+  messageBlock.innerText = message;
+  body.insertAdjacentElement('beforeend', messageBlock);
+}
+
 const promise1 = new Promise((resolve) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', () => {
-    const resolveBlock = `
-    <div class="message">
-      Promise was resolved!
-    </div>`;
-
-    resolve(body.insertAdjacentHTML('beforeend', resolveBlock));
+    resolve('Promise was resolved!');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  const rejectBlock = document.createElement('div');
-
-  rejectBlock.className = `error-message`;
-  rejectBlock.innerText = `Promise was rejected!`;
-
-  setTimeout(() => reject(new Error(body.append(rejectBlock))), 3000);
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
 
-promise1.then();
-promise2.catch();
+promise1.then((res) => {
+  showMessage(res);
+});
+
+promise2.catch((error) => {
+  showMessage(error.message, true);
+});
