@@ -1,6 +1,6 @@
 'use strict';
 
-const body = document.querySelector('body');
+const body = document.body;
 
 function showMessage(message, isError = false) {
   const messageBlock = document.createElement('div');
