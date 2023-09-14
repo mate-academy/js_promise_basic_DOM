@@ -1,49 +1,31 @@
 'use strict';
 
-function promise1() {
-  return new Promise((resolve, reject) => {
-    const logo = document.getElementById('logo');
+const promise1 = new Promise((resolve, reject) => {
+  document.querySelector('.logo').addEventListener('click', resolve);
+});
 
-    logo.addEventListener('click', () => {
-      const successDiv = document.createElement('div');
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(onError);
+  }, 3000);
+});
 
-      successDiv.classList.add('message');
-      successDiv.textContent = 'Promise was resolved!';
-      document.body.appendChild(successDiv);
+const onSuccess = () => {
+  document.body.insertAdjacentHTML('beforeend',
+    `<div class="message">Promise was resolved!</div>`
+  );
+};
 
-      resolve();
-    });
-  });
-}
+const onError = () => {
+  document.body.insertAdjacentHTML('beforeend',
+    `<div class="message error-message">Promise was rejected!</div>`
+  );
+};
 
-function promise2() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const errorDiv = document.createElement('div');
+promise1
+  .then(onSuccess)
+  .catch(onError);
 
-      errorDiv.classList.add('message');
-      errorDiv.classList.add('error-message');
-      errorDiv.textContent = 'Promise was rejected!';
-      document.body.appendChild(errorDiv);
-
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
-  });
-}
-
-promise1()
-  .then(() => {
-  })
-  .catch((error) => {
-    const errorMessage = document.createElement('div');
-
-    errorMessage.textContent = error;
-    errorMessage.classList.add('error-message');
-    document.body.appendChild(errorMessage);
-  });
-
-promise2()
-  .then(() => {
-  })
-  .catch(() => {
-  });
+promise2
+  .then(onSuccess)
+  .catch(onError);
