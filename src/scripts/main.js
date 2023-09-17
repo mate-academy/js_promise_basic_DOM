@@ -3,7 +3,7 @@
 function resolver1(resolve, reject) {
   const logo = document.querySelector('.logo');
 
-  logo.addEventListener('click', () => resolve());
+  logo.addEventListener('click', resolve);
 };
 
 function resolver2(resolve, reject) {
