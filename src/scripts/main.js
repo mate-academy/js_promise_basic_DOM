@@ -2,6 +2,10 @@
 
 const body = document.body;
 const logo = body.querySelector('.logo');
+const promiseStateValues = {
+  Success: 'Success',
+  Error: 'Error',
+};
 
 const createDiv = (state) => {
   const div = document.createElement('div');
@@ -9,11 +13,11 @@ const createDiv = (state) => {
   div.classList.add('message');
 
   switch (state) {
-    case 'Success':
+    case promiseStateValues.Success:
       div.textContent = 'Promise was resolved!';
       break;
 
-    case 'Error':
+    case promiseStateValues.Error:
       div.classList.add('error-message');
       div.textContent = 'Promise was rejected!';
       break;
@@ -23,22 +27,22 @@ const createDiv = (state) => {
 };
 
 const successHandler = (elem) => {
-  elem.append(createDiv('Success'));
+  elem.append(createDiv(promiseStateValues.Success));
 };
 
 const errorHandler = (elem) => {
-  elem.append(createDiv('Error'));
+  elem.append(createDiv(promiseStateValues.Error));
 };
 
-const promise1 = new Promise((resolve) => {
+const firstPromise = new Promise((resolve) => {
   logo.addEventListener('click', () => resolve());
 });
 
-const promise2 = new Promise((resolve, reject) => {
+const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error());
   }, 3000);
 });
 
-promise1.then(() => successHandler(body));
-promise2.catch(() => errorHandler(body));
+firstPromise.then(() => successHandler(body));
+secondPromise.catch(() => errorHandler(body));
