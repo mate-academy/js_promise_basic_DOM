@@ -1,7 +1,6 @@
 'use strict';
 
 // write your code here
-
 const logo = document.querySelector('.logo');
 const newDiv = document.createElement('div');
 
