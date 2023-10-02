@@ -28,6 +28,6 @@ promise2
   .then()
   .catch(error => {
     message.classList.add('error-message');
-    message.innerText = error;
+    message.innerText = error.message;
     body.append(message);
   });
