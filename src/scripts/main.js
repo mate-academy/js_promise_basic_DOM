@@ -2,7 +2,8 @@
 
 // write your code here
 const logo = document.querySelector('.logo');
-const newDiv = document.createElement('div');
+const successMeassage = document.createElement('div');
+const errorMessage = document.createElement('div');
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
@@ -16,14 +17,16 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+function addMessage(message, promiseResult, classList1) {
+  message.textContent = promiseResult;
+  document.body.appendChild(message);
+  message.classList.add(...classList1);
+}
+
 promise1.then((result) => {
-  newDiv.textContent = result;
-  newDiv.classList.add('message');
-  document.body.appendChild(newDiv);
+  addMessage(successMeassage, result, ['message']);
 });
 
 promise2.catch((error) => {
-  newDiv.classList.add('message', 'error-message');
-  newDiv.textContent = error.message;
-  document.body.appendChild(newDiv);
+  addMessage(errorMessage, error.message, ['message', 'error-message']);
 });
