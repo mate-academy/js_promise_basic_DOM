@@ -1,13 +1,12 @@
 'use strict';
 
-function createMessage(className, text) {
-  const message = document.createElement('div');
-
-  message.classList.add('message', className);
-  message.textContent = text;
-
-  return message;
-}
+const printMessage = (className, text) => {
+  document.body.insertAdjacentHTML('beforeend',
+    `<div class="message ${className}">
+      ${text}
+    </div>`
+  );
+};
 
 function getFirstPromise() {
   return new Promise((resolve) => {
@@ -27,23 +26,13 @@ function getSecondPromise() {
   });
 }
 
-const root = document.querySelector('body');
-
 const promise1 = getFirstPromise();
 const promise2 = getSecondPromise();
 
 promise1
-  .then((message) => {
-    root.appendChild(createMessage('message', message));
-  })
-  .catch((error) => {
-    root.appendChild(createMessage('error-message', error));
-  });
+  .then((message) => printMessage('success', message))
+  .catch((error) => printMessage('error-message', error));
 
 promise2
-  .then((message) => {
-    root.appendChild(createMessage('message', message));
-  })
-  .catch((error) => {
-    root.appendChild(createMessage('error-message', error));
-  });
+  .then((message) => printMessage('success', message))
+  .catch((error) => printMessage('error-message', error));
