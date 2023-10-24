@@ -4,21 +4,17 @@
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
-const promise1 = function() {
-  return new Promise((resolve) => {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve();
   });
-};
+});
 
-const promise2 = function() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(Error);
-    }, 3000);
-  });
-};
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(Error);
+  }, 3000);
+});
 
 promise1
   .then(onSuccess)
