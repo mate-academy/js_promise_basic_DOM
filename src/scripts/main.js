@@ -13,24 +13,21 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+const createMessageDiv = function(className, message) {
+  const createDiv = document.createElement('div');
+
+  createDiv.className = className;
+  createDiv.textContent = message;
+
+  body.appendChild(createDiv);
+};
+
 promise1
   .then((result) => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message';
-    messageDiv.textContent = result;
-
-    body.appendChild(messageDiv);
-
-    return promise2;
+    createMessageDiv('message', result);
   });
 
 promise2
   .catch(() => {
-    const errorMessageDiv = document.createElement('div');
-
-    errorMessageDiv.classList.add('message', `error-message`);
-    errorMessageDiv.textContent = 'Promise was rejected!';
-
-    body.appendChild(errorMessageDiv);
+    createMessageDiv('message error-message', 'Promise was rejected!');
   });
