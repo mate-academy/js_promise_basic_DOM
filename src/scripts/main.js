@@ -10,7 +10,7 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error()), 3000);
+  return setTimeout(reject, 3000);
 });
 
 promise1.then(() => {
