@@ -1,0 +1,44 @@
+body {
+  background: #eee;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  display: flex;
+}
+
+.logo {
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #fc4b3b;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  display: flex;
+}
+
+.message {
+  text-align: center;
+  background-color: #e6e60080;
+  border-radius: 15px;
+  width: 200px;
+  padding: 25px;
+  font-family: Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.error-message {
+  background-color: #cc330080;
+  right: 350px;
+}
+
+/*# sourceMappingURL=index.971c2ea4.css.map */
