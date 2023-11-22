@@ -25,9 +25,6 @@ promise1
   });
 
 promise2
-  .then((message) => {
-    throw new Error();
-  })
   .catch((error) => {
     appendErrorMessage(error);
   });
