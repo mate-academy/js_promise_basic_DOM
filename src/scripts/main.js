@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const promise2 = new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject(new Error('Promiseпш was rejected!'));
+      reject(new Error('Promise was rejected!'));
     }, 3000);
   });
 
