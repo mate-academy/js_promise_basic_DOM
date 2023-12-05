@@ -1,32 +1,34 @@
-"use strict";
+'use strict';
 
-const div = document.createElement("div");
+const div = document.createElement('div');
 
 const success = (result) => {
-  div.className = "message";
+  div.className = 'message';
   div.innerText = result;
   document.body.append(div);
 };
 
-const error = (result) => {
-  div.className = "message error-message";
+const errorMessage = (result) => {
+  div.className = 'message error-message';
   div.innerText = result;
   document.body.append(div);
 };
 
 const promise1 = new Promise((resolve, reject) => {
-  const logo = document.querySelector(".logo");
+  const logo = document.querySelector('.logo');
 
-  logo.addEventListener("click", () => {
-    resolve("Promise was resolved!");
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject("Promise was rejected!");
+    const error = new Error('Promise was rejected!');
+
+    reject(error);
   }, 3000);
 });
 
 promise1.then(success);
-promise2.catch(error);
+promise2.catch(errorMessage);
