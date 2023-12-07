@@ -1,15 +1,24 @@
 'use strict';
 
-const div = document.createElement('div');
+const createMessageDiv = () => {
+  const div = document.createElement('div');
+
+  div.className = 'message';
+
+  return div;
+};
 
 const success = (result) => {
-  div.className = 'message';
+  const div = createMessageDiv();
+
   div.innerText = result;
   document.body.append(div);
 };
 
-const errorMessage = (result) => {
-  div.className = 'message error-message';
+const error = (result) => {
+  const div = createMessageDiv();
+
+  div.classList.add('error-message');
   div.innerText = result;
   document.body.append(div);
 };
@@ -24,11 +33,9 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    const error = new Error('Promise was rejected!');
-
-    reject(error);
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
-promise1.then(success);
-promise2.catch(errorMessage);
+promise1.then(success).catch(error);
+promise2.then(success).catch(error);
