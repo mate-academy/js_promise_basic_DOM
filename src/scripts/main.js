@@ -1,6 +1,5 @@
 'use strict';
 
-// write your code here
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve, reject) => {
@@ -31,10 +30,9 @@ const isError = () => {
   document.body.appendChild(created);
 };
 
-promise1()
+promise1
   .then(() => isSuccess())
   .catch(() => isError());
 
-promise2()
-  .then(() => isSuccess())
+promise2
   .catch(() => isError());
