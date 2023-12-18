@@ -35,4 +35,5 @@ promise1
   .catch(() => isError());
 
 promise2
+  .then(() => isSuccess())
   .catch(() => isError());
