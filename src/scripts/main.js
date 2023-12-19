@@ -9,11 +9,11 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-const promiseMessage = (m) => {
+const promiseMessage = (text, style = 'message') => {
   const div = document.createElement('div');
 
-  div.className = 'message';
-  div.innerText = m;
+  div.className = style;
+  div.innerText = text;
   body.appendChild(div);
 };
 
@@ -26,7 +26,7 @@ promise1
     promiseMessage('Promise was resolved!');
   })
   .catch(() => {
-    promiseMessage('Promise was rejected!');
+    promiseMessage('Promise was rejected!', 'message error-message');
   });
 
 promise2
@@ -34,5 +34,5 @@ promise2
     promiseMessage('Promise was resolved!');
   })
   .catch(() => {
-    promiseMessage('Promise was rejected!');
+    promiseMessage('Promise was rejected!', 'message error-message');
   });
