@@ -9,42 +9,30 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
+const promiseMessage = (m) => {
+  const div = document.createElement('div');
+
+  div.className = 'message';
+  div.innerText = m;
+  body.appendChild(div);
+};
+
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error()), 3000);
 });
 
 promise1
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-
-    body.appendChild(div);
+    promiseMessage('Promise was resolved!');
   })
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.innerText = 'Promise was rejected!';
-
-    body.appendChild(div);
+    promiseMessage('Promise was rejected!');
   });
 
 promise2
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-
-    body.appendChild(div);
+    promiseMessage('Promise was resolved!');
   })
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.innerText = 'Promise was rejected!';
-
-    body.appendChild(div);
+    promiseMessage('Promise was rejected!');
   });
