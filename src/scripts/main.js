@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
