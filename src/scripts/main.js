@@ -3,6 +3,14 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
+function createNotification(className, message) {
+  const div = document.createElement('div');
+
+  div.className = className;
+  div.innerText = message;
+  body.appendChild(div);
+}
+
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve();
@@ -15,36 +23,16 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-
-    body.appendChild(div);
+    createNotification('message', 'Promise was resolved!');
   })
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.innerText = 'Promise was rejected!';
-
-    body.appendChild(div);
+    createNotification('message error-message', 'Promise was rejected!');
   });
 
 promise2
   .then(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.innerText = 'Promise was resolved!';
-
-    body.appendChild(div);
+    createNotification('message', 'Promise was resolved!');
   })
   .catch(() => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.innerText = 'Promise was rejected!';
-
-    body.appendChild(div);
+    createNotification('message error-message', 'Promise was rejected!');
   });
