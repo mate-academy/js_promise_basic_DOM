@@ -19,6 +19,7 @@ const isSuccess = () => {
 
   created.className = 'message';
   created.innerText = 'Promise was resolved!';
+
   document.body.appendChild(created);
 };
 
