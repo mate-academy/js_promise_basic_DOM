@@ -25,7 +25,6 @@ const isSuccess = () => {
 
 const isError = () => {
   const created = document.createElement('div');
-
   created.className = 'message error-message';
   created.innerText = 'Promise was rejected!';
   document.body.appendChild(created);
