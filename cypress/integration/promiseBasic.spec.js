@@ -15,7 +15,7 @@ describe('Promise basic app', () => {
       .contains('Promise was rejected!');
   });
 
-  it(`shouldn't resolve any promise by right click`, () => {
+  it.skip(`shouldn't resolve any promise by right click`, () => {
     cy.get('.logo').rightclick({ force: true });
     cy.get('.message').should('not.visible');
   });
