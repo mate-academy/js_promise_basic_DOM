@@ -5,7 +5,6 @@ const body = document.body;
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', (e) => {
-    // Проверяем, была ли нажата левая кнопка мыши
     if (e.button === 0) {
       resolve();
     }
@@ -14,7 +13,6 @@ const promise1 = new Promise((resolve) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    // error added for linter
     reject(new Error('Promise was rejected!'));
   }, 3000);
 });
