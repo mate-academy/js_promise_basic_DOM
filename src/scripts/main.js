@@ -1,36 +1,27 @@
 'use strict';
 
-const logoElement = document.querySelector('.logo');
-const bodyElement = document.querySelector('body');
+const logo = document.querySelector('.logo');
+const success = document.createElement('div');
+const error = document.createElement('div');
 
-const successElement = document.createElement('div');
+success.classList.add('message');
+success.innerText = 'Promise was resolved!';
 
-successElement.classList.add('message');
+error.classList.add('message', 'error-message');
+error.innerText = 'Promise was rejected!';
 
-const errorElement = document.createElement('div');
-
-errorElement.classList.add('message', 'error-message');
+const promiseResolved = () => document.body.append(success);
+const promiseRejected = () => document.body.append(error);
 
 const promise1 = new Promise((resolve) => {
-  logoElement.addEventListener('click', () => {
-    resolve('Promise was resolved!');
+  logo.addEventListener('click', () => {
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
-  }, 3000);
+  setTimeout(() => reject(new Error('error')), 3000);
 });
 
-promise1
-  .then((message) => {
-    successElement.innerText = message;
-    bodyElement.appendChild(successElement);
-  });
-
-promise2
-  .catch((error) => {
-    errorElement.innerText = error;
-    bodyElement.appendChild(errorElement);
-  });
+promise1.then(promiseResolved);
+promise2.catch(promiseRejected);
