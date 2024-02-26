@@ -17,6 +17,6 @@ describe('Promise basic app', () => {
 
   it(`shouldn't resolve any promise by right click`, () => {
     cy.get('.logo').rightclick({ force: true });
-    cy.get('.message').should('not.visible');
+    cy.get('.message').should('not.exist');
   });
 });
