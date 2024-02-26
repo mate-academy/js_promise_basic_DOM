@@ -1,6 +1,6 @@
 'use strict';
 
-function addMessageBox(hasSucceeded, promiseNr) {
+function addMessageBox(hasSucceeded) {
   const newEl = document.createElement('div');
 
   newEl.classList.add('message');
@@ -11,7 +11,7 @@ function addMessageBox(hasSucceeded, promiseNr) {
 
   newEl.appendChild(
     document.createTextNode(
-      `promise${promiseNr} has ${hasSucceeded ? 'succeeded' : 'failed'}`,
+      `Promise was ${hasSucceeded ? 'resolved' : 'rejected'}!`,
     ),
   );
   document.querySelector('body').appendChild(newEl);
@@ -41,19 +41,19 @@ const promise2 = () => {
 
 promise1().then(
   () => {
-    addMessageBox(true, 1);
+    addMessageBox(true);
   },
   () => {
-    addMessageBox(false, 1);
+    addMessageBox(false);
   },
 );
 
 promise2().then(
   () => {
-    addMessageBox(true, 2);
+    addMessageBox(true);
   },
   () => {
-    addMessageBox(false, 2);
+    addMessageBox(false);
   },
 );
 
