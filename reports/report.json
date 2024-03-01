@@ -1,0 +1,152 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2024-03-01T16:32:45.078Z",
+    "end": "2024-03-01T16:32:45.974Z",
+    "duration": 873,
+    "testsRegistered": 3,
+    "passPercent": 33.333333333333336,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "20cb6289-2ef9-40d9-b1b7-06471b0e8b18",
+      "title": "",
+      "fullFile": "cypress/integration/promiseBasic.spec.js",
+      "file": "cypress/integration/promiseBasic.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ef4f381f-4b2f-4759-8b3d-372459313095",
+          "title": "Promise basic app",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should resolve first promise by click on logo",
+              "fullTitle": "Promise basic app should resolve first promise by click on logo",
+              "timedOut": null,
+              "duration": 262,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.logo').click({\n  force: true\n});\ncy.get('.message').contains('Promise was resolved!');",
+              "err": {},
+              "uuid": "02e521ba-c738-4015-b284-d9474a73945b",
+              "parentUUID": "ef4f381f-4b2f-4759-8b3d-372459313095",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should reject second promise in 3 seconds",
+              "fullTitle": "Promise basic app should reject second promise in 3 seconds",
+              "timedOut": null,
+              "duration": 299,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.error-message', {\n  timeout: 3000\n}).contains('Promise was rejected!');",
+              "err": {
+                "message": "CypressError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "CypressError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\nError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\nError\n",
+                "diff": null
+              },
+              "uuid": "3da5ab49-e23a-4f63-ba2e-41eea0adf050",
+              "parentUUID": "ef4f381f-4b2f-4759-8b3d-372459313095",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "shouldn't resolve any promise by right click",
+              "fullTitle": "Promise basic app shouldn't resolve any promise by right click",
+              "timedOut": null,
+              "duration": 312,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.logo').rightclick({\n  force: true\n});\ncy.get('.message').should('not.visible');",
+              "err": {
+                "message": "CypressError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "CypressError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\nError: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > \n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\nError\n",
+                "diff": null
+              },
+              "uuid": "4304c9ca-2c58-4851-bc4f-6e4a5a6fda67",
+              "parentUUID": "ef4f381f-4b2f-4759-8b3d-372459313095",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "02e521ba-c738-4015-b284-d9474a73945b"
+          ],
+          "failures": [
+            "3da5ab49-e23a-4f63-ba2e-41eea0adf050",
+            "4304c9ca-2c58-4851-bc4f-6e4a5a6fda67"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 873,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "raw_reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
