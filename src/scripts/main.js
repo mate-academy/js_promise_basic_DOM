@@ -14,21 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.insertAdjacentHTML('afterbegin', item);
     };
 
-    const addTimeOut = (item) => {
-      let time = null;
-
-      clearTimeout(time);
-      time = setTimeout(() => setItemToBody(item), 3000);
-    };
-
     logo.addEventListener('click', () => {
       promise1
         .then((data) => setItemToBody(data))
-        .catch((error) => addTimeOut(error));
+        .catch((error) => console.error(error));
 
-      promise2
-        .then((data) => setItemToBody(data))
-        .catch((error) => addTimeOut(error));
+      setTimeout(() => {
+        promise2
+          .then((data) => setItemToBody(data))
+          .catch((data) => setItemToBody(data));
+      }, 3000);
     });
   }
 });
