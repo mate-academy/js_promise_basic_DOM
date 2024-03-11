@@ -35,7 +35,7 @@ const promise2 = () => {
   return new Promise((resolve, reject) => {
     return setTimeout(() => {
       reject(new Error('Time is up!'));
-    }, 1000);
+    }, 3000);
   });
 };
 
