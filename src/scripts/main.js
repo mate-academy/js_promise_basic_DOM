@@ -1,29 +1,17 @@
 'use strict';
 
-const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
+const success = document.createElement('div');
+const error = document.createElement('div');
 
-function eventHandler() {
-  const message = document.createElement('div');
+success.classList.add('message');
+success.innerText = 'Promise was resolved!';
 
-  message.className = 'message';
-  body.append(message);
+error.classList.add('message', 'error-message');
+error.innerText = 'Promise was rejected!';
 
-  return message;
-}
-
-function successHandler() {
-  const message = eventHandler();
-
-  message.innerText = 'Promise was resolved!';
-}
-
-function errorHandler() {
-  const message = eventHandler();
-
-  message.className = 'message error-message';
-  message.innerText = 'Promise was rejected!';
-}
+const promiseResolved = () => document.body.append(success);
+const promiseRejected = () => document.body.append(error);
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
@@ -32,15 +20,8 @@ const promise1 = new Promise((resolve) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(Error), 3000);
+  setTimeout(() => reject(new Error('error')), 3000);
 });
 
-promise1
-  .then(() => {
-    successHandler();
-  })
-  .catch();
-
-promise2.then().catch(() => {
-  errorHandler();
-});
+promise1.then(promiseResolved);
+promise2.catch(promiseRejected);
