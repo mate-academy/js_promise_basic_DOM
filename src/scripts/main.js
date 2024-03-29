@@ -1,39 +1,30 @@
+/* eslint-disable prefer-promise-reject-errors */
 'use strict';
 
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    resolve(
-      document.body.insertAdjacentHTML(
-        'afterbegin',
-        `
-    <div class="message">
-      Promise was resolved!
-    </div>
-    `,
-      ),
-    );
+    resolve();
   });
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(
-      document.body.insertAdjacentHTML(
-        'afterbegin',
-        `
-  <div class="message error-message">
-  Promise was rejected!
-  </div>
-  `,
-      ),
-    );
+    reject();
   }, 3000);
 });
 
-const successHandler = promise1.resolve;
-const errorHandler = promise2.reject;
+const printMessage = (message, className = '') => {
+  document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+<div class="message ${className}">
+  ${message}
+</div>
+`,
+  );
+};
 
-promise1.then(successHandler, errorHandler);
-promise2.then(successHandler, errorHandler);
+promise1.then(() => printMessage('Promise was resolved!'));
+promise2.catch(() => printMessage('Promise was rejected!', 'error-message'));
