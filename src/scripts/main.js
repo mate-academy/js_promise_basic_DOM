@@ -1,17 +1,21 @@
 'use strict';
 
-function addMessage(isSuccess) {
+function addMessage(type) {
   const newEl = document.createElement('div');
 
   newEl.classList.add('message');
 
-  if (!isSuccess) {
-    newEl.classList.add(isSuccess ? ' ' : 'error-message');
+  switch (type) {
+    case 'error':
+      newEl.classList.add('error-message');
+      break;
+    default:
+      break;
   }
 
   newEl.appendChild(
     document.createTextNode(
-      `Promise was ${isSuccess ? 'resolved' : 'rejected'}!`,
+      `Promise was ${type === 'success' ? 'resolved' : 'rejected'}!`,
     ),
   );
   document.querySelector('body').appendChild(newEl);
@@ -41,18 +45,18 @@ const promise2 = () => {
 
 promise1().then(
   () => {
-    addMessage(true);
+    addMessage('success');
   },
   () => {
-    addMessage(false);
+    addMessage('error');
   },
 );
 
 promise2().then(
   () => {
-    addMessage(true);
+    addMessage('success');
   },
   () => {
-    addMessage(false);
+    addMessage('error');
   },
 );
