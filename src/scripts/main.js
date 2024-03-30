@@ -1,3 +1,4 @@
+/* eslint-disable prefer-promise-reject-errors */
 'use strict';
 
 const logo = document.querySelector('.logo');
@@ -26,7 +27,7 @@ logo.addEventListener('click', async () => {
 function wait(ms) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject();
+      reject(new Error('error time;)'));
     }, ms);
   });
 }
