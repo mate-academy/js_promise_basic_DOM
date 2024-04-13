@@ -14,35 +14,30 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const successMessage = document.createElement('div');
-
-  successMessage.classList.add('message');
-  successMessage.textContent = 'Promise was resolved!';
-
-  body.append(successMessage);
+  createMessage('message', null, 'Promise was resolved!');
 });
 
 promise1.catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.classList.add('message', 'error-message');
-  errorMessage.textContent = 'Promise was rejected!';
-
-  body.append(errorMessage);
+  createMessage('message', 'error-message', 'Promise was rejected!');
 });
 
 promise2.then(() => {
-  const successMessage = document.createElement('div');
-
-  successMessage.classList.add('message');
-
-  body.append(successMessage);
+  createMessage('message', null, 'Promise was resolved!');
 });
 
 promise2.catch(() => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.classList.add('message error-message');
-
-  body.append(errorMessage);
+  createMessage('message', 'error-message', 'Promise was rejected!');
 });
+
+function createMessage(className, additionalClassName, messageText) {
+  const message = document.createElement('div');
+
+  message.classList.add(className);
+
+  if (additionalClassName) {
+    message.classList.add(additionalClassName);
+  }
+  message.textContent = messageText;
+
+  body.append(message);
+}
