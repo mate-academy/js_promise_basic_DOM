@@ -31,4 +31,3 @@ promise2.then().catch((error) => {
 
   document.body.append(div);
 });
-
