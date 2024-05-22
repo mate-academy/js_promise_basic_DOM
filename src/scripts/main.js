@@ -1,8 +1,9 @@
 'use strict';
 
+const logo = document.getElementById('logo');
 const promise1 = new Promise(function (resolve, reject) {
   // eslint-disable-next-line no-shadow
-  document.getElementById('logo').addEventListener('click', function (event) {
+  logo.addEventListener('click', function (event) {
     if (event.button === 0) {
       resolve();
     }
@@ -15,7 +16,7 @@ const promise2 = new Promise(function (resolve, reject) {
   }, 3000);
 });
 
-promise1.then(() => {
+const generateSuccessMessage = () => {
   document.body.insertAdjacentHTML(
     'beforeend',
     `
@@ -24,15 +25,18 @@ promise1.then(() => {
       </div>
     `,
   );
-});
+};
 
-promise2.catch(() => {
+const generateErrorMessage = () => {
   document.body.insertAdjacentHTML(
     'beforeend',
     `
-      <div class="message error-message">
-        Promise was rejected!
-      </div>
-    `,
+        <div class="message error-message">
+          Promise was rejected!
+        </div>
+      `,
   );
-});
+};
+
+promise1.then(generateSuccessMessage);
+promise2.catch(generateErrorMessage);
