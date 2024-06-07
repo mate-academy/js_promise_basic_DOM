@@ -1,6 +1,25 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
+
+const errorHandler = (response) => {
+  const divBlock = document.createElement('div');
+
+  divBlock.classList.add('message', 'error-message');
+
+  divBlock.textContent = response.message;
+  document.body.append(divBlock);
+};
+
+const successHandler = (response) => {
+  const divBlock = document.createElement('div');
+
+  divBlock.classList.add('message');
+
+  divBlock.textContent = response;
+  document.body.append(divBlock);
+};
+
 const promiseHandler = () => {
   const promise1 = new Promise((resolve) => {
     resolve('Promise was resolved!');
@@ -8,21 +27,9 @@ const promiseHandler = () => {
 
   promise1
     .then((response) => {
-      const divBlock = document.createElement('div');
-
-      divBlock.classList.add('message');
-
-      divBlock.textContent = response;
-      document.body.append(divBlock);
+      successHandler(response);
     })
-    .catch(() => {
-      const divBlock = document.createElement('div');
-
-      divBlock.classList.add('message error-message');
-
-      divBlock.textContent = 'Promise was rejected!';
-      document.body.append(divBlock);
-    });
+    .catch((response) => errorHandler(response));
 };
 
 const promise2 = new Promise((resolve, reject) => {
@@ -34,19 +41,8 @@ const promise2 = new Promise((resolve, reject) => {
 logo.addEventListener('click', promiseHandler);
 
 promise2
-  .then(() => {
-    const divBlock = document.createElement('div');
-
-    divBlock.classList.add('message');
-
-    divBlock.textContent = 'Promise was resolved!';
-    document.body.append(divBlock);
+  .then((response) => {
+    successHandler(response);
   })
-  .catch((response) => {
-    const divBlock = document.createElement('div');
 
-    divBlock.classList.add('message', 'error-message');
-
-    divBlock.textContent = response.message;
-    document.body.append(divBlock);
-  });
+  .catch((response) => errorHandler(response));
