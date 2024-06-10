@@ -13,8 +13,7 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 promise1.then((data) => {
-  div.textContent = data;
-  document.body.appendChild(div);
+  createElement(data);
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -24,7 +23,11 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.catch((error) => {
-  div.textContent = error;
+  createElement(error);
   div.classList.add('error-message');
-  document.body.appendChild(div);
 });
+
+const createElement = (text) => {
+  div.textContent = text;
+  document.body.appendChild(div);
+};
