@@ -3,7 +3,7 @@
 // write your code here
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
-    resolve();
+    resolve('success');
   });
 });
 
@@ -13,22 +13,20 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const handleSuccess = () => {
+const handleHelper = (message) => {
   const messageDiv = document.createElement('div');
 
-  messageDiv.className = 'message';
-  messageDiv.textContent = 'Promise was resolved!';
+  if (message === 'success') {
+    messageDiv.className = 'message';
+    messageDiv.textContent = 'Promise was resolved!';
+  } else {
+    messageDiv.className = 'message error-message';
+    messageDiv.textContent = message.message;
+  }
+
   document.body.appendChild(messageDiv);
 };
 
-const handleError = (error) => {
-  const messageDiv = document.createElement('div');
+promise1.then(handleHelper).catch(handleHelper);
 
-  messageDiv.className = 'message error-message';
-  messageDiv.textContent = error.message;
-  document.body.appendChild(messageDiv);
-};
-
-promise1.then(handleSuccess).catch(handleError);
-
-promise2.then(handleSuccess).catch(handleError);
+promise2.then(handleHelper).catch(handleHelper);
