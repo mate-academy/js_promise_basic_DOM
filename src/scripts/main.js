@@ -1,11 +1,27 @@
 'use strict';
 
+function handleSuccess(messageText) {
+  const message = document.createElement('div');
+
+  message.classList.add('message');
+  message.textContent = messageText;
+  document.body.appendChild(message);
+}
+
+function handleError(errorText) {
+  const message = document.createElement('div');
+
+  message.classList.add('message', 'error-message');
+  message.textContent = errorText;
+  document.body.appendChild(message);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
 
   const promise1 = new Promise((resolve) => {
     logo.addEventListener('click', () => {
-      resolve();
+      resolve('Promise was resolved!');
     });
   });
 
@@ -16,34 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   promise1
-    .then(() => {
-      const message = document.createElement('div');
-
-      message.classList.add('message');
-      message.textContent = 'Promise was resolved!';
-      document.body.appendChild(message);
-    })
-    .catch(() => {
-      const message = document.createElement('div');
-
-      message.classList.add('message', 'error-message');
-      message.textContent = 'Promise was rejected!';
-      document.body.appendChild(message);
-    });
+    .then(handleSuccess)
+    .catch(() => handleError('Promise was rejected!'));
 
   promise2
-    .then(() => {
-      const message = document.createElement('div');
-
-      message.classList.add('message');
-      message.textContent = 'Promise was resolved!';
-      document.body.appendChild(message);
-    })
-    .catch(() => {
-      const message = document.createElement('div');
-
-      message.classList.add('message', 'error-message');
-      message.textContent = 'Promise was rejected!';
-      document.body.appendChild(message);
-    });
+    .then(handleSuccess)
+    .catch(() => handleError('Promise was rejected!'));
 });
