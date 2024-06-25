@@ -1,7 +1,19 @@
 'use strict';
 
-const body = document.body;
 const logo = document.querySelector('.logo');
+
+function insertMessage(message, isError = false) {
+  const messageDiv = document.createElement('div');
+
+  messageDiv.textContent = message;
+  messageDiv.className = 'message';
+
+  if (isError) {
+    messageDiv.classList.add('error-message');
+  }
+
+  document.body.appendChild(messageDiv);
+}
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', () => {
@@ -17,15 +29,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  body.insertAdjacentHTML(
-    'beforeend',
-    '<div class="message">Promise was resolved!</div>',
-  );
+  insertMessage('Promise was resolved!');
 });
 
 promise2.catch(() => {
-  body.insertAdjacentHTML(
-    'beforeend',
-    '<div class="message error-message">Promise was rejected!</div>',
-  );
+  insertMessage('Promise was rejected!', true);
 });
