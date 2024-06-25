@@ -18,22 +18,17 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const newDiv = document.createElement('h1');
+  const divResolveMessage = document.createElement('div');
 
-  newDiv.className = 'message';
-
-  newDiv.innerHTML = 'Promise was resolved!';
-
-  document.body.appendChild(newDiv);
+  document.body.appendChild(divResolveMessage);
+  divResolveMessage.classList.add('message');
+  divResolveMessage.textContent = 'Promise was resolved!';
 });
 
 promise2.catch(() => {
-  const newDiv = document.createElement('h1');
+  const divErrorMessage = document.createElement('div');
 
-  newDiv.className = 'message';
-  newDiv.classList.add('error-message');
-
-  newDiv.innerHTML = 'Promise was rejected!';
-
-  document.body.appendChild(newDiv);
+  document.body.appendChild(divErrorMessage);
+  divErrorMessage.classList.add('message', 'error-message');
+  divErrorMessage.textContent = 'Promise was rejected!';
 });
