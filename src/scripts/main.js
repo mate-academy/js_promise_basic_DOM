@@ -1,6 +1,6 @@
 'use strict';
 
-const logo = document.querySelector('logo');
+const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
 const successMessage = document.createElement('div');
