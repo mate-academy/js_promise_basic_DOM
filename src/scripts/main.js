@@ -4,6 +4,11 @@
 const logo = document.querySelector('.logo');
 const div = document.createElement('div');
 
+const appendContent = function (element, text) {
+  element.textContent = text;
+  document.body.append(element);
+};
+
 div.className = 'message';
 
 const promise1 = new Promise((resolve, reject) => {
@@ -19,12 +24,10 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then((message) => {
-  div.textContent = message;
-  document.body.append(div);
+  appendContent(div, message);
 });
 
 promise2.catch((error) => {
   div.classList.add('error-message');
-  div.textContent = error;
-  document.body.append(div);
+  appendContent(div, error);
 });
