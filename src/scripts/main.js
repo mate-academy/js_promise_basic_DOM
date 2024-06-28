@@ -14,26 +14,23 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
-function handleSuccess(message) {
-  const successMessage = document.createElement('div');
+function result(message, error) {
+  const resultMessage = document.createElement('div');
 
-  successMessage.classList.add('message');
-  successMessage.textContent = message;
-  body.appendChild(successMessage);
-}
-
-function handleError(error) {
-  const errrorMessage = document.createElement('div');
-
-  errrorMessage.classList.add('message', 'error-message');
-  errrorMessage.textContent = error.message;
-  body.appendChild(errrorMessage);
+  if (message) {
+    resultMessage.classList.add('message');
+    resultMessage.textContent = message;
+  } else {
+    resultMessage.classList.add('message', 'error-message');
+    resultMessage.textContent = error.message;
+  }
+  body.appendChild(resultMessage);
 }
 
 promise1
-  .then((message) => handleSuccess(message))
-  .catch((error) => handleError(error));
+  .then((message) => result(message, null))
+  .catch((error) => result(null, error));
 
 promise2
-  .then((message) => handleSuccess(message))
-  .catch((error) => handleError(error));
+  .then((message) => result(message, null))
+  .catch((error) => result(null, error));
