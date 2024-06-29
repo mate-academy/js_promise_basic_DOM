@@ -12,19 +12,24 @@ errorMessage.classList.add('message', 'error-message');
 errorMessage.innerText = 'Promise was rejected!';
 
 const promise1 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', (e) => {
-    resolve();
-  });
+  if (logo) {
+    logo.addEventListener('click', (e) => {
+      resolve();
+    });
+
+    return;
+  }
+
+  reject(new Error('Logo isnt found'));
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Reject'));
+    reject(new Error('Promise 2 dont pass'));
   }, 3000);
 });
 
 const successHandler = () => body.append(successMessage);
 const errorHandler = () => body.append(errorMessage);
 
-promise1.then(successHandler).catch(errorHandler);
-promise2.then(successHandler).catch(errorHandler);
+Promise.race([promise1, promise2]).then(successHandler).catch(errorHandler);
