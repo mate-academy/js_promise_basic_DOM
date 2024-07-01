@@ -6,27 +6,22 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
-const promise2 = new Promise((_, reject) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
-  });
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
 
-const successHandler = (message) => {
+const messageHandler = (message, isError = false) => {
   const messageBlock = document.createElement('div');
-  messageBlock.className = 'message';
+  messageBlock.className = isError ? 'message error-message' : 'message';
   messageBlock.textContent = message;
   document.body.appendChild(messageBlock);
 };
 
-const errorHandler = (message) => {
-  const errorBlock = document.createElement('div');
-  errorBlock.className = 'message error-message';
-  errorBlock.textContent = message;
-  document.body.appendChild(errorBlock);
-};
-
-promise1.then(successHandler).catch(errorHandler);
-promise2.then(successHandler).catch(errorHandler);
+promise1
+  .then((message) => messageHandler(message))
+  .catch((message) => messageHandler(message, true));
+promise2
+  .then((message) => messageHandler(message))
+  .catch((message) => messageHandler(message, true));
