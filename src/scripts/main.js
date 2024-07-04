@@ -10,17 +10,16 @@ function createDiv(...classList) {
   return div;
 }
 
-function successHandler(data) {
-  const message = createDiv('message');
+function callbackPromise(data) {
+  const classList = ['message'];
 
-  message.innerHTML = data;
-  document.body.append(message);
-}
+  if (data?.message) {
+    classList.push('error-message');
+  }
 
-function errorHandler(error) {
-  const message = createDiv('message', 'error-message');
+  const message = createDiv(...classList);
 
-  message.innerHTML = error.message;
+  message.innerHTML = data?.message ? data.message : data;
   document.body.append(message);
 }
 
@@ -30,7 +29,7 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then(successHandler).catch(errorHandler);
+promise1.then(callbackPromise).catch(callbackPromise);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -38,4 +37,4 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.then(successHandler).catch(errorHandler);
+promise2.then(callbackPromise).catch(callbackPromise);
