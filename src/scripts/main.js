@@ -25,7 +25,7 @@ function messageHandler(message) {
   document.body.appendChild(div);
 }
 
-function errHandler() {
+function errHandler(err) {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
