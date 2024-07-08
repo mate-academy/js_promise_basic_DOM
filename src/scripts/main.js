@@ -1,16 +1,16 @@
 'use strict';
 
-const promise1 = new Promise((resolved, rejected) => {
+const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
   logo.addEventListener('click', function() {
-    resolved('Promise was resolved!');
+    resolve('Promise was resolved!');
   });
 });
 
-const promise2 = new Promise((resolved, rejected) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    rejected('Promise was rejected');
+    reject('Promise was rejected');
   }, 3000);
 });
 
