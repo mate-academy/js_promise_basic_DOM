@@ -14,30 +14,21 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then((message) => {
+promise1.then(messageHandler).catch(errHandler);
+promise2.then(messageHandler).catch(errHandler);
+
+function messageHandler(message) {
   const div = document.createElement('div');
 
   div.className = 'message';
   div.textContent = message;
   document.body.appendChild(div);
-}).catch((err) => {
+}
+
+function errHandler() {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
   div.textContent = err;
   document.body.appendChild(div);
-});
-
-promise2.then((message) => {
-  const div = document.createElement('div');
-
-  div.className = 'message';
-  div.textContent = message;
-  document.body.appendChild(div);
-}).catch((err) => {
-  const div = document.createElement('div');
-
-  div.className = 'message error-message';
-  div.textContent = err;
-  document.body.appendChild(div);
-});
+}
