@@ -1,17 +1,30 @@
 'use strict';
 
-document.querySelector('.logo').addEventListener('click', () => {
-  return new Promise((resolve, reject) => {
-    resolve(createMsg('Promise was resolved!'));
+const logo = document.querySelector('.logo');
 
-    setTimeout(
-      () => reject(createMsg('Promise was rejected!', 'error-message')),
-      3000,
-    );
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve();
   });
 });
 
-function createMsg(desc, classResult) {
+promise1.then(() => {
+  document.body.append(createMsgBlock('Promise was resolved!'));
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
+
+promise2.catch(() => {
+  document.body.append(
+    createMsgBlock('Promise was rejected!', 'error-message'),
+  );
+});
+
+function createMsgBlock(desc, classResult) {
   const msgBlock = document.createElement('div');
   const paragraf = document.createElement('p');
 
@@ -23,5 +36,6 @@ function createMsg(desc, classResult) {
 
   paragraf.textContent = desc;
   msgBlock.append(paragraf);
-  document.body.append(msgBlock);
+
+  return msgBlock;
 }
