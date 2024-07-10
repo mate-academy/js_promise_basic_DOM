@@ -2,10 +2,15 @@
 
 const logo = document.querySelector('.logo');
 
-const message = document.createElement('div');
+function createMessage() {
+  const message = document.createElement('div');
 
-message.classList.add('message');
+  message.classList.add('message');
 
+  return message;
+}
+
+const firstMessage = createMessage();
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     const resolvedValue = 'Promise was resolved!';
@@ -15,8 +20,8 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 promise1.then((resolvedValue) => {
-  message.innerText = resolvedValue;
-  document.body.appendChild(message);
+  firstMessage.innerText = resolvedValue;
+  document.body.appendChild(firstMessage);
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -27,9 +32,10 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch((rejectedValue) => {
-  message.classList.add('error-message');
+const secondMessage = createMessage();
 
-  message.innerText = rejectedValue;
-  document.body.appendChild(message);
+promise2.catch((rejectedValue) => {
+  secondMessage.classList.add('error-message');
+  secondMessage.innerText = rejectedValue;
+  document.body.appendChild(secondMessage);
 });
