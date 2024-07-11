@@ -9,7 +9,7 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(''), 3000);
+  setTimeout(() => reject(Error('Promise was rejected!')), 3000);
 });
 
 promise1
@@ -22,7 +22,7 @@ promise1
   .catch((err) => {
     document.body.insertAdjacentHTML(
       'beforeend',
-      '<div class="message error-message">Promise was rejected!</div>',
+      `<div class="message error-message">${err}</div>`,
     );
   });
 
@@ -36,6 +36,6 @@ promise2
   .catch((err) => {
     document.body.insertAdjacentHTML(
       'beforeend',
-      '<div class="message error-message">Promise was rejected!</div>',
+      `<div class="message error-message">${err}</div>`,
     );
   });
