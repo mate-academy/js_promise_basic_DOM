@@ -41,7 +41,7 @@ logo.addEventListener('click', () => {
     .catch((error) => {
       document.body.insertAdjacentHTML(
         'beforebegin',
-        `<div class="message error-message">${error.message}</div>`,
+        `<div class="message error-message">Error: ${error.message}</div>`,
       );
     });
 });
