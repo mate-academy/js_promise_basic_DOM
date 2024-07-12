@@ -1,6 +1,7 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
+const body = document.querySelector('body');
 
 const promise1 = () => {
   return new Promise((resolve) => {
@@ -16,32 +17,36 @@ const promise2 = () => {
   });
 };
 
+const showSuccessMessage = (message) => {
+  const div = document.createElement('div');
+
+  div.classList.add('message');
+  div.textContent = message;
+  body.insertAdjacentElement('beforebegin', div);
+};
+
+const showErrorMessage = (message) => {
+  const div = document.createElement('div');
+
+  div.classList.add('message', 'error-message');
+  div.textContent = `Error: ${message}`;
+  body.insertAdjacentElement('beforebegin', div);
+};
+
 logo.addEventListener('click', () => {
   promise1()
     .then((message) => {
-      document.body.insertAdjacentHTML(
-        'beforebegin',
-        `<div class="message">${message}</div>`,
-      );
+      showSuccessMessage(message);
     })
     .catch((error) => {
-      document.body.insertAdjacentHTML(
-        'beforebegin',
-        `<div class="message error-message">Error: ${error.message}</div>`,
-      );
+      showErrorMessage(error.message);
     });
 
   promise2()
     .then((message) => {
-      document.body.insertAdjacentHTML(
-        'beforebegin',
-        `<div class="message">${message}</div>`,
-      );
+      showSuccessMessage(message);
     })
     .catch((error) => {
-      document.body.insertAdjacentHTML(
-        'beforebegin',
-        `<div class="message error-message">Error: ${error.message}</div>`,
-      );
+      showErrorMessage(error.message);
     });
 });
