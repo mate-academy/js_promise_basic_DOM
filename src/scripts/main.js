@@ -14,38 +14,31 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1
-  .then((result) => {
-    const body = document.body;
-    const div = document.createElement('div');
+function addMessage(message, isError = false) {
+  const body = document.body;
+  const div = document.createElement('div');
 
-    div.classList.add('message');
-    div.textContent = 'Promise was resolved!';
-    body.appendChild(div);
+  div.classList.add('message');
+
+  if (isError) {
+    div.classList.add('error-message');
+  }
+  div.textContent = message;
+  body.appendChild(div);
+}
+
+promise1
+  .then(() => {
+    addMessage('Promise was resolved!');
   })
   .catch(() => {
-    const body = document.body;
-    const div = document.createElement('div');
-
-    div.classList.add('message', 'error-message');
-    div.textContent = 'Promise was rejected!';
-    body.appendChild(div);
+    addMessage('Promise was rejected!', true);
   });
 
 promise2
-  .then((result) => {
-    const body = document.body;
-    const div = document.createElement('div');
-
-    div.classList.add('message');
-    div.textContent = 'Promise was resolved!';
-    body.appendChild(div);
+  .then(() => {
+    addMessage('Promise was resolved!');
   })
   .catch(() => {
-    const body = document.body;
-    const div = document.createElement('div');
-
-    div.classList.add('message', 'error-message');
-    div.textContent = 'Promise was rejected!';
-    body.appendChild(div);
+    addMessage('Promise was rejected!', true);
   });
