@@ -25,11 +25,7 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1
   .then(() => {
-    const message = document.createElement('div');
-
-    message.className = 'message';
-    message.textContent = 'Promise was resolved!';
-    body.appendChild(message);
+    createMessage('message', 'Promise was resolved!');
   })
   .catch(() => {
     createMessage('message', 'Promise was rejected!');
@@ -40,5 +36,5 @@ promise2
     createMessage('message', 'Promise was resolved!');
   })
   .catch((error) => {
-    createMessage('message error-message', error);
+    createMessage('message error-message', error.message);
   });
