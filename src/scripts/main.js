@@ -5,15 +5,12 @@ const body = document.body;
 
 const promise1 = new Promise((resolve, reject) => {
   resolve('Promise was resolved!');
-
-  // eslint-disable-next-line prefer-promise-reject-errors
-  reject('Promise was rejected!');
+  reject(new Error('Promise was rejected!'));
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    // eslint-disable-next-line prefer-promise-reject-errors
-    reject('Promise was rejected!');
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
