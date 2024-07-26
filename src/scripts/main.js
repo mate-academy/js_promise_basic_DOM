@@ -6,12 +6,12 @@ const body = document.body;
 const promise1 = new Promise((resolve, reject) => {
   resolve('Promise was resolved!');
 
-  reject('Promise was rejected!');
+  reject(Error('Promise was rejected!'));
 });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject('Promise was rejected!');
+    reject(Error('Promise was rejected!'));
   }, 3000);
 });
 
