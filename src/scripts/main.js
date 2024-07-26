@@ -1,26 +1,27 @@
 'use strict';
 
 const promise1 = new Promise((resolve, reject) => {
-  document.querySelector('.logo').addEventListener('click', resolve);
+  document.querySelector('.logo').addEventListener('click', () => {
+    resolve(['Promise was resolved!', ['message']]);
+  });
 });
-
-function handleSuccess() {
-  const newDiv = document.createElement('div');
-  newDiv.textContent = 'Promise was resolved!';
-  newDiv.classList.add('message');
-  document.querySelector('body').appendChild(newDiv);
-}
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(reject, 3000);
+  setTimeout(() => {
+    reject(['Promise was rejected!', ['message', 'error-message']]);
+  }, 3000);
 });
 
-function handleError() {
+function handler(args) {
+  const text = args[0];
+  const classes = args[1];
+
   const newDiv = document.createElement('div');
-  newDiv.textContent = 'Promise was rejected!';
-  newDiv.classList.add('message', 'error-message');
+
+  newDiv.textContent = text;
+  newDiv.classList.add(...classes);
   document.querySelector('body').appendChild(newDiv);
 }
 
-promise1.then(handleSuccess);
-promise2.then(handleSuccess).catch(handleError);
+promise1.then(handler).catch(handler);
+promise2.then(handler).catch(handler);
