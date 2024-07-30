@@ -11,20 +11,13 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(Error('Promise was rejected!')), 3000);
 });
 
-promise1.then((message) => {
+const messageForPage = (text, extendedClass) => {
   const div = document.createElement('div');
 
-  div.className = 'message';
-  div.textContent = `${message}`;
-
+  div.className = extendedClass ? 'message error-message' : 'message';
+  div.textContent = `${text}`;
   body.appendChild(div);
-});
+};
 
-promise2.catch((error) => {
-  const div = document.createElement('div');
-
-  div.className = 'message error-message';
-  div.textContent = `${error}`;
-
-  body.appendChild(div);
-});
+promise1.then((message) => messageForPage(message));
+promise2.catch((error) => messageForPage(error, true));
