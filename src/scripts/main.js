@@ -19,20 +19,20 @@ const promise1 = new Promise((resolve, _) => {
 
 const promise2 = wait(3000, 'Promise was rejected!');
 
-const errorMessage = document.createElement('div');
-const successMessage = document.createElement('div');
-
-successMessage.classList.add('message');
-
-errorMessage.classList.add('message');
-errorMessage.classList.add('error-message');
 
 promise1.then((response) => {
+  const successMessage = document.createElement('div');
+  successMessage.classList.add('message');
+  
   successMessage.textContent = response;
   body.append(successMessage);
 });
 
 promise2.catch((response) => {
+  const errorMessage = document.createElement('div');
+  errorMessage.classList.add('message');
+  errorMessage.classList.add('error-message');
+  
   errorMessage.textContent = response;
   body.append(errorMessage);
 });
