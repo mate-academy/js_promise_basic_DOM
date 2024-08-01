@@ -28,4 +28,5 @@ const showMessage = (messages, type) => {
 };
 
 showMessage(['Promise was rejected!', 'Promise was resolved!'], 'success');
+
 showMessage(['Promise was rejected!', 'Promise was resolved!'], 'error');
