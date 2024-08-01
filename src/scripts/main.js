@@ -1,6 +1,5 @@
 'use strict';
 
-const createDiv = document.createElement('div');
 const body = document.querySelector('body');
 const message = document.querySelector('.logo');
 
@@ -17,12 +16,16 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 const handleSuccess = () => {
+  const createDiv = document.createElement('div');
+
   createDiv.className = 'message';
   createDiv.textContent = 'Promise was resolved!';
   body.append(createDiv);
 };
 
 const handleError = (error) => {
+  const createDiv = document.createElement('div');
+
   createDiv.className = 'message error-message';
   createDiv.textContent = error.message;
   body.append(createDiv);
