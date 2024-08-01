@@ -1,24 +1,23 @@
 'use strict';
+/* eslint-disable */
 
 const logo = document.querySelector('.logo');
 const div = document.createElement('div');
 
-const showMessage = (messages, type) => {
-  return new Promise((resolve, reject) => {
-    if (type === 'success') {
-      resolve(messages[1]);
-    }
+const resolved = new Promise((resolve) =>
+  logo.addEventListener('click', () => resolve('Promise was resolved!')),
+);
 
-    if (type === 'error') {
-      setTimeout(reject, 3000, messages[0]);
-    }
-  })
+const rejected = new Promise((resolve, reject) =>
+  setTimeout(reject, 3000, 'Promise was rejected!'),
+);
+
+const showMessage = (promise) => {
+  promise
     .then((message) => {
-      logo.addEventListener('click', () => {
-        div.classList.add('message');
-        div.textContent = message;
-        document.body.append(div);
-      });
+      div.classList.add('message');
+      div.textContent = message;
+      document.body.append(div);
     })
     .catch((message) => {
       div.classList.add('message', 'error-message');
@@ -27,6 +26,5 @@ const showMessage = (messages, type) => {
     });
 };
 
-showMessage(['Promise was rejected!', 'Promise was resolved!'], 'success');
-
-showMessage(['Promise was rejected!', 'Promise was resolved!'], 'error');
+showMessage(resolved);
+showMessage(rejected);
