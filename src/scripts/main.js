@@ -7,11 +7,7 @@ const promise1 = new Promise((resolve) => {
 });
 
 promise1.then((result) => {
-  const div = document.createElement('div');
-
-  div.className = 'message';
-  div.textContent = result;
-  document.body.appendChild(div);
+  helper(result).className = 'message';
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -19,9 +15,14 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.catch((error) => {
+  helper(error).className = 'message error-message';
+});
+
+function helper(text) {
   const div = document.createElement('div');
 
-  div.className = 'message error-message';
-  div.textContent = error.message;
+  div.textContent = text;
   document.body.appendChild(div);
-});
+
+  return div;
+}
