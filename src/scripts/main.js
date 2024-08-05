@@ -8,19 +8,26 @@ const promise1 = new Promise((resolve, reject) => {
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
-const successHandler = (message) => {
+
+const createMessage = (message, isError = false) => {
   const div = document.createElement('div');
 
   div.classList.add('message');
+
+  if (isError) {
+    div.classList.add('error-message');
+  }
+
   div.textContent = message;
   document.body.appendChild(div);
 };
-const errorHandler = (message) => {
-  const div = document.createElement('div');
 
-  div.classList.add('message', 'error-message');
-  div.textContent = message;
-  document.body.appendChild(div);
+const successHandler = (message) => {
+  createMessage(message);
+};
+
+const errorHandler = (message) => {
+  createMessage(message, true);
 };
 
 promise1
