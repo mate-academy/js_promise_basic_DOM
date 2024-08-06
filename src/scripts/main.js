@@ -10,24 +10,28 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
+    // eslint-disable-next-line prefer-promise-reject-errors
     reject();
   }, 3000);
 });
 
-const successHandle = () => {
+const createMessage = (text, isError = false) => {
   const div = document.createElement('div');
 
   div.classList.add('message');
-  div.textContent = 'Promise was resolved!';
+
+  if (isError) {
+    div.classList.add('error-message');
+  }
+  div.textContent = text;
   document.body.appendChild(div);
+};
+const successHandle = () => {
+  createMessage('Promise was resolved!');
 };
 
 const errorHandle = () => {
-  const div = document.createElement('div');
-
-  div.classList.add('message', 'error-message');
-  div.textContent = 'Promise was rejected!';
-  document.body.appendChild(div);
+  createMessage('Promise was rejected!', true);
 };
 
 promise1.then(successHandle).catch(errorHandle);
