@@ -14,23 +14,18 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const handleSuccess = (message) => {
+const handleResult = (message, isError = false) => {
   const div = document.createElement('div');
 
-  div.className = 'message';
+  div.className = isError ? 'message error-message' : 'message';
   div.textContent = message;
   document.body.appendChild(div);
 };
 
-const handleError = (error) => {
-  const div = document.createElement('div');
+promise1
+  .then((message) => handleResult(message))
+  .catch((error) => handleResult(error.message, true));
 
-  div.className = 'message error-message';
-  div.textContent = error.message;
-  document.body.appendChild(div);
-};
-
-promise1.then(handleSuccess);
-promise1.catch(handleError);
-promise2.then(handleSuccess);
-promise2.catch(handleError);
+promise2
+  .then((message) => handleResult(message))
+  .catch((error) => handleResult(error.message, true));
