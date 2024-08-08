@@ -1,31 +1,32 @@
 'use strict';
 
 // write your code here
+const successMessage = document.createElement('div');
+
+successMessage.setAttribute('class', 'message');
+successMessage.textContent = 'Promise was resolved!';
+
 const successMessagePromise = new Promise((resolve) => {
-  const successMessage = document.createElement('div');
-
-  successMessage.setAttribute('class', 'message');
-
-  successMessage.textContent = 'Promise was resolved!';
-  resolve(successMessage);
-});
-
-successMessagePromise.then((successMessage) => {
   document.querySelector('.logo').addEventListener('click', () => {
-    document.body.appendChild(successMessage);
+    resolve(successMessage);
   });
 });
 
-const erorPromise = new Promise((resolve, reject) => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.setAttribute('class', 'error-message message ');
-  errorMessage.textContent = 'Promise was rejected!';
-  reject(errorMessage);
+successMessagePromise.then((success) => {
+  document.body.appendChild(success);
 });
 
-erorPromise.catch((errorMessage) => {
+const errorMessage = document.createElement('div');
+
+errorMessage.setAttribute('class', 'error-message message ');
+errorMessage.textContent = 'Promise was rejected!';
+
+const erorPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    document.body.appendChild(errorMessage);
+    reject(errorMessage);
   }, 3000);
+});
+
+erorPromise.catch((error) => {
+  document.body.appendChild(error);
 });
