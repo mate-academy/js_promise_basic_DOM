@@ -3,6 +3,14 @@
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
 
+function notification(type, textMessage) {
+  const newDiv = document.createElement('div');
+
+  newDiv.className = type;
+  newDiv.textContent = textMessage;
+  body.append(newDiv);
+}
+
 logo.addEventListener('click', function () {
   const promise1 = new Promise(function (resolve) {
     resolve();
@@ -10,18 +18,10 @@ logo.addEventListener('click', function () {
 
   promise1
     .then(() => {
-      const newDiv = document.createElement('div');
-
-      newDiv.className = 'message';
-      newDiv.textContent = 'Promise was resolved!';
-      body.append(newDiv);
+      notification('message', 'Promise was resolved!');
     })
     .catch(() => {
-      const newDiv = document.createElement('div');
-
-      newDiv.classList.add('message', 'error-message');
-      newDiv.textContent = 'Promise was rejected!';
-      body.append(newDiv);
+      notification('message error-message', 'Promise was rejected!');
     });
 });
 
@@ -31,10 +31,6 @@ const promise2 = new Promise(function (resolve, reject) {
 
 promise2.catch(() => {
   setTimeout(() => {
-    const newDiv = document.createElement('div');
-
-    newDiv.classList.add('message', 'error-message');
-    newDiv.textContent = 'Promise was rejected!';
-    body.append(newDiv);
+    notification('message error-message', 'Promise was rejected!');
   }, 3000);
 });
