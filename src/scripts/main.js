@@ -14,18 +14,18 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then((respMessage) => {
+promise1.then(() => {
   const message = document.createElement('div');
 
   message.className = 'message';
-  message.textContent = respMessage;
+  message.textContent = 'Promise was resolved!';
   document.body.appendChild(message);
 });
 
-promise2.catch((errMessage) => {
+promise2.catch(() => {
   const rejectMessage = document.createElement('div');
 
   rejectMessage.className = 'message error-message';
-  rejectMessage.textContent = errMessage;
+  rejectMessage.textContent = 'Promise was rejected!';
   document.body.appendChild(rejectMessage);
 });
