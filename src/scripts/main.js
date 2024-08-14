@@ -26,7 +26,7 @@ promise1.then(successHandler).catch(errorHandler);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(Error);
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
