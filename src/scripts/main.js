@@ -2,7 +2,7 @@
 
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
-    resolve();
+    resolve('Promise was resolved!');
   });
 });
 
@@ -12,11 +12,11 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-function handleSuccess() {
+function handleSuccess(message) {
   const messageDiv = document.createElement('div');
 
   messageDiv.className = 'message';
-  messageDiv.textContent = 'Promise was resolved!';
+  messageDiv.textContent = message;
   document.body.appendChild(messageDiv);
 }
 
