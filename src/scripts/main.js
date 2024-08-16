@@ -1,3 +1,11 @@
+function createDiv(message, className) {
+  const div = document.createElement('div');
+
+  div.className = className;
+  div.textContent = message;
+  document.body.appendChild(div);
+}
+
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', () => {
     resolve('Promise was resolved!');
@@ -11,19 +19,11 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 const handleSuccess = (message) => {
-  const div = document.createElement('div');
-
-  div.className = 'message';
-  div.textContent = message;
-  document.body.appendChild(div);
+  createDiv(message, 'message');
 };
 
 const handleError = (message) => {
-  const div = document.createElement('div');
-
-  div.className = 'message error-message';
-  div.textContent = message;
-  document.body.appendChild(div);
+  createDiv(message, 'message error-message');
 };
 
 promise1.then(handleSuccess).catch(handleError);
