@@ -12,20 +12,20 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-function handleSuccess(message) {
+function displayMessage(message, isError = false) {
   const messageDiv = document.createElement('div');
 
-  messageDiv.className = 'message';
+  messageDiv.className = 'message' + (isError ? ' error-message' : '');
   messageDiv.textContent = message;
   document.body.appendChild(messageDiv);
 }
 
-function handleError(error) {
-  const errorDiv = document.createElement('div');
+function handleSuccess(message) {
+  displayMessage(message);
+}
 
-  errorDiv.className = 'message error-message';
-  errorDiv.textContent = error.message;
-  document.body.appendChild(errorDiv);
+function handleError(error) {
+  displayMessage(error.message, true);
 }
 
 promise1.then(handleSuccess);
