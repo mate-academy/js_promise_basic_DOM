@@ -29,9 +29,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2
-  .then(() => {
-    addClass('message', 'Promise was resolved!');
+  .then((message) => {
+    addClass('message', message);
   })
-  .catch(() => {
-    addClass('message error-message', 'Promise was rejected!');
+  .catch((message) => {
+    addClass('message error-message', message);
   });
