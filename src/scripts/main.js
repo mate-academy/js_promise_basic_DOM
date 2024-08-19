@@ -6,26 +6,24 @@ const promises1 = new Promise((resolve) => {
   });
 });
 
+function createElement(message, className) {
+  const div = document.createElement('div');
+
+  div.className = className;
+  div.textContent = message;
+  document.body.append(div);
+}
+
 const promises2 = new Promise((resolve, reject) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
-  });
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
 });
 
 promises1.then(() => {
-  const success = document.createElement('div');
-
-  success.classList.add('message');
-  success.textContent = 'Promise was resolved!';
-  document.body.append(success);
+  createElement('Promise was resolved!', 'message');
 });
 
 promises2.catch((error) => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.className = 'message error-message';
-  errorMessage.textContent = error.message;
-  document.body.append(errorMessage);
+  createElement(error.message, 'message error-message');
 });
