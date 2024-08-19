@@ -2,6 +2,14 @@
 
 const logo = document.querySelector('.logo');
 
+const addClass = function (className, text) {
+  const tag = document.createElement('div');
+
+  tag.className = className;
+  tag.innerHTML = text;
+  document.body.appendChild(tag);
+};
+
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', function () {
     resolve('Promise was resolved!');
@@ -30,16 +38,8 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise2
   .then(() => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message';
-    messageDiv.innerHTML = 'Promise was resolved!';
-    document.body.appendChild(messageDiv);
+    addClass('message', 'Promise was resolved!');
   })
   .catch(() => {
-    const errorDiv = document.createElement('div');
-
-    errorDiv.className = 'message error-message';
-    errorDiv.innerHTML = 'Promise was rejected!';
-    document.body.appendChild(errorDiv);
+    addClass('message error-message', 'Promise was rejected!');
   });
