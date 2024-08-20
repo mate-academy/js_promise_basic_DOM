@@ -1,9 +1,11 @@
 'use strict';
+
 const logo = document.querySelector('.logo');
 
 function createNotification(message, error = false) {
   const div = document.createElement('div');
-    div.classList.add('message');
+
+  div.classList.add('message');
 
   if (error) {
     div.classList.add('message', 'error-message');
@@ -15,7 +17,7 @@ function createNotification(message, error = false) {
   }
 }
 
-const promise1 = new Promise((resolve) => {
+new Promise((resolve, reject) => {
   resolve('Promise was resolved!');
 }).then((response) => {
   logo.addEventListener('click', () => {
@@ -23,7 +25,7 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
-const promise2 = new Promise((_, reject) => {
+new Promise((resolve, reject) => {
   setTimeout(reject, 3000, 'Promise was rejected!');
 }).catch((error) => {
   createNotification(error, true);
