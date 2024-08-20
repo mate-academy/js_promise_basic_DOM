@@ -8,13 +8,11 @@ function createNotification(message, error = false) {
   div.classList.add('message');
 
   if (error) {
-    div.classList.add('message', 'error-message');
-    div.textContent = message;
-    document.body.append(div);
-  } else {
-    div.textContent = message;
-    document.body.append(div);
+    div.classList.add('error-message');
   }
+
+  div.textContent = message;
+  document.body.append(div);
 }
 
 new Promise((resolve, reject) => {
