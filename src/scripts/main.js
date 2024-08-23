@@ -1,21 +1,18 @@
 'use strict';
 
-function createDiv() {
+function createMessage(errorMessage = '') {
   const div = document.createElement('div');
 
-  return div;
-}
+  div.classList.add('message');
 
-function createPositiveMessage(element) {
-  element.classList.add('message');
-  element.textContent = 'Promise was resolved!';
-  document.body.appendChild(element);
-}
+  if (errorMessage === '') {
+    div.textContent = 'Promise was resolved!';
+  } else {
+    div.textContent = errorMessage;
+    div.classList.add('error-message');
+  }
 
-function createNegativeMessage(element, message) {
-  element.classList.add('message', 'error-message');
-  element.textContent = message;
-  document.body.appendChild(element);
+  document.body.appendChild(div);
 }
 
 const p1 = new Promise((resolve, reject) => {
@@ -27,13 +24,9 @@ const p1 = new Promise((resolve, reject) => {
 });
 
 p1.then(() => {
-  const div = createDiv();
-
-  createPositiveMessage(div);
+  createMessage();
 }).catch((error) => {
-  const div = createDiv();
-
-  createNegativeMessage(div, error.message);
+  createMessage(error.message);
 });
 
 const p2 = new Promise((resolve, reject) => {
@@ -43,7 +36,5 @@ const p2 = new Promise((resolve, reject) => {
 });
 
 p2.catch((error) => {
-  const div = createDiv();
-
-  createNegativeMessage(div, error.message);
+  createMessage(error.message);
 });
