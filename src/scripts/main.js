@@ -5,9 +5,13 @@ const body = document.body;
 const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
 
-  logo.addEventListener('click', () => {
-    resolve('Promise was resolved!');
-  });
+  if (logo) {
+    logo.addEventListener('click', () => {
+      resolve('Promise was resolved!');
+    });
+  } else {
+    reject(new Error('logo element is not find'));
+  }
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -17,25 +21,24 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  success();
+  createMessage(true);
 });
 
 promise2.catch(() => {
-  error();
+  createMessage(false);
 });
 
-function success() {
-  const messageResolved = document.createElement('div');
+function createMessage(isResolved) {
+  const message = document.createElement('div');
 
-  messageResolved.classList.add('message');
-  messageResolved.textContent = 'Promise was resolved!';
-  body.append(messageResolved);
-}
+  message.classList.add('message');
 
-function error() {
-  const messageRejected = document.createElement('div');
-
-  messageRejected.classList.add('message', 'error-message');
-  messageRejected.textContent = 'Promise was rejected!';
-  body.append(messageRejected);
+  if (isResolved) {
+    message.textContent = 'Promise was resolved!';
+    body.append(message);
+  } else {
+    message.classList.add('error-message');
+    message.textContent = 'Promise was rejected!';
+    body.append(message);
+  }
 }
