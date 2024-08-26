@@ -1,26 +1,27 @@
 'use strict';
 
-const logo = document.querySelector('.logo');
 const body = document.body;
 
-logo.addEventListener('click', () => {
-  const promise1 = new Promise((resolve, reject) => {
-    resolve();
-  });
+const promise1 = new Promise((resolve, reject) => {
+  const logo = document.querySelector('.logo');
 
-  const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(new Error('Something went wrong!'));
-    }, 3000);
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
   });
+});
 
-  promise1.then(() => {
-    success();
-  });
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Promise was rejected!'));
+  }, 3000);
+});
 
-  promise2.catch(() => {
-    error();
-  });
+promise1.then(() => {
+  success();
+});
+
+promise2.catch(() => {
+  error();
 });
 
 function success() {
