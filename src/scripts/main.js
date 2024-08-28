@@ -3,21 +3,6 @@
 const body = document.querySelector('body');
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => {
-    resolve('Promise was resolved!');
-  });
-});
-
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
-  }, 3000);
-});
-
-promise1.then((message) => createNotification(message));
-promise2.catch((error) => createNotification(error.message, true));
-
 function createNotification(message, isError) {
   const notification = document.createElement('div');
 
@@ -30,3 +15,20 @@ function createNotification(message, isError) {
 
   body.append(notification);
 }
+
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  // eslint-disable-next-line prefer-promise-reject-errors
+  setTimeout(() => reject('Promise was rejected!'), 3000);
+});
+
+promise1.then(
+  (message) => createNotification(message),
+  (message) => createNotification(message, true),
+);
+promise2.catch((message) => createNotification(message, true));
