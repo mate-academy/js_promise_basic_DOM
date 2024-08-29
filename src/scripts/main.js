@@ -16,23 +16,29 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-// Success handler
-function handleSuccess() {
+function createMessageDiv(message, type = 'success') {
   const messageDiv = document.createElement('div');
 
-  messageDiv.className = 'message';
-  messageDiv.textContent = 'Promise was resolved!';
+  messageDiv.classList.add('message');
+
+  if (type !== 'success') {
+    messageDiv.classList.add('error-message');
+  }
+
+  messageDiv.textContent = message;
   document.body.appendChild(messageDiv);
 }
 
-// Error handler
-function handleError() {
-  const errorDiv = document.createElement('div');
+function handleSuccess() {
+  const message = 'Promise was resolved!';
 
-  errorDiv.classList.add('message');
-  errorDiv.classList.add('error-message');
-  errorDiv.textContent = 'Promise was rejected!';
-  document.body.appendChild(errorDiv);
+  createMessageDiv(message);
+}
+
+function handleError() {
+  const message = 'Promise was rejected!';
+
+  createMessageDiv(message, 'error');
 }
 
 promise1.then(handleSuccess);
