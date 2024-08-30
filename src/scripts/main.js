@@ -4,23 +4,21 @@
 
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
-const message = document.createElement('div');
 
-message.classList.add('message');
+function appendMessage(msgText, extraClass = '') {
+  const message = document.createElement('div');
+
+  message.className = 'message' + (extraClass ? ' ' + extraClass : '');
+  message.textContent = msgText;
+  body.append(message);
+}
 
 const handleSuccess = (msgText) => {
-  const successMessage = message.cloneNode();
-
-  successMessage.textContent = msgText;
-  body.append(successMessage);
+  appendMessage(msgText);
 };
 
 const handleError = (errorText) => {
-  const errorMessage = message.cloneNode();
-
-  errorMessage.classList.add('error-message');
-  errorMessage.textContent = errorText;
-  body.append(errorMessage);
+  appendMessage(errorText, 'error-message');
 };
 
 const promise1 = new Promise((resolve) => {
