@@ -1,3 +1,9 @@
+const messages = {
+  success: 'Promise was resolved!',
+  error: 'Promise was rejected!',
+  notFound: 'Element .logo nie został znaleziony!',
+};
+
 const successFunc = (message) => {
   const successDiv = document.createElement('div');
 
@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       logoElement.addEventListener('click', () => {
         if (!isResolved) {
           isResolved = true;
-          resolve('Promise was resolved!');
+          resolve(messages.success);
         }
       });
     });
@@ -32,28 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         if (!isResolved) {
           isResolved = true;
-          // eslint-disable-next-line prefer-promise-reject-errors
-          reject('Promise was rejected!');
+          reject(messages.error);
         }
       }, 3000);
     });
 
-    promise1
-      .then((message) => {
-        successFunc(message);
-      })
-      .catch((error) => {
-        errorFunc(error);
-      });
-
-    promise2
-      .then((message) => {
-        successFunc(message);
-      })
-      .catch((error) => {
-        errorFunc(error);
-      });
+    promise1.then(successFunc).catch(errorFunc);
+    promise2.then(successFunc).catch(errorFunc);
   } else {
-    errorFunc('Element .logo nie został znaleziony!');
+    errorFunc(messages.notFound);
   }
 });
