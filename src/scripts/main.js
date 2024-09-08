@@ -1,19 +1,30 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const message = document.createElement('div');
 const body = document.querySelector('body');
-let newResult = false;
+const message = document.createElement('div');
 
-message.classList.add('message');
+function switchClassListMessage(res, isSuccess = false) {
+  message.classList.add('message');
+  message.classList.add(!isSuccess && 'error-message');
+  message.textContent = res;
+}
 
-const promise1 = new Promise((resolve) => {
-  resolve('Promise was resolved!');
+const firstPromise = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
+    resolve('Promise was resolved!');
+  });
 });
 
-const promise2 = new Promise((resolve, reject) => {
+const secondPromise = new Promise((resolve, reject) => {
+  let isSuccess = false;
+
+  logo.addEventListener('click', () => {
+    isSuccess = true;
+  });
+
   setTimeout(() => {
-    if (newResult) {
+    if (isSuccess) {
       resolve('Promise was resolved after 3 seconds!');
     } else {
       const err = 'Promise was rejected!';
@@ -23,28 +34,20 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-logo.addEventListener('click', () => {
-  newResult = true;
+firstPromise.then((result) => {
+  switchClassListMessage(result, true);
 
-  promise1
-    .then((result) => {
-      message.textContent = result;
-      body.appendChild(message);
-    })
-    .catch(() => {
-      message.textContent = 'Promise was rejected!';
-      message.classList.add('error-message');
-      body.appendChild(message);
-    });
+  body.appendChild(message);
 });
 
-promise2
+secondPromise
   .then((result) => {
-    message.textContent = result;
+    switchClassListMessage(result, true);
+
     body.appendChild(message);
   })
-  .catch((err) => {
-    message.textContent = err;
-    message.classList.add('error-message');
+  .catch((error) => {
+    switchClassListMessage(error, false);
+
     body.appendChild(message);
   });
