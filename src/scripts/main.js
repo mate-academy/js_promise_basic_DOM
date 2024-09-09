@@ -2,28 +2,30 @@
 
 const logo = document.querySelector('.logo');
 
-function createPromise() {
-  return new Promise((resolve, reject) => {
-    logo.addEventListener('click', (_event) => {
-      if (_event.target === logo) {
-        document.body.insertAdjacentHTML(
-          'beforeend',
-          '<div class="message">Promise was resolved!</div>',
-        );
-
-        resolve();
-      }
-    });
-
-    setTimeout(() => {
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        '<div class="message error-message">Promise was rejected!</div>',
-      );
-
-      reject(new Error('Error'));
-    }, 3000);
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', (_event) => {
+    if (_event.target) {
+      resolve();
+    }
   });
-}
+});
 
-createPromise();
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(new Error('Error'));
+  }, 3000);
+});
+
+promise1.then(() => {
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    '<div class="message">Promise was resolved!</div>',
+  );
+});
+
+promise2.catch(() => {
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    '<div class="message error-message">Promise was rejected!</div>',
+  );
+});
