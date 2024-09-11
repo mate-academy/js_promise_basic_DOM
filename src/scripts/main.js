@@ -21,9 +21,7 @@ const promise2 = () => {
   });
 };
 
-promise2()
-  .then((res) => {})
-  .catch((mess) => createNewDiv(['message', 'error-message'], mess));
+promise2().catch((mess) => createNewDiv(['message', 'error-message'], mess));
 
 document.querySelector('.logo').addEventListener('click', () => {
   promise1().then((mess) => {
