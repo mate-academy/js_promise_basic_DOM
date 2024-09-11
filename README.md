@@ -4,11 +4,11 @@ Create 2 promises `promise1` and `promise2`.
 - `promise2` promise should be rejected in 3 seconds.
 - add success and error handlers for both promises
 - success handler should append a `<div class="message">` with the text `Promise was resolved!` to the body
-- error handler should append a `<div class="message error-message">` with the text `Promise was rejected!` to the body
+- error handler should append a `<div class="message error-message">` with the text `Promise was rejected!` to the body 
 
 ## Instructions
 1. Replace `<your_account>` with your Github username in the link
-    - [DEMO LINK](https://<your_account>.github.io/js_promise_basic_DOM/)
+    - [DEMO LINK](https://olha-rypich.github.io/js_promise_basic_DOM/)
 2. Follow [this instructions](https://mate-academy.github.io/layout_task-guideline/)
     - Run `npm run test` command to test your code;
     - Run `npm run test:only -- -n` to run fast test ignoring linter;
