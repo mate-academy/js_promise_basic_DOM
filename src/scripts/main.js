@@ -11,7 +11,9 @@ function createNewDiv(classList, textContent) {
 
 const promise1 = () => {
   return new Promise((resolve, reject) => {
-    resolve('Promise was resolved!');
+    document.querySelector('.logo').addEventListener('click', () => {
+      resolve('Promise was resolved!');
+    });
   });
 };
 
@@ -23,16 +25,14 @@ const promise2 = () => {
 
 promise2().catch((mess) => createNewDiv(['message', 'error-message'], mess));
 
-document.querySelector('.logo').addEventListener('click', () => {
-  promise1().then((mess) => {
-    const divList = document.body.querySelectorAll('.message');
+promise1().then((mess) => {
+  const divList = document.body.querySelectorAll('.message');
 
-    const existingDiv = [...divList].filter((div) => {
-      return div.className === 'message';
-    });
-
-    if (!existingDiv.length) {
-      createNewDiv(['message'], mess);
-    }
+  const existingDiv = [...divList].filter((div) => {
+    return div.className === 'message';
   });
+
+  if (!existingDiv.length) {
+    createNewDiv(['message'], mess);
+  }
 });
