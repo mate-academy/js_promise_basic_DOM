@@ -2,25 +2,20 @@
 
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
-const message = document.createElement('div');
 
-message.classList.add('message');
+const getResult = function (content) {
+  const message2 = document.createElement('div');
 
-const badResult = function (content) {
-  message.classList.add('error-message');
+  message2.classList.add('message');
 
-  message.textContent = content;
-  body.append(message);
+  if (content.addInfo) {
+    message2.classList.add(content.addInfo);
+  }
 
-  return message;
-};
+  message2.textContent = content.message;
+  body.append(message2);
 
-const goodResult = function (content) {
-  message.classList.toggle('error-message', false);
-  message.textContent = content;
-  body.append(message);
-
-  return message;
+  return message2;
 };
 
 const promise1 = new Promise((resolve, reject) => {
@@ -29,9 +24,17 @@ const promise1 = new Promise((resolve, reject) => {
 
     if (logo.hasAttribute('data-click')) {
       logo.removeAttribute('data-click');
-      resolve(`Promise was resolved!`);
+
+      const success = {
+        message: `Promise was resolved!`,
+      };
+
+      resolve(success);
     } else {
-      const error = `Promise was rejected!`;
+      const error = {
+        message: `Promise was rejected!`,
+        addInfo: 'error-message',
+      };
 
       reject(error);
     }
@@ -39,18 +42,44 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  const error = `Promise was rejected!`;
+  const error = {
+    message: `Promise was rejected!`,
+    addInfo: 'error-message',
+  };
 
   reject(error);
 });
 
 promise1.then(
-  (success) => goodResult(success),
-  (error) => badResult(error),
+  (success) => getResult(success),
+  (error) => getResult(error),
 );
 
-promise2.catch((error) => {
+promise2.catch((error, addInfo) => {
   setTimeout(() => {
-    badResult(error);
+    getResult(error);
   }, 3000);
 });
+
+// const message = document.createElement('div');
+
+// message.classList.add('message');
+
+// const badResult = function (content) {
+//   message.classList.add('error-message');
+
+//   message.textContent = content;
+//   body.append(message);
+
+//   return message;
+// };
+
+// const goodResult = function (content) {
+//   message.classList.toggle('error-message', false);
+//   message.textContent = content;
+//   body.append(message);
+
+//   return message;
+// };
+
+
