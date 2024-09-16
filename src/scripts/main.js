@@ -61,25 +61,3 @@ promise2.catch((error, addInfo) => {
   }, 3000);
 });
 
-// const message = document.createElement('div');
-
-// message.classList.add('message');
-
-// const badResult = function (content) {
-//   message.classList.add('error-message');
-
-//   message.textContent = content;
-//   body.append(message);
-
-//   return message;
-// };
-
-// const goodResult = function (content) {
-//   message.classList.toggle('error-message', false);
-//   message.textContent = content;
-//   body.append(message);
-
-//   return message;
-// };
-
-
