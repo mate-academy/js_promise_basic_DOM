@@ -1,5 +1,14 @@
 'use strict';
 
+function createMessage(text, errorMessage) {
+  const message = document.createElement('div');
+
+  message.classList.add('message');
+  message.classList.add(errorMessage);
+  message.innerText = text;
+  document.body.appendChild(message);
+}
+
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
@@ -15,20 +24,11 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 const success = () => {
-  const successMessage = document.createElement('div');
-
-  successMessage.classList.add('message');
-  successMessage.innerText = 'Promise was resolved!';
-  document.body.appendChild(successMessage);
+  createMessage('Promise was resolved!');
 };
 
 const error = () => {
-  const errorMessage = document.createElement('div');
-
-  errorMessage.classList.add('message');
-  errorMessage.classList.add('error-message');
-  errorMessage.innerText = 'Promise was rejected!';
-  document.body.appendChild(errorMessage);
+  createMessage('Promise was rejected!', 'error-message');
 };
 
 promise1.then(success).catch(error);
