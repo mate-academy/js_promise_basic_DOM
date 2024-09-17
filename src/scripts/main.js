@@ -2,8 +2,6 @@
 
 const logo = document.querySelector('.logo');
 
-const data = {};
-
 const getResult = function (content) {
   const body = document.querySelector('body');
   const message = document.createElement('div');
@@ -25,17 +23,16 @@ const promise1 = new Promise((resolve, reject) => {
     logo.dataset.click = 'click';
 
     if (logo.hasAttribute('data-click')) {
-      if ('addInfo' in data) {
-        delete data.addInfo;
-      }
-
-      data.message = `Promise was resolved!`;
-      resolve(data);
+      resolve({
+        message: `Promise was rejected!`,
+      });
     } else {
-      data.message = `Promise was rejected!`;
-      data.addInfo = 'error-message';
+      const error = {
+        message: `Promise was rejected!`,
+        addInfo: 'error-message',
+      };
 
-      reject(data);
+      reject(error);
     }
   });
 });
@@ -50,10 +47,12 @@ promise1
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    data.message = `Promise was rejected!`;
-    data.addInfo = 'error-message';
+    const error = {
+      message: `Promise was rejected!`,
+      addInfo: 'error-message',
+    };
 
-    reject(data);
+    reject(error);
   }, 3000);
 });
 
