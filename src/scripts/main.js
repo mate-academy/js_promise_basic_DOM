@@ -1,63 +1,61 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const body = document.querySelector('body');
+
+const data = {};
 
 const getResult = function (content) {
-  const message2 = document.createElement('div');
+  const body = document.querySelector('body');
+  const message = document.createElement('div');
 
-  message2.classList.add('message');
+  message.classList.add('message');
 
   if (content.addInfo) {
-    message2.classList.add(content.addInfo);
+    message.classList.add(content.addInfo);
   }
 
-  message2.textContent = content.message;
-  body.append(message2);
+  message.textContent = content.message;
+  body.append(message);
 
-  return message2;
+  return message;
 };
 
 const promise1 = new Promise((resolve, reject) => {
-  logo.onclick = (e) => {
+  logo.addEventListener('click', (e) => {
     logo.dataset.click = 'click';
 
     if (logo.hasAttribute('data-click')) {
-      logo.removeAttribute('data-click');
+      if ('addInfo' in data) {
+        delete data.addInfo;
+      }
 
-      const success = {
-        message: `Promise was resolved!`,
-      };
-
-      resolve(success);
+      data.message = `Promise was resolved!`;
+      resolve(data);
     } else {
-      const error = {
-        message: `Promise was rejected!`,
-        addInfo: 'error-message',
-      };
+      data.message = `Promise was rejected!`;
+      data.addInfo = 'error-message';
 
-      reject(error);
+      reject(data);
     }
-  };
+  });
 });
+
+promise1
+  .then((success) => {
+    getResult(success);
+  })
+  .catch((error) => {
+    getResult(error);
+  });
 
 const promise2 = new Promise((resolve, reject) => {
-  const error = {
-    message: `Promise was rejected!`,
-    addInfo: 'error-message',
-  };
-
-  reject(error);
-});
-
-promise1.then(
-  (success) => getResult(success),
-  (error) => getResult(error),
-);
-
-promise2.catch((error, addInfo) => {
   setTimeout(() => {
-    getResult(error);
+    data.message = `Promise was rejected!`;
+    data.addInfo = 'error-message';
+
+    reject(data);
   }, 3000);
 });
+
+promise2.catch((dataError) => getResult(dataError));
 
