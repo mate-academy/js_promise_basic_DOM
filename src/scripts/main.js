@@ -57,4 +57,3 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.catch((dataError) => getResult(dataError));
-
