@@ -2,27 +2,24 @@
 
 const logo = document.querySelector('.logo');
 
-function success() {
-  const div = `
+function appendMessage(message) {
+  let div = `
     <div class="message">
-      Promise was resolved!
+      ${message}
     </div>`;
 
-  document.body.innerHTML += div;
-}
-
-function error(massage) {
-  const div = `
-    <div class="message error-message">
-      ${massage}
-    </div>`;
-
+  if (message instanceof Error) {
+    div = `
+      <div class="message error-message">
+        ${message.message}
+      </div>`;
+  }
   document.body.innerHTML += div;
 }
 
 const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    resolve('CKICK');
+    resolve('Promise was resolved!');
   });
 });
 
@@ -32,14 +29,5 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1
-  .then(() => {
-    success();
-  })
-  .catch((err) => {
-    error(err.message);
-  });
-
-promise2.catch((err) => {
-  error(err.message);
-});
+promise1.then(appendMessage).catch(appendMessage);
+promise2.catch(appendMessage);
