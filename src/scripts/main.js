@@ -3,6 +3,15 @@
 // write your code here
 const logoElem = document.querySelector('.logo');
 
+function appM(text, className = 'message') {
+  const messageElem = document.createElement('div');
+
+  messageElem.className = className;
+  messageElem.textContent = text;
+
+  document.body.appendChild(messageElem);
+}
+
 const promise1 = new Promise((resolve) => {
   logoElem.addEventListener('click', () => {
     resolve('Promise was resolved!');
@@ -16,19 +25,9 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then((message) => {
-  const messageElem = document.createElement('div');
-
-  messageElem.className = 'message';
-  messageElem.textContent = message;
-
-  document.body.appendChild(messageElem);
+  appM(message);
 });
 
 promise2.catch((error) => {
-  const errorElem = document.createElement('div');
-
-  errorElem.className = 'message error-message';
-  errorElem.textContent = error.message;
-
-  document.body.appendChild(errorElem);
+  appM(error.message, 'message error-message');
 });
