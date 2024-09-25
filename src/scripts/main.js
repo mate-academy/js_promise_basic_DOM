@@ -14,20 +14,24 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const successHandler = (message) => {
+const appendMessage = (message, className) => {
   const div = document.createElement('div');
+
+  if (className) {
+    div.classList.add(className);
+  }
 
   div.classList.add('message');
   div.textContent = message;
   document.body.appendChild(div);
 };
 
-const errorHandler = (error) => {
-  const div2 = document.createElement('div');
+const successHandler = (message) => {
+  appendMessage(message);
+};
 
-  div2.classList.add('message', 'error-message');
-  div2.textContent = error.message;
-  document.body.appendChild(div2);
+const errorHandler = (error) => {
+  appendMessage(error.message, 'error-message');
 };
 
 promise1
