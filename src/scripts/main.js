@@ -12,6 +12,7 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+// helper function
 const displayMessage = (message, classNames = ['message']) => {
   const div = document.createElement('div');
 
