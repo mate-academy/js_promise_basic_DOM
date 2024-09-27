@@ -1,11 +1,21 @@
 'use strict';
 
-const bodyDoc = document.querySelector('body');
-const mateLogo = document.querySelector('.logo');
+let bodyDoc;
+let mateLogo;
+
+if (document.querySelector('body') !== undefined) {
+  bodyDoc = document.querySelector('body');
+}
+
+if (document.querySelector('.logo') !== undefined) {
+  mateLogo = document.querySelector('.logo');
+}
 
 const promise1 = () => {
   return new Promise((resolve, reject) => {
-    mateLogo.addEventListener('click', () => resolve('Promise was resolved!'));
+    mateLogo.addEventListener('click', () => resolve('Promise was resolved!'), {
+      once: true,
+    });
   });
 };
 
@@ -15,20 +25,25 @@ const promise2 = () => {
   });
 };
 
+function makeDiv(className) {
+  const div = document.createElement('div');
+
+  div.setAttribute('class', className);
+  bodyDoc.appendChild(div);
+
+  return div;
+}
+
 promise1().then((val) => {
-  const div1 = document.createElement('div');
+  const successHandler = makeDiv('message');
 
-  div1.setAttribute('class', 'message');
-  bodyDoc.appendChild(div1);
-
-  div1.textContent = val;
+  successHandler.textContent = val;
 });
 
 promise2().catch((val) => {
-  const div2 = document.createElement('div');
+  const errorHandler = makeDiv('message error-message');
 
-  div2.setAttribute('class', 'message error-message');
-  bodyDoc.appendChild(div2);
+  errorHandler.textContent = val;
 
-  div2.textContent = val;
+  throw new Error(val);
 });
