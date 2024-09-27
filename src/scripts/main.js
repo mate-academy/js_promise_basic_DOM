@@ -12,20 +12,21 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-const successHandler = (message) => {
+const displayMessage = (message, classNames = ['message']) => {
   const div = document.createElement('div');
 
-  div.classList.add('message');
+  div.classList.add(...classNames);
+
   div.textContent = message;
   document.body.appendChild(div);
 };
 
-const errorHandler = (errorMessage) => {
-  const div = document.createElement('div');
+const successHandler = (message) => {
+  displayMessage(message);
+};
 
-  div.classList.add('message', 'error-message');
-  div.textContent = errorMessage;
-  document.body.appendChild(div);
+const errorHandler = (errorMessage) => {
+  displayMessage(errorMessage, ['message', 'error-message']);
 };
 
 promise1.then(successHandler).catch(errorHandler);
