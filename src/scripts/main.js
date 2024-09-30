@@ -3,11 +3,11 @@
 let bodyDoc;
 let mateLogo;
 
-if (document.querySelector('body') !== undefined) {
+if (document.querySelector('body') !== null) {
   bodyDoc = document.querySelector('body');
 }
 
-if (document.querySelector('.logo') !== undefined) {
+if (document.querySelector('.logo') !== null) {
   mateLogo = document.querySelector('.logo');
 }
 
@@ -21,7 +21,8 @@ const promise1 = () => {
 
 const promise2 = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
+    // eslint-disable-next-line prefer-promise-reject-errors
+    setTimeout(() => reject('Promise was rejected!'), 3000);
   });
 };
 
@@ -44,6 +45,4 @@ promise2().catch((val) => {
   const errorHandler = makeDiv('message error-message');
 
   errorHandler.textContent = val;
-
-  throw new Error(val);
 });
