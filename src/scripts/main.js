@@ -14,22 +14,21 @@ const promise2 = new Promise((resolve, reject) => {
 
 logo.addEventListener('click', () => {
   promise1.then((value) => {
-    const div = document.createElement('div');
-
-    div.className = 'message';
-    div.textContent = value;
-
-    document.body.insertAdjacentHTML('beforeend', div.outerHTML);
+    createElement('message', value);
   });
 });
 
 promise2
   .then((value) => {})
   .catch((error) => {
-    const div = document.createElement('div');
-
-    div.className = 'message error-message';
-    div.textContent = error;
-
-    document.body.insertAdjacentHTML('beforeend', div.outerHTML);
+    createElement('message error-message', error);
   });
+
+function createElement(className, text) {
+  const div = document.createElement('div');
+
+  div.className = className;
+  div.textContent = text;
+
+  document.body.insertAdjacentHTML('beforeend', div.outerHTML);
+}
