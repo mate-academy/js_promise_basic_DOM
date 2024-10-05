@@ -17,3 +17,32 @@
     <script src="scripts/main.js"></script>
   </body>
 </html>
+<script>
+  const logo = document.querySelector('.logo');
+
+  const promise1 = new Promise((resolve) => {
+    logo.addEventListener('click', () => {
+      resolve('Promise was resolved!');
+    });
+  });
+
+  const promise2 = new Promise((_, reject) => {
+    setTimeout(() => {
+      reject('Promise was rejected!');
+    }, 3000);
+  });
+
+  promise1.then((message) => {
+    const div = document.createElement('div');
+    div.className = 'message';
+    div.textContent = message;
+    document.body.appendChild(div);
+  });
+
+  promise2.catch((message) => {
+    const div = document.createElement('div');
+    div.className = 'message error-message';
+    div.textContent = message;
+    document.body.appendChild(div);
+  });
+</script>
