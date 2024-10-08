@@ -16,34 +16,29 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
+function makeDiv(isThen) {
+  const messageDiv = document.createElement('div');
+
+  messageDiv.className = isThen ? 'message' : 'message error-message';
+
+  messageDiv.textContent = isThen
+    ? 'Promise was resolved!'
+    : 'Promise was rejected!';
+  document.body.appendChild(messageDiv);
+}
+
 promise1
   .then(() => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message';
-    messageDiv.textContent = 'Promise was resolved!';
-    document.body.appendChild(messageDiv);
+    makeDiv(true);
   })
   .catch(() => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message error-message';
-    messageDiv.textContent = 'Promise was rejected!';
-    document.body.appendChild(messageDiv);
+    makeDiv(false);
   });
 
 promise2
   .then(() => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message';
-    messageDiv.textContent = 'Promise was resolved!';
-    document.body.appendChild(messageDiv);
+    makeDiv(true);
   })
   .catch(() => {
-    const messageDiv = document.createElement('div');
-
-    messageDiv.className = 'message error-message';
-    messageDiv.textContent = 'Promise was rejected!';
-    document.body.appendChild(messageDiv);
+    makeDiv(false);
   });
