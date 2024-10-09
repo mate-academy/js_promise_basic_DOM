@@ -1,3 +1,32 @@
-'use strict';
+const but = document.querySelector('.logo');
 
-// write your code here
+const prom1 = new Promise((resolve, reject) => {
+  but.addEventListener('click', () => {
+    const newDiv = document.createElement('div');
+
+    newDiv.innerHTML = 'Promise was resolved!';
+    newDiv.classList.add('message');
+
+    const parentElement = document.querySelector('body');
+
+    parentElement.appendChild(newDiv);
+
+    resolve();
+  });
+});
+
+prom1.then(() => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const newDiv2 = document.createElement('div');
+
+      newDiv2.innerHTML = 'Promise was rejected!';
+
+      newDiv2.classList.add('message', 'error-message');
+
+      const parentElement = document.querySelector('body');
+
+      parentElement.appendChild(newDiv2);
+    }, 3000);
+  });
+});
