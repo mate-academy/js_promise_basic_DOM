@@ -15,18 +15,18 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 function successHandler() {
-  const div = document.createElement('div');
-
-  div.className = 'message';
-  div.innerText = 'Promise was resolved!';
-  document.body.append(div);
+  createDiv('message', 'Promise was resolved!');
 }
 
 function errorHandler() {
+  createDiv('message error-message', 'Promise was rejected!');
+}
+
+function createDiv(className, message) {
   const div = document.createElement('div');
 
-  div.className = 'message error-message';
-  div.innerText = 'Promise was rejected!';
+  div.className = className;
+  div.innerText = message;
   document.body.append(div);
 }
 
