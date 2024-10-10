@@ -1,33 +1,35 @@
-const but = document.querySelector('.logo');
+function handlePromises() {
+  const but = document.querySelector('.logo');
 
-const prom1 = new Promise((resolve) => {
-  but.addEventListener('click', () => {
-    const newDiv = document.createElement('div');
-
-    newDiv.innerHTML = 'Promise was resolved!';
-    newDiv.classList.add('message');
-
-    const parentElement = document.querySelector('body');
-
-    parentElement.appendChild(newDiv);
-
-    resolve();
+  const prom1 = new Promise((resolve) => {
+    but.addEventListener('click', () => {
+      createAndAppendMessage('Promise was resolved!', ['message']);
+      resolve();
+    });
   });
-});
 
-const prom2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const newDiv2 = document.createElement('div');
+  const prom2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      createAndAppendMessage('Promise was rejected!', [
+        'message',
+        'error-message',
+      ]);
+    }, 3000);
+  });
 
-    newDiv2.innerHTML = 'Promise was rejected!';
-    newDiv2.classList.add('message', 'error-message');
+  prom1.then(() => prom2);
+}
 
-    const parentElement = document.querySelector('body');
+function createAndAppendMessage(text, classNames = []) {
+  const newDiv = document.createElement('div');
 
-    parentElement.appendChild(newDiv2);
-  }, 3000);
-});
+  newDiv.innerHTML = text;
 
-prom1.then(() => {
-  return prom2;
-});
+  classNames.forEach((className) => newDiv.classList.add(className));
+
+  const parentElement = document.querySelector('body');
+
+  parentElement.appendChild(newDiv);
+}
+
+handlePromises();
