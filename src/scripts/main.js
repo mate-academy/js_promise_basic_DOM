@@ -1,9 +1,13 @@
 'use strict';
 
 const promise1 = new Promise((resolve) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    resolve();
-  });
+  const logo = document.querySelector('.logo');
+
+  if (logo) {
+    logo.addEventListener('click', () => {
+      resolve();
+    });
+  }
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -28,5 +32,4 @@ const errorHandler = (error) => {
   document.body.appendChild(errormessage);
 };
 
-promise1.then(successHandler).catch(errorHandler);
-promise2.then(successHandler).catch(errorHandler);
+Promise.race([promise1, promise2]).then(successHandler).catch(errorHandler);
