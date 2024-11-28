@@ -23,10 +23,9 @@ body {
   justify-content: center;
 }
 
-.message {
+.message,
+.error-message {
   position: absolute;
-  top: 50px;
-  right: 50px;
   padding: 25px;
 
   width: 200px;
@@ -37,11 +36,16 @@ body {
   text-align: center;
 
   border-radius: 15px;
+}
 
+.message {
+  top: 50px;
+  right: 50px;
   background-color: rgba(230, 230, 0, 0.5);
 }
 
 .error-message {
+  top: 50px;
   background-color: rgba(204, 51, 0, 0.5);
   right: 350px;
 }
