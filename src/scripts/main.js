@@ -32,7 +32,7 @@ const errorHandler = (error) => {
   const divElement = document.createElement('div');
 
   divElement.className = 'message error-message';
-  divElement.textContent = error;
+  divElement.textContent = error.message;
   document.body.appendChild(divElement);
 };
 
