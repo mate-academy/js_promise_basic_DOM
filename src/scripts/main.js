@@ -5,7 +5,7 @@ const promise1 = new Promise((resolve) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => reject(newError('Promise rejected!')), 3000);
+    setTimeout(() => reject(new Error('Promise rejected!')), 3000);
 });
 
 function successHandler() {
