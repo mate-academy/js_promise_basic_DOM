@@ -1,16 +1,31 @@
-# First promises
-Create 2 promises `promise1` and `promise2`.
-- `promise1` should be resolved on a `click` on `.logo`.
-- `promise2` promise should be rejected in 3 seconds.
-- add success and error handlers for both promises
-- success handler should append a `<div class="message">` with the text `Promise was resolved!` to the body
-- error handler should append a `<div class="message error-message">` with the text `Promise was rejected!` to the body
+# First Promises
 
-## Instructions
-1. Replace `<your_account>` with your Github username in the link
-    - [DEMO LINK](https://<your_account>.github.io/js_promise_basic_DOM/)
-2. Follow [this instructions](https://mate-academy.github.io/layout_task-guideline/)
-    - Run `npm run test` command to test your code;
-    - Run `npm run test:only -- -n` to run fast test ignoring linter;
-    - Run `npm run test:only -- -l` to run fast test with additional info in console ignoring linter.
+## 🎮 About the Project
+In this project, two promises were created:
+- **promise1** resolves when the logo is clicked.
+- **promise2** rejects after 3 seconds.
 
+Both promises have success and error handlers, demonstrating basic promise functionality in JavaScript.
+
+## 🚀 Tech Stack
+- **HTML** (BEM methodology for structured markup)
+- **CSS** (For styling)
+- **JavaScript** (Handling promises)
+
+## 🛠️ Tools & Dependencies
+- **ESLint** – Ensuring code quality  
+- **Prettier** – Code formatting for readability  
+- **Cypress** – End-to-end testing  
+- **Mochawesome** – Test reporting  
+- **Parcel** – Web application bundler  
+
+## 📌 Features
+✅ Promise handling for success and failure  
+✅ Click interaction to trigger promise resolution  
+✅ Timed rejection for testing error handling  
+
+## 🌐 Demo
+🔗 [Live Demo](https://AndriiZakharenko.github.io/promise-basic/)
+
+## 📜 License
+This project is forked from 💻 [Mate Academy](https://github.com/mate-academy/js_promise_basic_DOM)
