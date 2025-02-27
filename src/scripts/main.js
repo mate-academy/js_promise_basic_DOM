@@ -25,7 +25,7 @@ setTimeout(() => {
 
     const errorElement = document.createElement('div');
 
-    error.className = 'error-message';
+    errorElement.className = 'error-message';
 
     errorElement.appendChild(textNode);
     body.appendChild(errorElement);
