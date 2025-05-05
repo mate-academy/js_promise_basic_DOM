@@ -25,20 +25,16 @@ function promise2() {
 }
 
 logo.addEventListener('click', () => {
-  promise1()
-    .then((addDiv) => {
-      body.append(addDiv());
-    })
-    .catch((addErrorDiv) => {
-      body.append(addErrorDiv());
-    });
+  promise1().then((addDiv) => {
+    body.append(addDiv());
+  });
 });
 
 promise2()
   .then((addDiv) => {
     body.append(addDiv());
   })
-  .catch((addErrorDiv) => {
+  .catch(() => {
     const newDiv = document.createElement('div');
 
     newDiv.setAttribute('class', 'message error-message');
