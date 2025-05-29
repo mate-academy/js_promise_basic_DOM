@@ -19,7 +19,12 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
+    const div = document.createElement('div');
+
+    div.classList.add('message');
+    div.classList.add('error-message');
+    div.textContent = 'Promise was rejected!';
+    reject(body.appendChild(div));
   }, 3000);
 });
 
@@ -30,12 +35,5 @@ promise1.then(
 
 promise2.then(
   (success) => success,
-  (error) => {
-    const div = document.createElement('div');
-
-    div.classList.add('message');
-    div.classList.add('error-message');
-    div.textContent = error;
-    body.appendChild(div);
-  },
+  (error) => error,
 );
