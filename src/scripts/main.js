@@ -1,12 +1,22 @@
 'use strict';
 
-const message = document.createElement('div');
-const errorMessage = document.createElement('div');
+const createSuccessMessage = () => {
+  const message = document.createElement('div');
 
-message.classList.add('message');
-message.textContent = 'Promise was resolved!';
-errorMessage.classList.add('error-message');
-errorMessage.textContent = 'Promise was rejected!';
+  message.classList.add('message');
+  message.textContent = 'Promise was resolved!';
+
+  return message;
+};
+
+const createErrorMessage = () => {
+  const errorMessage = document.createElement('div');
+
+  errorMessage.classList.add('message', 'error-message');
+  errorMessage.textContent = 'Promise was rejected!';
+
+  return errorMessage;
+};
 
 const promise1 = new Promise((resolve, reject) => {
   const logo = document.querySelector('.logo');
@@ -20,16 +30,16 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1
   .then(() => {
-    document.body.append(message);
+    document.body.append(createSuccessMessage());
   })
   .catch(() => {
-    document.body.append(errorMessage);
+    document.body.append(createErrorMessage());
   });
 
 promise2
   .then(() => {
-    document.body.append(message);
+    document.body.append(createSuccessMessage());
   })
   .catch(() => {
-    document.body.append(errorMessage);
+    document.body.append(createErrorMessage());
   });
