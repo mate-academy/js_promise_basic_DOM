@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .catch((error) => {
       const div = document.createElement('div');
 
-      div.textContent = error;
+      div.textContent = error.message;
       div.classList.add('message', 'error-message');
       document.body.appendChild(div);
     });
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
       .catch((error) => {
         const div = document.createElement('div');
 
-        div.textContent = error;
+        div.textContent = error.message;
         div.classList.add('message', 'error-message');
         document.body.appendChild(div);
       });
