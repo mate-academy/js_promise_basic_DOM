@@ -20,9 +20,11 @@ const createNegativeMessage = function () {
 };
 
 const promise1 = new Promise(function (resolve, reject) {
-  logo.onclick = () => {
-    resolve();
-  };
+  if (logo) {
+    logo.onclick = () => {
+      resolve();
+    };
+  }
 })
   .then(() => {
     const whatToSend = createPositiveMessage();
