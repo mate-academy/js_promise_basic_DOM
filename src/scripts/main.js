@@ -15,19 +15,18 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const div = document.createElement('div');
-
-  div.className = 'message';
-  div.textContent = 'Promise was resolved!';
-
-  document.body.appendChild(div);
+  getMessage('resolved', 'message');
 });
 
 promise2.catch(() => {
+  getMessage('resolved', 'message error-message');
+});
+
+function getMessage(text, className) {
   const div = document.createElement('div');
 
-  div.className = 'message error-message';
-  div.textContent = 'Promise was rejected!';
+  div.className = className;
+  div.textContent = `Promise was ${text}!`;
 
   document.body.appendChild(div);
-});
+}
