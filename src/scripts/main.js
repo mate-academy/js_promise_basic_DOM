@@ -24,14 +24,12 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.then(() => {
-  
-})
-.catch(() => {
-  const message = document.createElement('div');
+promise2
+  .then(() => {})
+  .catch(() => {
+    const message = document.createElement('div');
 
-  message.className = 'message';
-  message.className = 'error-message';
-  message.textContent = 'Promise was rejected!';
-  document.body.appendChild(message);
-});
+    message.className = 'message error-message';
+    message.textContent = 'Promise was rejected!';
+    document.body.appendChild(message);
+  });
