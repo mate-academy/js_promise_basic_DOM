@@ -27,18 +27,18 @@ function appendMessage(message, isError = false) {
   document.body.appendChild(div);
 }
 
-promise1.then(() => {
-  appendMessage('Promise was resolved!');
-});
+promise1
+  .then(() => {
+    appendMessage('Promise was resolved!');
+  })
+  .catch(() => {
+    appendMessage('Promise was rejected!', true);
+  });
 
-promise2.then(() => {
-  appendMessage('Promise was resolved!');
-});
-
-promise1.catch(() => {
-  appendMessage('Promise was rejected!', true);
-});
-
-promise2.catch(() => {
-  appendMessage('Promise was rejected!', true);
-});
+promise2
+  .then(() => {
+    appendMessage('Promise was resolved!');
+  })
+  .catch(() => {
+    appendMessage('Promise was rejected!', true);
+  });
