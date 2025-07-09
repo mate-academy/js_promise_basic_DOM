@@ -28,7 +28,7 @@ function promise2() {
     div.textContent = 'Promise was rejected!';
 
     setTimeout(() => {
-      resolve(document.body.appendChild(div));
+      reject(document.body.appendChild(div));
     }, 3000);
   }).catch(() => {
     const div = document.createElement('div');
