@@ -28,7 +28,7 @@ promise1
   .catch((error) => {
     const div = document.createElement('div');
 
-    div.classList.add('message error-message');
+    div.classList.add('message', 'error-message');
     div.textContent = error.message;
 
     body.append(div);
