@@ -15,9 +15,12 @@ const promise1 = new Promise((resolve) => {
   resolvePromise1 = resolve;
 });
 
-promise1.then(() => {
-  document.body.appendChild(message);
-});
+promise1
+  .then(() => {
+    document.body.appendChild(message);
+  })
+  .catch(() => {
+  });
 
 logo.addEventListener('click', () => {
   resolvePromise1();
@@ -29,6 +32,9 @@ const promise2 = new Promise((_, reject) => {
   }, 3000);
 });
 
-promise2.catch(() => {
-  document.body.appendChild(error);
-});
+promise2
+  .then(() => {
+  })
+  .catch(() => {
+    document.body.appendChild(error);
+  });
