@@ -10,24 +10,25 @@ const error = document.createElement('div');
 error.classList.add('message', 'error-message');
 error.textContent = 'Promise was rejected!';
 
-let rejected = false;
+let resolvePromise1;
+const promise1 = new Promise((resolve) => {
+  resolvePromise1 = resolve;
+});
+
+promise1.then(() => {
+  document.body.appendChild(message);
+});
 
 logo.addEventListener('click', () => {
-  const promise1 = Promise.resolve();
-  promise1.then(() => {
-    document.body.appendChild(message);
-  });
+  resolvePromise1();
+});
 
-  if (!rejected) {
-    rejected = true;
-    const promise2 = new Promise((_, reject) => {
-      setTimeout(() => {
-        reject();
-      }, 3000);
-    });
+const promise2 = new Promise((_, reject) => {
+  setTimeout(() => {
+    reject();
+  }, 3000);
+});
 
-    promise2.catch(() => {
-      document.body.appendChild(error);
-    });
-  }
+promise2.catch(() => {
+  document.body.appendChild(error);
 });
