@@ -10,15 +10,21 @@ success.innerText = 'Promise was resolved!';
 error.innerText = 'Promise was rejected!';
 
 logo.addEventListener('click', () => {
-  return new Promise((resolve, reject) => {
-    resolve(document.body.appendChild(success));
+  new Promise((resolve) => {
+    resolve();
+  }).then(() => {
+    document.body.appendChild(success);
   });
 });
 
 window.addEventListener('load', () => {
-  return new Promise((resolve, reject) => {
+  // eslint-disable-next-line promise/param-names
+  new Promise((_, reject) => {
     setTimeout(() => {
-      reject(document.body.appendChild(error));
+      // eslint-disable-next-line prefer-promise-reject-errors
+      reject();
     }, 3000);
+  }).catch(() => {
+    document.body.appendChild(error);
   });
 });
