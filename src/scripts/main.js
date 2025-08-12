@@ -35,5 +35,5 @@ const promise2 = new Promise(function (resolve, reject) {
   }, 3000);
 });
 
-promise2.then(resolved, rejected);
-promise1.then(resolved, rejected);
+promise2.then(resolved).catch(rejected);
+promise1.then(resolved).catch(rejected);
