@@ -3,9 +3,13 @@
 const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => {
-    resolve();
-  });
+  logo.addEventListener(
+    'click',
+    () => {
+      resolve();
+    },
+    { once: true },
+  );
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -23,11 +27,11 @@ const onSuccess = () => {
   document.body.appendChild(div);
 };
 
-const onError = (err) => {
+const onError = () => {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
-  div.textContent = err.message;
+  div.textContent = 'Promise was rejected!';
 
   document.body.appendChild(div);
 };
