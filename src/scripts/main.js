@@ -1,3 +1,10 @@
 'use strict';
+/* eslint no-console: ["error", { allow: ["warn", "log"] }] */
 
-// write your code here
+const logoElement = document.querySelector('.logo');
+
+const resolvedPromise = () => {
+  console.log(logoElement);
+};
+
+logoElement.addEventListener('click', resolvedPromise);
