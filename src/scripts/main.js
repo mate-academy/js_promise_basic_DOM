@@ -1,10 +1,33 @@
 'use strict';
-/* eslint no-console: ["error", { allow: ["warn", "log"] }] */
 
-const logoElement = document.querySelector('.logo');
+const showMessage = (text, className) => {
+  const newDiv = document.createElement('div');
 
-const resolvedPromise = () => {
-  console.log(logoElement);
+  newDiv.className = className;
+  newDiv.innerText = text;
+
+  document.body.append(newDiv);
 };
 
-logoElement.addEventListener('click', resolvedPromise);
+const resolvedPromise = () =>
+  new Promise((resolve) => {
+    const logoElement = document.querySelector('.logo');
+    const text = 'Promise was resolved!';
+
+    logoElement.addEventListener('click', () => resolve(text));
+  });
+
+resolvedPromise().then((text) => {
+  showMessage(text, 'message');
+});
+
+const rejectedPromise = (ms) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('Promise was rejected!'));
+    }, ms);
+  });
+
+rejectedPromise(3000).catch((text) => {
+  showMessage(text, 'message error-message');
+});
