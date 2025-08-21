@@ -14,20 +14,30 @@ const resolvedPromise = () =>
     const logoElement = document.querySelector('.logo');
     const text = 'Promise was resolved!';
 
-    logoElement.addEventListener('click', () => resolve(text));
+    if (logoElement) {
+      logoElement.addEventListener('click', () => resolve(text));
+    }
   });
 
-resolvedPromise().then((text) => {
-  showMessage(text, 'message');
-});
+resolvedPromise()
+  .then((text) => {
+    showMessage(text, 'message');
+  })
+  .catch((e) => showMessage(e.message, 'message'));
 
 const rejectedPromise = (ms) =>
   new Promise((resolve, reject) => {
+    const error = new Error('Promise was rejected!');
+
     setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
+      reject(error);
     }, ms);
   });
 
-rejectedPromise(3000).catch((text) => {
-  showMessage(text, 'message error-message');
-});
+rejectedPromise(3000)
+  .then(() => {
+    showMessage('Promise was resolved!', 'message error-message');
+  })
+  .catch((text) => {
+    showMessage(text, 'message error-message');
+  });
