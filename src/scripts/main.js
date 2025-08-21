@@ -23,7 +23,7 @@ resolvedPromise()
   .then((text) => {
     showMessage(text, 'message');
   })
-  .catch((e) => showMessage(e.message, 'message'));
+  .catch(() => showMessage('Promise was rejected!', 'message error-message'));
 
 const rejectedPromise = (ms) =>
   new Promise((resolve, reject) => {
@@ -36,8 +36,8 @@ const rejectedPromise = (ms) =>
 
 rejectedPromise(3000)
   .then(() => {
-    showMessage('Promise was resolved!', 'message error-message');
+    showMessage('Promise was resolved!', 'message');
   })
-  .catch((text) => {
-    showMessage(text, 'message error-message');
+  .catch(() => {
+    showMessage('Promise was rejected!', 'message error-message');
   });
