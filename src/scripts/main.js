@@ -1,10 +1,19 @@
 'use strict';
 
 // promise1: resolves when user clicks on element with class .logo
-const promise1 = new Promise((resolve) => {
-  document.querySelector('.logo').addEventListener('click', () => {
-    resolve('Promise1 resolved');
-  });
+const promise1 = new Promise((resolve, reject) => {
+  const logoEl = document.querySelector('.logo');
+
+  if (logoEl) {
+    logoEl.addEventListener(
+      'click',
+      () => {
+        resolve('Promise1 resolved');
+      },
+      { once: true }, // ensures handler runs only once
+    );
+  }
+  // If .logo is not found, do nothing (promise stays pending)
 });
 
 // promise2: rejects automatically after 3 seconds
