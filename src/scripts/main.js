@@ -3,11 +3,17 @@
 const body = document.querySelector('body');
 const logo = body.querySelector('.logo');
 
-function twoPromisi() {
-  const promise1 = new Promise((resolve, reject) => {
+const promise1 = new Promise((resolve, reject) => {
+  if (logo) {
     logo.addEventListener('click', () => resolve('Promise was resolved!'));
-  });
+  }
+});
 
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error()), 3000);
+});
+
+function twoPromisi() {
   promise1
     .then((message) => {
       const div = document.createElement('div');
@@ -17,19 +23,15 @@ function twoPromisi() {
 
       body.append(div);
     })
-    .catch((error) => {
+    .catch(() => {
       const div = document.createElement('div');
 
       div.classList.add('message');
       div.classList.add('error-message');
-      div.textContent = error.message;
+      div.textContent = 'Promise was rejected!';
 
       body.append(div);
     });
-
-  const promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
-  });
 
   promise2
     .then((message) => {
@@ -40,12 +42,12 @@ function twoPromisi() {
 
       body.append(div);
     })
-    .catch((eror) => {
+    .catch(() => {
       const div = document.createElement('div');
 
       div.classList.add('message');
       div.classList.add('error-message');
-      div.textContent = eror.message;
+      div.textContent = 'Promise was rejected!';
 
       body.append(div);
     });
