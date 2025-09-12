@@ -1,7 +1,7 @@
 'use strict';
 
 // Find the logo element on the page
-const logo = document.querySelector('h1.logo');
+const logo = document.querySelector('.logo');
 
 /**
  * Creates and adds a message to the page
@@ -21,19 +21,21 @@ function showMessage(text, isError = false) {
 }
 
 // Promise resolves when the logo is clicked
-const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => {
-    resolve();
+if (logo) {
+  const promise1 = new Promise((resolve) => {
+    logo.addEventListener('click', () => {
+      resolve();
+    });
   });
-});
 
-promise1.then(() => {
-  showMessage('Promise was resolved!');
-});
+  promise1.then(() => {
+    showMessage('Promise was resolved!');
+  });
 
-promise1.catch(() => {
-  showMessage('Promise was rejected!', true);
-});
+  promise1.catch(() => {
+    showMessage('Promise was rejected!', true);
+  });
+}
 
 // Promise rejects after 3 seconds
 const promise2 = new Promise((resolve, reject) => {
