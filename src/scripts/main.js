@@ -21,21 +21,26 @@ function showMessage(text, isError = false) {
 }
 
 // Promise resolves when the logo is clicked
-if (logo) {
-  const promise1 = new Promise((resolve) => {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
-  });
+const promise1 = new Promise((resolve) => {
+  if (logo) {
+    // Attach click listener only if logo exists
+    logo.addEventListener(
+      'click',
+      () => {
+        resolve();
+      },
+      { once: true }, // Listener will fire only once
+    );
+  }
+});
 
-  promise1.then(() => {
-    showMessage('Promise was resolved!');
-  });
+promise1.then(() => {
+  showMessage('Promise was resolved!');
+});
 
-  promise1.catch(() => {
-    showMessage('Promise was rejected!', true);
-  });
-}
+promise1.catch(() => {
+  showMessage('Promise was rejected!', true);
+});
 
 // Promise rejects after 3 seconds
 const promise2 = new Promise((resolve, reject) => {
