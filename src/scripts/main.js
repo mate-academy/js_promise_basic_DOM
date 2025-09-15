@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // promise1 — resolved upon click event
   const promise1 = new Promise((resolve) => {
-    logoElement.addEventListener('click', () => {
-      resolve(); // click === resolve promise
-    });
+    // eslint-disable-next-line no-unused-expressions
+    logoElement &&
+      logoElement.addEventListener('click', () => {
+        resolve(); // click === resolve promise
+      });
   });
 
   promise1
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const promise2 = new Promise((_, reject) => {
     setTimeout(() => {
       // eslint-disable-next-line prefer-promise-reject-errors
-      reject();
+      reject(new Error('Promise was rejected because of timeout!'));
     }, 3000);
   });
 
