@@ -1,3 +1,6 @@
+npx cypress run --browser chrome --config baseUrl=http://localhost:1234
+npx cypress open
+
 # First promises
 Create 2 promises `promise1` and `promise2`.
 - `promise1` should be resolved on a `click` on `.logo`.
@@ -8,7 +11,7 @@ Create 2 promises `promise1` and `promise2`.
 
 ## Instructions
 1. Replace `<your_account>` with your Github username in the link
-    - [DEMO LINK](https://<your_account>.github.io/js_promise_basic_DOM/)
+    - [DEMO LINK](https://cooper85.github.io/js_promise_basic_DOM/)
 2. Follow [this instructions](https://mate-academy.github.io/layout_task-guideline/)
     - Run `npm run test` command to test your code;
     - Run `npm run test:only -- -n` to run fast test ignoring linter;
