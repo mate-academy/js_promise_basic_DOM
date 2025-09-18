@@ -2,25 +2,19 @@
 
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve, reject) => {
-  if (!logo) {
-    reject(new Error('Logo not found'));
-
-    return;
-  }
-
-  logo.addEventListener('click', () => {
-    resolve();
+if (logo) {
+  const promise1 = new Promise((resolve, reject) => {
+    logo.addEventListener('click', () => {
+      resolve();
+    });
   });
-});
 
-promise1
-  .then(() => {
+  promise1.then(() => {
     handler('Promise was resolved!', 'message');
-  })
-  .catch(() => {
-    handler('Promise was rejected!', 'message error-message');
   });
+} else {
+  handler('Promise was rejected!', 'message error-message');
+}
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -40,6 +34,6 @@ function handler(text, classes) {
   const div = document.createElement('div');
 
   div.className = classes;
-  div.innerHTML = text;
+  div.textContent = text;
   document.body.append(div);
 }
