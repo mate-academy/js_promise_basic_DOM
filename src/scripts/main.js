@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
 
   const promise1 = new Promise((resolve) => {
+    if (!logo) {
+      return;
+    }
+
     const handler = () => {
       resolve();
       logo.removeEventListener('click', handler);
