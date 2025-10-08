@@ -3,19 +3,13 @@
 const body = document.querySelector('body');
 const logo = body.querySelector('.logo');
 
-function createPromise() {
-  const promise1 = new Promise((resolve, reject) => {
-    const result = Math.random() > 0;
-
-    if (result) {
+const promise1 = new Promise((resolve, reject) => {
+  if (logo) {
+    logo.addEventListener('click', () => {
       resolve('Promise was resolved!');
-    } else {
-      reject(new Error('Promise was rejected!'));
-    }
-  });
-
-  return promise1;
-}
+    });
+  }
+});
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -43,24 +37,22 @@ async function promiseSecond() {
 
 promiseSecond();
 
-logo.addEventListener('click', () => {
+async function promiseFirst() {
   const newElement = document.createElement('div');
 
   newElement.classList.add('message');
 
-  async function promiseFirst() {
-    try {
-      const resolve = await createPromise();
+  try {
+    const resolve = await promise1;
 
-      newElement.textContent = resolve;
-    } catch (errorMessage) {
-      newElement.classList.add('error-message');
+    newElement.textContent = resolve;
+  } catch (errorMessage) {
+    newElement.classList.add('error-message');
 
-      newElement.textContent = 'Promise was rejected';
-    } finally {
-      body.append(newElement);
-    }
+    newElement.textContent = 'Promise was rejected!';
+  } finally {
+    body.append(newElement);
   }
+}
 
-  promiseFirst();
-});
+promiseFirst();
