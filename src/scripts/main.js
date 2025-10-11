@@ -5,19 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
 
   const promise1 = new Promise((resolve) => {
-    logo.addEventListener(
-      'click',
-      () => {
-        resolve();
-      },
-      { once: true },
-    );
+    if (logo) {
+      logo.addEventListener(
+        'click',
+        () => {
+          resolve();
+        },
+        { once: true },
+      );
+    }
   });
 
   const promise2 = new Promise((resolve, reject) => {
     setTimeout(() => {
-      // eslint-disable-next-line prefer-promise-reject-errors
-      reject();
+      reject(new Error('Timeout'));
     }, 3000);
   });
 
