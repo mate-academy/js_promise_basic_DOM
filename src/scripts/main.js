@@ -16,12 +16,16 @@ function errorHandler() {
   document.body.appendChild(message);
 }
 
-const promise1 = new Promise((resolve) => {
+const promise1 = new Promise((resolve, reject) => {
   const getLogo = document.querySelector('.logo');
 
-  getLogo.addEventListener('click', () => {
-    resolve();
-  });
+  if (!getLogo) {
+    return null;
+  } else {
+    getLogo.addEventListener('click', () => {
+      resolve();
+    });
+  }
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -30,5 +34,6 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(successHandler);
-promise2.catch(errorHandler);
+promise1.then(successHandler).catch(successHandler);
+
+promise2.catch(errorHandler).then(errorHandler);
