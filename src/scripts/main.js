@@ -1,31 +1,33 @@
 'use strict';
 
-function successHandler() {
+function showMessage(text, className = 'message') {
   const message = document.createElement('div');
 
-  message.className = 'message';
-  message.textContent = 'Promise was resolved!';
+  message.className = className;
+  message.textContent = text;
   document.body.appendChild(message);
 }
 
-function errorHandler() {
-  const message = document.createElement('div');
+function successHandler() {
+  showMessage('Promise was resolved!');
+}
 
-  message.className = 'message error-message';
-  message.textContent = 'Promise was rejected!';
-  document.body.appendChild(message);
+function errorHandler() {
+  showMessage('Promise was rejected!', 'message error-message');
 }
 
 const promise1 = new Promise((resolve, reject) => {
   const getLogo = document.querySelector('.logo');
 
   if (!getLogo) {
-    return null;
-  } else {
-    getLogo.addEventListener('click', () => {
-      resolve();
-    });
+    reject(new Error('Logo not found'));
+
+    return;
   }
+
+  getLogo.addEventListener('click', () => {
+    resolve();
+  });
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -34,6 +36,5 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(successHandler).catch(successHandler);
-
-promise2.catch(errorHandler).then(errorHandler);
+promise1.then(successHandler).catch(errorHandler);
+promise2.then(successHandler).catch(errorHandler);
