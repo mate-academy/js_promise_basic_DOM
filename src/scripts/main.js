@@ -20,13 +20,13 @@ promise1
     const newDiv = document.createElement('div');
 
     newDiv.classList.add('message', 'error-message');
-    newDiv.textContent = 'Promise 1 was rejected!';
+    newDiv.textContent = 'Promise was rejected!';
     document.body.append(newDiv);
   });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise 2 rejected!'));
+    reject(new Error('Timeout'));
   }, 3000);
 });
 
@@ -35,7 +35,7 @@ promise2
     const newDiv = document.createElement('div');
 
     newDiv.classList.add('message');
-    newDiv.textContent = 'Promise 2 was resolved!';
+    newDiv.textContent = 'Promise was resolved!';
     document.body.append(newDiv);
   })
   .catch(() => {
