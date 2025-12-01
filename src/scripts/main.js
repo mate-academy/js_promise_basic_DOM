@@ -8,24 +8,40 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then(() => {
-  const newDiv = document.createElement('div');
+promise1
+  .then(() => {
+    const newDiv = document.createElement('div');
 
-  newDiv.classList.add('message');
-  newDiv.textContent = 'Promise was resolved!';
-  document.body.append(newDiv);
-});
+    newDiv.classList.add('message');
+    newDiv.textContent = 'Promise was resolved!';
+    document.body.append(newDiv);
+  })
+  .catch(() => {
+    const newDiv = document.createElement('div');
+
+    newDiv.classList.add('message', 'error-message');
+    newDiv.textContent = 'Promise 1 was rejected!';
+    document.body.append(newDiv);
+  });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('some error'));
+    reject(new Error('Promise 2 rejected!'));
   }, 3000);
 });
 
-promise2.catch(() => {
-  const newDiv = document.createElement('div');
+promise2
+  .then(() => {
+    const newDiv = document.createElement('div');
 
-  newDiv.classList.add('message', 'error-message');
-  newDiv.textContent = 'Promise was rejected!';
-  document.body.append(newDiv);
-});
+    newDiv.classList.add('message');
+    newDiv.textContent = 'Promise 2 was resolved!';
+    document.body.append(newDiv);
+  })
+  .catch(() => {
+    const newDiv = document.createElement('div');
+
+    newDiv.classList.add('message', 'error-message');
+    newDiv.textContent = 'Promise was rejected!';
+    document.body.append(newDiv);
+  });
