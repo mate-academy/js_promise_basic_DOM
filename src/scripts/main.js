@@ -1,22 +1,25 @@
 'use strict';
 
 const promise1 = new Promise((resolve, reject) => {
-  const icon = document.querySelector('.logo');
+    const icon = document.querySelector(".logo");
 
-  icon.document.addEventListener('click', () => {
-    resolve();
-  });
+    if (!icon) {
+        reject(new Error("Element .logo not found."));
+        return;
+    }
+
+    icon.addEventListener('click', () => {
+        resolve();
+    });
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  resolve();
-
-  setTimeout(() => {
-    reject(new Error('Promise 2 timed out after 3 seconds.'));
-  }, 3000);
+    setTimeout(() => {
+        reject(new Error("Promise 2 timed out after 3 seconds."));
+    }, 3000);
 });
 
-function promise1Resolve() {
+function showSuccess() {
   const div = document.createElement('div');
 
   div.className = 'message';
@@ -25,7 +28,7 @@ function promise1Resolve() {
   document.body.appendChild(div);
 }
 
-function promise2Reject() {
+function showError() {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
@@ -35,13 +38,13 @@ function promise2Reject() {
 
 promise1
   .then(() => {
-    promise1Resolve();
+    showSuccess();
   })
 
   .catch(() => {
-    promise2Reject();
+    showError();
   });
 
 promise2.catch(() => {
-  promise2Reject();
+  showError();
 });
