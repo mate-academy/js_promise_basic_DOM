@@ -24,7 +24,7 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
-promise1.then(handleSuccsess);
+promise1.then(handleSuccsess).catch(handleReject);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -32,4 +32,4 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch(handleReject);
+promise2.then(handleSuccsess).catch(handleReject);
