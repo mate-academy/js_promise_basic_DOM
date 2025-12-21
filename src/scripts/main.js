@@ -25,13 +25,13 @@ const promise2 = new Promise((resolve, reject) => {
   const data = ['Promise was rejected!', 'message', 'error-message'];
 
   if (data) {
-    setTimeout(() => resolve(data), 3000);
+    setTimeout(() => reject(data), 3000);
   }
 });
 
 promise2
-  .then((data) => {
-    return Promise.reject(data);
+  .then(() => {
+    return null;
   })
   .catch((data) => {
     addBlock(data[0], data[1], data[2]);
