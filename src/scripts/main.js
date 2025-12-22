@@ -17,34 +17,35 @@ logo.addEventListener('click', (e) => {
     }, 1000);
   });
 
-  promise1.then((value) => {
-    const message = document.createElement('div');
+  promise1
+    .then((value) => {
+      const message = document.createElement('div');
 
-    message.classList.add('message');
-    message.textContent = 'Promise was resolved!';
+      message.classList.add('message');
+      message.textContent = 'Promise was resolved!';
 
-    document.body.append(message);
-  });
+      document.body.append(message);
+    })
+    .catch((error) => {
+      return error;
+    });
 });
 
-const pronise2 = new Promise((resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve('true');
+    reject(new Error('Promise was rejected'));
   }, 3000);
 });
 
-pronise2
-  .then((value) => {
+promise2
+  .then((value) => {})
+  .catch(() => {
     const errorMessage = document.createElement('div');
 
     errorMessage.classList.add('message');
     errorMessage.classList.add('error-message');
-    errorMessage.textContent = 'Promise was rejected!';
 
     document.body.append(errorMessage);
-  })
-  .catch((error) => {
-    return error;
   });
 
 // setTimeout(() => {
