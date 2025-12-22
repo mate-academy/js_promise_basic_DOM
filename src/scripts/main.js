@@ -1,40 +1,42 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
+const div1 = document.createElement('div');
+const div2 = document.createElement('div');
 
-logo.addEventListener('click', () => {
-  const promise2 = new Promise((resolve, reject) => {
-    const div = document.createElement('div');
-    div.classList.add('message');
+div1.classList.add('message');
+div2.classList.add('message');
 
-    if (resolve) {
-      resolve (
-        div.append(resolve),
-        document.querySelector('body').append(div)
-      )
-    } else {
-      reject (div.classList.add('error-message'));
-    }
 
+logo.addEventListener()
+
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', () => {
+    resolve();
   });
-  const promise1 = new Promise((resolve, reject) => {
-    const div = document.createElement('div');
-    div.classList.add('message');
+});
 
-    setTimeout( () => {
-      if (resolve) {
-        resolve (
-          div.append(resolve),
-          document.querySelector('body').append(div)
-        )
-      } else {
-        reject (div.classList.add('error-message'));
-      }
-    },
-      3000);
+promise1.then(() => {
+  div1.textContent = 'Promise was resolved!';
+  document.querySelector('body').append(div1);
+});
 
-  });
+promise1.catch(() => {
+  div1.textContent = 'Promise was rejected!';
+  document.querySelector('body').append(div1);
+});
 
-  return promise1, promise2;
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(reject, 3000);
+});
 
+promise2.then(() => {
+  div2.textContent = 'Promise was resolved!';
+  document.querySelector('body').append(div2);
+});
+
+promise2.catch(() => {
+  div2.classList.add('error-message');
+  div2.textContent = 'Promise was rejected!';
+  document.querySelector('body').append(div2);
 });
