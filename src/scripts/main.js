@@ -13,25 +13,46 @@ logo.addEventListener('click', (e) => {
 
   const promise1 = new Promise((resolve, reject) => {
     setTimeout(() => {
-      const message = document.createElement('div');
-
-      message.classList.add('message');
-      message.textContent = 'Promise was resolved!';
-      resolve('true');
-
-      logo.append(message);
+      resolve('true'); // просто сигналізуємо, що проміс успішний
     }, 1000);
   });
 
-  return promise1;
+  promise1.then((value) => {
+    const message = document.createElement('div');
+
+    message.classList.add('message');
+    message.textContent = 'Promise was resolved!';
+
+    document.body.append(message);
+  });
 });
 
-setTimeout(() => {
-  const errorMessage = document.createElement('div');
+const pronise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('true');
+  }, 3000);
+});
 
-  errorMessage.classList.add('message');
-  errorMessage.classList.add('error-message');
-  errorMessage.textContent = 'Promise was rejected!';
+pronise2
+  .then((value) => {
+    const errorMessage = document.createElement('div');
 
-  document.body.append(errorMessage);
-}, 3000);
+    errorMessage.classList.add('message');
+    errorMessage.classList.add('error-message');
+    errorMessage.textContent = 'Promise was rejected!';
+
+    document.body.append(errorMessage);
+  })
+  .catch((error) => {
+    return error;
+  });
+
+// setTimeout(() => {
+//   const errorMessage = document.createElement('div');
+//
+//   errorMessage.classList.add('message');
+//   errorMessage.classList.add('error-message');
+//   errorMessage.textContent = 'Promise was rejected!';
+//
+//   document.body.append(errorMessage);
+// }, 3000);
