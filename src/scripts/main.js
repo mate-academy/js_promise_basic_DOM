@@ -35,14 +35,14 @@ promise2
   .then(() => {
     const message = document.createElement('div');
 
-    message.className = 'message error-message';
+    message.className = 'message';
     message.textContent = 'Promise was resolved!';
     document.body.append(message);
   })
   .catch(() => {
     const message = document.createElement('div');
 
-    message.className = 'message';
+    message.className = 'message error-message';
     message.textContent = 'Promise was rejected!';
     document.body.append(message);
   });
