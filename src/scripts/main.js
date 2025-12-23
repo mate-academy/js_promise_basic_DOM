@@ -34,7 +34,13 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.then(() => {});
+promise2.then(() => {
+  const element = document.createElement('div');
+
+  element.classList.add('message');
+  element.textContent = 'Promise was resolved!';
+  document.body.appendChild(element);
+});
 
 promise2.catch(() => {
   const element = document.createElement('div');
