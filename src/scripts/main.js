@@ -18,8 +18,16 @@ promise1.then(() => {
   createMessage('Promise was resolved!');
 });
 
+promise1.catch(() => {
+  createMessage('Promise was rejected!', 'error-message');
+});
+
 promise2.catch(() => {
   createMessage('Promise was rejected!', 'error-message');
+});
+
+promise2.then(() => {
+  createMessage('Promise was resolved!');
 });
 
 function createMessage(text, messageClass) {
