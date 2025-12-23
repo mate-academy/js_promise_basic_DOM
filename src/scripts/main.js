@@ -13,14 +13,14 @@ promise1
     const message = document.createElement('div');
 
     message.className = 'message';
-    message.textContent = 'Promise1 was resolved!';
+    message.textContent = 'Promise was resolved!';
     document.body.append(message);
   })
   .catch(() => {
     const message = document.createElement('div');
 
-    message.className = 'message';
-    message.textContent = 'Promise1 was rejected!';
+    message.className = 'message error-message';
+    message.textContent = 'Promise was rejected!';
     document.body.append(message);
   });
 
@@ -36,13 +36,13 @@ promise2
     const message = document.createElement('div');
 
     message.className = 'message error-message';
-    message.textContent = 'Promise2 was resolved!';
+    message.textContent = 'Promise was resolved!';
     document.body.append(message);
   })
   .catch(() => {
     const message = document.createElement('div');
 
-    message.className = 'message error-message';
-    message.textContent = 'Promise2 was rejected!';
+    message.className = 'message';
+    message.textContent = 'Promise was rejected!';
     document.body.append(message);
   });
