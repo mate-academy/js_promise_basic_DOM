@@ -24,4 +24,19 @@ function twoPromises() {
       div.textContent = 'Promise was rejected!';
       body.append(div);
     });
+
+  const promise2 = new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
+  });
+
+  promise2
+    .then((message) => {
+      div.textContent = message;
+      body.append(div);
+    })
+    .catch((error) => {
+      div.classList.add('error-message');
+      div.textContent = error.message;
+      body.append(div);
+    });
 }
