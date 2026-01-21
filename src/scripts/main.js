@@ -3,9 +3,6 @@
 // write your code here
 const body = document.querySelector('body');
 const logo = body.querySelector('.logo');
-const div = document.createElement('div');
-
-div.classList.add('message');
 
 twoPromises();
 
@@ -16,10 +13,16 @@ function twoPromises() {
 
   promise1
     .then((message) => {
+      const div = document.createElement('div');
+
+      div.classList.add('message');
       div.textContent = message;
       body.append(div);
     })
     .catch(() => {
+      const div = document.createElement('div');
+
+      div.classList.add('message');
       div.classList.add('error-message');
       div.textContent = 'Promise was rejected!';
       body.append(div);
@@ -31,11 +34,16 @@ function twoPromises() {
 
   promise2
     .then((message) => {
+      const div = document.createElement('div');
+
+      div.classList.add('message');
       div.textContent = message;
       body.append(div);
     })
     .catch((error) => {
-      div.classList.add('error-message');
+      const div = document.createElement('div');
+
+      div.classList.add('message', 'error-message');
       div.textContent = error.message;
       body.append(div);
     });
