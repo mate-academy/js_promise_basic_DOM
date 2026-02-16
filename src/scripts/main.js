@@ -4,6 +4,10 @@ const body = document.body;
 const logo = body.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
+  if (!logo) {
+    return;
+  }
+
   logo.addEventListener('click', (e) => {
     resolve();
   });
@@ -29,7 +33,7 @@ function successHandler() {
 function rejectHandler() {
   const block = document.createElement('div');
 
-  block.classList.add('error-message');
+  block.classList.add('message', 'error-message');
   block.textContent = 'Promise was rejected!';
 
   body.appendChild(block);
