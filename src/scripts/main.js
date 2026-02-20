@@ -18,19 +18,36 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
 });
 
-promise1.then(() => {
-  const div = document.createElement('div');
+promise1
+  .then(() => {
+    const div = document.createElement('div');
 
-  div.classList.add('message');
-  div.textContent = 'Promise was resolved!';
-  body.appendChild(div);
-});
+    div.classList.add('message');
+    div.textContent = 'Promise was resolved!';
+    body.appendChild(div);
+  })
+  .catch((errorMessage) => {
+    const div = document.createElement('div');
 
-promise2.catch((errorMessage) => {
-  const div = document.createElement('div');
+    div.classList.add('message');
+    div.classList.add('error-message');
+    div.textContent = errorMessage.message;
+    body.appendChild(div);
+  });
 
-  div.classList.add('message');
-  div.classList.add('error-message');
-  div.textContent = errorMessage.message;
-  body.appendChild(div);
-});
+promise2
+  .then(() => {
+    const div = document.createElement('div');
+
+    div.classList.add('message');
+    div.textContent = 'Promise was resolved!';
+    body.appendChild(div);
+  })
+  .catch((errorMessage) => {
+    const div = document.createElement('div');
+
+    div.classList.add('message');
+    div.classList.add('error-message');
+    div.textContent = errorMessage.message;
+    body.appendChild(div);
+  });
