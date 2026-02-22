@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-const createMassage = function (className, text) {
+const createMessage = function (className, text) {
   const tag = document.createElement('div');
 
   tag.className = className;
@@ -10,30 +10,30 @@ const createMassage = function (className, text) {
   document.body.appendChild(tag);
 };
 
-const promise = new Promise((resolve) => {
-  logo.addEventListener('click', function () {
+const promise1 = new Promise((resolve) => {
+  logo.addEventListener('click', () => {
     resolve('Promise was resolved!');
   });
 });
 
-promise
+promise1
   .then(() => {
-    createMassage('message', 'Promise was resolved!');
+    createMessage('message', 'Promise was resolved!');
   })
   .catch(() => {
-    createMassage('message error-message', 'Promise was rejected!');
+    createMessage('message error-message', 'Promise was rejected!');
   });
 
-const promiseSecond = new Promise((resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
     reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
-promiseSecond
+promise2
   .then(() => {
-    createMassage('message', 'Promise was resolved!');
+    createMessage('message', 'Promise was resolved!');
   })
   .catch(() => {
-    createMassage('message error-message', 'Promise was rejected!');
+    createMessage('message error-message', 'Promise was rejected!');
   });
