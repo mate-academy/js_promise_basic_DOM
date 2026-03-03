@@ -3,6 +3,7 @@
 const logo = document.querySelector('.logo');
 const divResolve = document.createElement('div');
 const divReject = document.createElement('div');
+const body = document.querySelector('body');
 
 divResolve.classList.add('message');
 divReject.classList.add('message');
@@ -13,10 +14,12 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then((res) => {
-  logo.append(divResolve);
-  divResolve.textContent = res;
-});
+promise1
+  .then((res) => {
+    body.appendChild(divResolve);
+    divResolve.textContent = res;
+  })
+  .catch();
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -24,8 +27,10 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch((rej) => {
-  logo.append(divReject);
-  divReject.textContent = 'Promise was rejected!';
-  divReject.classList.add('error-message');
-});
+promise2
+  .catch((rej) => {
+    body.appendChild(divReject);
+    divReject.textContent = 'Promise was rejected!';
+    divReject.classList.add('error-message');
+  })
+  .then();
