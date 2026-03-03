@@ -19,7 +19,11 @@ promise1
     body.appendChild(divResolve);
     divResolve.textContent = res;
   })
-  .catch();
+  .catch((rej) => {
+    body.appendChild(divReject);
+    divReject.textContent = 'Promise was rejected!';
+    divReject.classList.add('error-message');
+  });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -33,4 +37,7 @@ promise2
     divReject.textContent = 'Promise was rejected!';
     divReject.classList.add('error-message');
   })
-  .then();
+  .then((res) => {
+    body.appendChild(divResolve);
+    divResolve.textContent = 'Promise was resolved!';
+  });
