@@ -10,13 +10,15 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then(() => {
-  const div = document.createElement('div');
+promise1
+  .then(() => {
+    const div = document.createElement('div');
 
-  div.classList.add('message');
-  div.textContent = 'Promise was resolved!';
-  body.append(div);
-});
+    div.classList.add('message');
+    div.textContent = 'Promise was resolved!';
+    body.append(div);
+  })
+  .catch(() => {});
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
