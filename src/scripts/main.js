@@ -19,14 +19,19 @@ const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', resolve);
 });
 
-promise1.then(() => {
-  createAndAppendMessage('Promise was resolved!');
-});
+promise1.then(
+  () => {
+    createAndAppendMessage('Promise was resolved!');
+  },
+  () => undefined,
+);
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(reject, 3000);
 });
 
-promise2.catch(() => {
-  createAndAppendMessage('Promise was rejected!', true);
-});
+promise2
+  .then(() => undefined)
+  .catch(() => {
+    createAndAppendMessage('Promise was rejected!', true);
+  });
