@@ -1,37 +1,32 @@
 'use strict';
 
+function createAndAppendMessage(messageText, isError = false) {
+  const message = document.createElement('DIV');
+
+  message.classList.add('message');
+  message.innerText = messageText;
+
+  if (isError) {
+    message.classList.add('error-message');
+  }
+
+  document.body.append(message);
+}
+
 const logo = document.querySelector('.logo');
 
-const message = document.createElement('DIV');
+const promise1 = new Promise((resolve, reject) => {
+  logo.addEventListener('click', resolve);
+});
 
-message.classList.add('message');
+promise1.then(() => {
+  createAndAppendMessage('Promise was resolved!');
+});
 
-let promise1Resolve;
-let promise2Reject;
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(reject, 3000);
+});
 
-new Promise((resolve, reject) => {
-  promise1Resolve = resolve;
-})
-  .then(() => {
-    message.classList.remove('error-message');
-    message.innerText = 'Promise was resolved!';
-    document.body.append(message);
-  })
-  .catch(() => undefined);
-
-new Promise((resolve, reject) => {
-  promise2Reject = reject;
-}).then(
-  () => undefined,
-  () => {
-    message.classList.add('error-message');
-    message.innerText = 'Promise was rejected!';
-    document.body.append(message);
-  },
-);
-
-setTimeout(promise2Reject, 3000);
-
-logo.addEventListener('click', () => {
-  promise1Resolve();
+promise2.catch(() => {
+  createAndAppendMessage('Promise was rejected!', true);
 });
