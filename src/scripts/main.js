@@ -10,28 +10,33 @@ if (!logo) {
     id = setTimeout(() => reject(new Error('Timeout')), 3000);
   });
 
-  promise2.catch(() => {
-    const div1 = document.createElement('div');
+  promise2.then(showSuccess).catch(showError);
 
-    div1.className = 'message error-message';
-    div1.innerHTML = 'Promise was rejected!';
-    document.body.appendChild(div1);
-  });
-
-  const promise1 = new Promise((resolve) => {
+  const promise1 = new Promise((resolve, reject) => {
     resolveLogo = resolve;
   });
 
+
   logo.addEventListener('click', () => {
     clearTimeout(id);
-    resolveLogo();
-  });
+    if (typeof resolveLogo === 'function') resolveLogo();
+  }, { once: true });
 
-  promise1.then(() => {
-    const div2 = document.createElement('div');
+  promise1.then(showSuccess).catch(showError);
 
-    div2.className = 'message';
-    div2.innerHTML = 'Promise was resolved!';
-    document.body.appendChild(div2);
-  });
+}
+
+function showSuccess() {
+  const div = document.createElement('div');
+  div.className = 'message';
+  div.innerHTML = 'Promise was resolved!';
+  document.body.appendChild(div);
+}
+
+
+function showError() {
+  const div = document.createElement('div');
+  div.className = 'message error-message';
+  div.innerHTML = 'Promise was rejected!';
+  document.body.appendChild(div);
 }
