@@ -1,13 +1,12 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-let id;
 let resolveLogo;
 
 if (!logo) {
 } else {
   const promise2 = new Promise((resolve, reject) => {
-    id = setTimeout(() => reject(new Error('Timeout')), 3000);
+    setTimeout(() => reject(new Error('Timeout')), 3000);
   });
 
   promise2.then(showSuccess).catch(showError);
@@ -16,26 +15,30 @@ if (!logo) {
     resolveLogo = resolve;
   });
 
-
-  logo.addEventListener('click', () => {
-    clearTimeout(id);
-    if (typeof resolveLogo === 'function') resolveLogo();
-  }, { once: true });
+  logo.addEventListener(
+    'click',
+    () => {
+      if (typeof resolveLogo === 'function') {
+        resolveLogo();
+      }
+    },
+    { once: true },
+  );
 
   promise1.then(showSuccess).catch(showError);
-
 }
 
 function showSuccess() {
   const div = document.createElement('div');
+
   div.className = 'message';
   div.innerHTML = 'Promise was resolved!';
   document.body.appendChild(div);
 }
 
-
 function showError() {
   const div = document.createElement('div');
+
   div.className = 'message error-message';
   div.innerHTML = 'Promise was rejected!';
   document.body.appendChild(div);
