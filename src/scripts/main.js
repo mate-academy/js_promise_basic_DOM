@@ -2,9 +2,18 @@
 
 const logo = document.querySelector('.logo');
 
+// Функція для створення та відображення повідомлення (щоб не дублювати код)
+function showMessage(text, isError = false) {
+  const msg = document.createElement('div');
+
+  msg.className = isError ? 'message error-message' : 'message';
+  msg.textContent = text;
+  document.body.append(msg);
+}
+
 const promise1 = new Promise((resolve) => {
   logo?.addEventListener(
-    'click', // Ось тут Prettier просить перенос рядка
+    'click',
     () => {
       resolve('Promise was resolved!');
     },
@@ -18,21 +27,22 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-// Об'єднуємо через race
-Promise.race([promise1, promise2])
+// Додаємо обробники окремо для кожного промісу
+promise1
   .then((message) => {
-    // Спрацює, якщо клікнули швидше ніж за 3 сек
-    const msg = document.createElement('div');
-
-    msg.className = 'message';
-    msg.textContent = message;
-    document.body.append(msg);
+    showMessage(message);
   })
-  .catch((message) => {
-    // Спрацює, якщо пройшло 3 сек, а кліку не було
-    const msg = document.createElement('div');
+  .catch((error) => {
+    // Хоча promise1 зараз не має reject, catch варто додати для безпеки
+    showMessage(error.message, true);
+  });
 
-    msg.className = 'message error-message';
-    msg.textContent = message;
-    document.body.append(msg);
+promise2
+  .then((message) => {
+    showMessage(message);
+  })
+  .catch((error) => {
+    // Спрацює, якщо пройшло 3 сек, а кліку не було
+    // Використовуємо error.message, як просив ментор
+    showMessage(error.message, true);
   });
