@@ -1,6 +1,9 @@
 'use strict';
 
-const createMessage = (message, className) => {
+const MESSAGE_SELECTOR = '.message';
+const ERROR_MESSAGE_SELECTOR = '.message.error-message';
+
+const createElementMessage = (className, message) => {
   const div = document.createElement('div');
 
   div.className = className;
@@ -17,23 +20,32 @@ const removeIfExists = (selector) => {
   }
 };
 
-let resolveLogo = null;
+const addMessage = (selector, text) => {
+  removeIfExists(selector);
 
-new Promise((resolve) => {
-  resolveLogo = resolve;
-}).then((message) => {
-  removeIfExists('.message');
-  document.body.appendChild(createMessage(message, 'message'));
-});
+  document.body.appendChild(
+    createElementMessage(selector.split('.').filter(Boolean).join(' '), text),
+  );
+};
 
 const logo = document.querySelector('.logo');
-const handleResolve = () => {
-  if (typeof resolveLogo === 'function') {
-    resolveLogo('Promise was resolved!');
-    resolveLogo = null;
+
+let logoResolve = null;
+const promise1 = new Promise((resolve) => {
+  logoResolve = resolve;
+});
+
+promise1
+  .then((message) => addMessage(MESSAGE_SELECTOR, message))
+  .catch((error) => addMessage(ERROR_MESSAGE_SELECTOR, error.message));
+
+const handleLogoClick = () => {
+  if (typeof logoResolve === 'function') {
+    logoResolve('Promise was resolved!');
+    logoResolve = null;
 
     if (logo) {
-      logo.removeEventListener('click', handleResolve);
+      logo.removeEventListener('click', handleLogoClick);
     }
 
     return;
@@ -43,18 +55,18 @@ const handleResolve = () => {
 };
 
 if (logo) {
-  logo.addEventListener('click', handleResolve);
+  logo.addEventListener('click', handleLogoClick);
 } else {
   // eslint-disable-next-line no-console
   console.error('logo is not found');
 }
 
-new Promise((resolve, reject) => {
+const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
-}).catch((error) => {
-  removeIfExists('.message.error-message');
-
-  document.body.appendChild(
-    createMessage(error.message, 'message error-message'),
-  );
 });
+
+promise2
+  .then((message) => addMessage(MESSAGE_SELECTOR, message))
+  .catch((error) => {
+    addMessage(ERROR_MESSAGE_SELECTOR, error.message);
+  });
