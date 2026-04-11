@@ -14,15 +14,15 @@ promise1
   .then((data) => {
     const div = document.createElement('div');
 
-    div.classList = 'message';
+    div.className = 'message';
     div.textContent = data;
     document.body.append(div);
   })
   .catch((data) => {
     const div = document.createElement('div');
 
-    div.classList = 'error-message';
-    div.textContent = data;
+    div.className = 'message error-message';
+    div.textContent = data.message;
     document.body.append(div);
   });
 
@@ -30,14 +30,14 @@ promise2
   .then((data) => {
     const div = document.createElement('div');
 
-    div.classList = 'message';
+    div.className = 'message';
     div.textContent = data;
     document.body.append(div);
   })
   .catch((data) => {
     const div = document.createElement('div');
 
-    div.classList = 'message error-message';
-    div.textContent = data;
+    div.className = 'message error-message';
+    div.textContent = data.message;
     document.body.append(div);
   });
