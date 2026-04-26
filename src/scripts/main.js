@@ -21,7 +21,7 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-// --- ПЕРЕГОНИ ---
+// --- promice.race ---
 
 // Promise.race приймає масив промісів і
 // повертає результат того, який завершиться ПЕРШИМ
@@ -31,36 +31,68 @@ Promise.race([promise1, promise2]);
 // --- ОБРОБКА РЕЗУЛЬТАТІВ ---
 
 // Обробник успішного завершення для першого промісу
-promise1.then((message) => {
-  // Створюємо новий тег div для повідомлення
-  const resultElement = document.createElement('div');
+promise1
+  .then((message) => {
+    // Створюємо новий тег div для повідомлення
+    const resultElement = document.createElement('div');
 
-  // Додаємо йому клас 'message' (для стилів із CSS)
-  resultElement.classList.add('message');
+    // Додаємо йому клас 'message' (для стилів із CSS)
+    resultElement.classList.add('message');
 
-  // Встановлюємо текстовий контент згідно з технічним завданням
-  resultElement.textContent = 'Promise was resolved!';
+    // Встановлюємо текстовий контент згідно з технічним завданням
+    resultElement.textContent = 'Promise was resolved!';
+    // Додаємо створений елемент у кінець тегу body,
+    // щоб він з'явився на сторінці
+    document.body.appendChild(resultElement);
+  })
+  .catch((error) => {
+    // Створюємо елемент для виведення помилки
+    const resultElement = document.createElement('div');
 
-  // Додаємо створений елемент у кінець тегу body, щоб він з'явився на сторінці
-  document.body.appendChild(resultElement);
-});
+    // Додаємо два класи:'message' 'error-message'
+    resultElement.classList.add('message', 'error-message');
 
+    // Встановлюємо текст помилки згідно з технічним завданням
+    resultElement.textContent = 'Promise was rejected!';
+
+    // Виводимо повідомлення про помилку на сторінку
+    document.body.appendChild(resultElement);
+    // Спеціальний коментар для лінтера, щоб він не сварився на console.error
+    // eslint-disable-next-line no-console
+    console.error(error);
+    // Виводимо технічну інформацію про помилку в консоль розробника
+  });
 // Обробник помилки для другого промісу
-promise2.catch((error) => {
-  // Створюємо елемент для виведення помилки
-  const resultElement2 = document.createElement('div');
 
-  // Додаємо два класи:'message' 'error-message'
-  resultElement2.classList.add('message', 'error-message');
+promise2
+  .then((message) => {
+    // Створюємо новий тег div для повідомлення
+    const resultElement2 = document.createElement('div');
 
-  // Встановлюємо текст помилки згідно з технічним завданням
-  resultElement2.textContent = 'Promise was rejected!';
+    // Додаємо йому клас 'message' (для стилів із CSS)
+    resultElement2.classList.add('message');
 
-  // Виводимо повідомлення про помилку на сторінку
-  document.body.appendChild(resultElement2);
+    // Встановлюємо текстовий контент згідно з технічним завданням
+    resultElement2.textContent = 'Promise was resolved!';
 
-  // Спеціальний коментар для лінтера, щоб він не сварився на console.error
-  // eslint-disable-next-line no-console
-  console.error(error);
-  // Виводимо технічну інформацію про помилку в консоль розробника
-});
+    // Додаємо створений елемент у кінець тегу body,
+    // щоб він з'явився на сторінці
+    document.body.appendChild(resultElement2);
+  })
+  .catch((error) => {
+    // Створюємо елемент для виведення помилки
+    const resultElement2 = document.createElement('div');
+
+    // Додаємо два класи:'message' 'error-message'
+    resultElement2.classList.add('message', 'error-message');
+
+    // Встановлюємо текст помилки згідно з технічним завданням
+    resultElement2.textContent = 'Promise was rejected!';
+
+    // Виводимо повідомлення про помилку на сторінку
+    document.body.appendChild(resultElement2);
+
+    // eslint-disable-next-line no-console
+    console.error(error);
+    // Виводимо технічну інформацію про помилку в консоль
+  });
