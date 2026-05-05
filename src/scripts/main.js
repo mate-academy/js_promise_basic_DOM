@@ -1,19 +1,27 @@
 'use strict';
 
 const logo = document.querySelector('.logo');
-const newDiv = document.createElement('div');
+const newDiv1 = document.createElement('div');
+const newDiv2 = document.createElement('div');
 
-newDiv.classList = 'message';
+newDiv1.classList = 'message';
+newDiv2.classList = 'message';
 
 logo.addEventListener('click', function successHandler() {
   const promise1 = new Promise((resolve, reject) => {
     resolve('Promise was resolved!');
   });
 
-  promise1.then((result) => {
-    newDiv.textContent = result;
-    document.body.appendChild(newDiv);
-  });
+  promise1
+    .then((result) => {
+      newDiv1.textContent = result;
+      document.body.appendChild(newDiv1);
+    })
+    .catch((result) => {
+      newDiv2.textContent = result;
+      newDiv2.classList.add('error-message');
+      document.body.appendChild(newDiv2);
+    });
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -22,7 +30,7 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise2.catch((result) => {
-  newDiv.textContent = result;
-  newDiv.classList = 'error-message';
-  document.body.appendChild(newDiv);
+  newDiv2.textContent = result;
+  newDiv2.classList.add('error-message');
+  document.body.appendChild(newDiv2);
 });
