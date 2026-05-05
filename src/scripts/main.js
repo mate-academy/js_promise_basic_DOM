@@ -12,16 +12,21 @@ logo.addEventListener('click', function successHandler() {
     resolve('Promise was resolved!');
   });
 
-  promise1
-    .then((result) => {
-      newDiv1.textContent = result;
-      document.body.appendChild(newDiv1);
-    })
-    .catch((result) => {
-      newDiv2.textContent = result;
-      newDiv2.classList.add('error-message');
-      document.body.appendChild(newDiv2);
-    });
+  promise1.then((result) => {
+    const div = document.createElement('div');
+
+    div.classList = 'message';
+    div.textContent = result;
+    document.body.appendChild(div);
+  });
+
+  promise1.catch((error) => {
+    const div = document.createElement('div');
+
+    div.classList = 'message error-message';
+    div.textContent = error;
+    document.body.appendChild(div);
+  });
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -29,8 +34,18 @@ const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => reject('Promise was rejected!'), 3000);
 });
 
-promise2.catch((result) => {
-  newDiv2.textContent = result;
-  newDiv2.classList.add('error-message');
-  document.body.appendChild(newDiv2);
+promise2.then((result) => {
+  const div = document.createElement('div');
+
+  div.classList = 'message';
+  div.textContent = result;
+  document.body.appendChild(div);
+});
+
+promise2.catch((error) => {
+  const div = document.createElement('div');
+
+  div.classList = 'message error-message';
+  div.textContent = error;
+  document.body.appendChild(div);
 });
