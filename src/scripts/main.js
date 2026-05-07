@@ -26,8 +26,8 @@ const promise2 = new Promise((resolve, reject) => {
 
 promise1
   .then((msg) => createMessage(msg))
-  .catch((err) => createMessage(err, true));
+  .catch((err) => createMessage(err.message, true));
 
 promise2
   .then((msg) => createMessage(msg))
-  .catch((err) => createMessage(err, true));
+  .catch((err) => createMessage(err.message, true));
