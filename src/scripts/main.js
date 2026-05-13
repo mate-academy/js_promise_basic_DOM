@@ -8,13 +8,15 @@ const promise1 = new Promise((resolve) => {
   });
 });
 
-promise1.then(() => {
-  const divEl = document.createElement('div');
+promise1
+  .then(() => {
+    const divEl = document.createElement('div');
 
-  divEl.classList.add('message');
-  divEl.textContent = 'Promise was resolved!';
-  document.body.append(divEl);
-});
+    divEl.classList.add('message');
+    divEl.textContent = 'Promise was resolved!';
+    document.body.append(divEl);
+  })
+  .catch();
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -22,7 +24,7 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch(() => {
+promise2.then().catch(() => {
   const divEl = document.createElement('div');
 
   divEl.classList.add('message', 'error-message');
