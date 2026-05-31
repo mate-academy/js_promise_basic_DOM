@@ -26,7 +26,7 @@ const promise1 = new Promise((resolve) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject("Promise was rejected!");
+    reject(new Error('Promise was rejected!'));
   }, 3000);
 });
 
