@@ -12,7 +12,7 @@ function showError() {
   const message = document.createElement('div');
 
   message.classList.add('message', 'error-message');
-  message.textContent = 'Promises was rejected!';
+  message.textContent = 'Promise was rejected!';
   document.body.append(message);
 }
 
@@ -30,5 +30,5 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(showSuccess);
-promise2.catch(showError);
+promise1.then(showSuccess).catch(showError);
+promise2.then(showSuccess).catch(showError);
