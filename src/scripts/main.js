@@ -9,9 +9,11 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(new Error('Promise rejected'));
-  }, 3000);
+  Promise.resolve().then(() => {
+    setTimeout(() => {
+      reject(new Error('Promise rejected'));
+    }, 3000);
+  });
 });
 
 promise1
@@ -41,7 +43,8 @@ promise2
   .catch(() => {
     const div = document.createElement('div');
 
-    div.classList.add('message error-message');
+    div.classList.add('message');
+    div.classList.add('error-message');
     div.textContent = 'Promise was rejected!';
     document.body.appendChild(div);
   });
