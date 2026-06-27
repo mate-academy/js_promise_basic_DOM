@@ -4,7 +4,7 @@ describe('Promise basic app', () => {
   beforeEach(() => {
     // to prevent Cypress from failing tests on uncaught promise rejection
     cy.once('uncaught:exception', () => false);
-
+    cy.clock();
     cy.visit('/');
   });
 
@@ -14,7 +14,6 @@ describe('Promise basic app', () => {
   });
 
   it(`should reject second promise in 3 seconds`, () => {
-    cy.clock();
     cy.tick(3000);
     cy.get('.error-message').contains('Promise was rejected!');
   });
