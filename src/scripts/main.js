@@ -2,7 +2,7 @@
 
 const logo = document.querySelector('.logo');
 
-const promise1 = new Promise((resolve) => {
+const promise1 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
     resolve();
   });
@@ -23,9 +23,13 @@ function message(text, className) {
   document.body.append(div);
 }
 
-promise1.then(() => {
-  message('Promise was resolved!', 'message');
-});
+promise1
+  .then(() => {
+    message('Promise was resolved!', 'message');
+  })
+  .catch(() => {
+    message('Promise was rejected!', 'message error-message');
+  });
 
 promise2.catch(() => {
   message('Promise was rejected!', 'message error-message');
