@@ -6,7 +6,15 @@ const promice1 = new Promise((resolve, reject) => {
       return resolve();
     }
   });
-}).then(() => {
+});
+
+const promice2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    return reject(new Error('error'));
+  }, 3000);
+});
+
+promice1.then(() => {
   const body = document.querySelector('body');
   const div = document.createElement('div');
 
@@ -15,11 +23,7 @@ const promice1 = new Promise((resolve, reject) => {
   body.appendChild(div);
 });
 
-const promice2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    return reject();
-  }, 3000);
-}).catch(() => {
+promice2.catch(() => {
   const body = document.querySelector('body');
   const div = document.createElement('div');
 
