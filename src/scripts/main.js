@@ -24,10 +24,10 @@ function successHandler() {
   document.body.append(div);
 }
 
-function errorHandler(error) {
+function errorHandler() {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
-  div.textContent = error.message || 'Promise was rejected!';
+  div.textContent = 'Promise was rejected!';
   document.body.append(div);
 }
