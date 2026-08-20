@@ -21,7 +21,7 @@ const onResolve = () => showMessage('Promise was resolved!', false);
 const onReject = () => showMessage('Promise was rejected!', true);
 
 const promise1 = new Promise((resolve) => {
-  logo.addEventListener('click', () => resolve());
+  logo.addEventListener('click', () => resolve(), { once: true });
 });
 
 const promise2 = new Promise((resolve, reject) => {
