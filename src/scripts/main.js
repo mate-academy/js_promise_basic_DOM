@@ -1,13 +1,15 @@
 'use strict';
 
 const promise1 = new Promise((resolve) => {
-  const logo = document.querySelector('.logo');
+  document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
 
-  if (logo) {
-    logo.addEventListener('click', () => {
-      resolve();
-    });
-  }
+    if (logo) {
+      logo.addEventListener('click', () => {
+        resolve();
+      });
+    }
+  });
 });
 
 const promise2 = new Promise((resolve, reject) => {
@@ -20,7 +22,7 @@ function handleSuccess() {
   const div = document.createElement('div');
 
   div.className = 'message';
-  div.textContent = 'Promise was resolved';
+  div.textContent = 'Promise was resolved!';
   document.body.appendChild(div);
 }
 
@@ -28,7 +30,7 @@ function handleError() {
   const div = document.createElement('div');
 
   div.className = 'message error-message';
-  div.textContent = 'Promise was rejected';
+  div.textContent = 'Promise was rejected!';
   document.body.appendChild(div);
 }
 
