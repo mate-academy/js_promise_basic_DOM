@@ -14,20 +14,38 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise1.then(() => {
-  const info = document.createElement('div');
+promise1
+  .then(() => {
+    const message = document.createElement('div');
 
-  info.className = 'message';
-  info.textContent = 'Promise was resolved!';
+    message.classList.add('message');
+    message.textContent = 'Promise was resolved!';
 
-  document.body.append(info);
-});
+    document.body.append(message);
+  })
+  .catch(() => {
+    const message = document.createElement('div');
 
-promise2.catch(() => {
-  const info = document.createElement('div');
+    message.classList.add('message', 'error-message');
+    message.textContent = 'Promise was rejected!';
 
-  info.className = 'message error-message';
-  info.textContent = 'Promise was rejected!';
+    document.body.append(message);
+  });
 
-  document.body.append(info);
-});
+promise2
+  .then(() => {
+    const message = document.createElement('div');
+
+    message.classList.add('message');
+    message.textContent = 'Promise was resolved!';
+
+    document.body.append(message);
+  })
+  .catch(() => {
+    const message = document.createElement('div');
+
+    message.classList.add('message', 'error-message');
+    message.textContent = 'Promise was rejected!';
+
+    document.body.append(message);
+  });
