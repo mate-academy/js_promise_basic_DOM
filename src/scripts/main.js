@@ -14,6 +14,14 @@ promise1.then(() => {
   createDiv('Promise was resolved!', false);
 });
 
+promise1.catch(() => {
+  createDiv('Promise was rejected!', true);
+});
+
+promise2.then(() => {
+  createDiv('Promise was resolved!', false);
+});
+
 promise2.catch(() => {
   createDiv('Promise was rejected!', true);
 });
@@ -31,5 +39,5 @@ function createDiv(str, isError) {
   text.textContent = str;
   div.append(text);
 
-  logo.append(div);
+  document.body.append(div);
 }
