@@ -1,4 +1,4 @@
-import './main.scss';
+import './styles/main.scss';
 
 const promise1 = new Promise((resolve) => {
   document.querySelector('.logo').addEventListener('click', resolve);
