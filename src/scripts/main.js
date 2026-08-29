@@ -30,10 +30,6 @@ function showErrorMessage() {
   document.body.append(div);
 }
 
-promise1
-  .then(showSuccessMessage)
-  .catch(showErrorMessage);
+promise1.then(showSuccessMessage).catch(showErrorMessage);
 
-promise2
-  .then(showSuccessMessage)
-  .catch(showErrorMessage);
+promise2.then(showSuccessMessage).catch(showErrorMessage);
