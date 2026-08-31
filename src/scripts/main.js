@@ -10,7 +10,7 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(new Error('Promise was rejected!'));
+    reject(new Error());
   }, 3000);
 });
 
@@ -22,11 +22,11 @@ const successing = function () {
   document.body.append(div);
 };
 
-const failing = function (err) {
+const failing = function () {
   const div = document.createElement('div');
 
   div.classList.add('message', 'error-message');
-  div.innerText = err;
+  div.innerText = 'Promise was rejected!';
   document.body.append(div);
 };
 
