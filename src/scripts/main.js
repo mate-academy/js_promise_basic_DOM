@@ -28,7 +28,7 @@ promise1
     appendMessage(message);
   })
   .catch(() => {
-    appendMessage('Promisi was rejected!', true);
+    appendMessage('Promise was rejected!', true);
   });
 
 promise2
