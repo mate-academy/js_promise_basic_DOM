@@ -5,10 +5,6 @@ const logo = document.querySelector('.logo');
 
 const promise1 = new Promise((resolve) => {
   logo.addEventListener('click', (e) => {
-    if (!e.target) {
-      return;
-    }
-
     resolve('Promise was resolved!');
   });
 });
@@ -35,10 +31,18 @@ promise1
     document.body.append(div);
   });
 
-promise2.catch((error) => {
-  const div = document.createElement('div');
+promise2
+  .then((result) => {
+    const div = document.createElement('div');
 
-  div.classList.add('message', 'error-message');
-  div.textContent = error.message;
-  document.body.append(div);
-});
+    div.classList.add('message');
+    div.textContent = result;
+    document.body.append(div);
+  })
+  .catch((error) => {
+    const div = document.createElement('div');
+
+    div.classList.add('message', 'error-message');
+    div.textContent = error.message;
+    document.body.append(div);
+  });
