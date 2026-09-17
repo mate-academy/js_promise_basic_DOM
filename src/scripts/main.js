@@ -10,13 +10,21 @@ const promise1 = new Promise((resolve, reject) => {
   });
 });
 
-promise1.then((message) => {
-  const messageDiv = document.createElement('div');
+promise1
+  .then((message) => {
+    const messageDiv = document.createElement('div');
 
-  messageDiv.className = 'message';
-  messageDiv.textContent = message;
-  document.body.appendChild(messageDiv);
-});
+    messageDiv.className = 'message';
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+  })
+  .catch((error) => {
+    const errorDiv = document.createElement('div');
+
+    errorDiv.className = 'message error-message';
+    errorDiv.textContent = error.message;
+    document.body.appendChild(errorDiv);
+  });
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -24,10 +32,18 @@ const promise2 = new Promise((resolve, reject) => {
   }, 3000);
 });
 
-promise2.catch((error) => {
-  const errorDiv = document.createElement('div');
+promise2
+  .then((message) => {
+    const messageDiv = document.createElement('div');
 
-  errorDiv.className = 'message error-message';
-  errorDiv.textContent = error.message;
-  document.body.appendChild(errorDiv);
-});
+    messageDiv.className = 'message';
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+  })
+  .catch((error) => {
+    const errorDiv = document.createElement('div');
+
+    errorDiv.className = 'message error-message';
+    errorDiv.textContent = error.message;
+    document.body.appendChild(errorDiv);
+  });
