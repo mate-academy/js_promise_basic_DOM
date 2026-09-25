@@ -30,7 +30,7 @@ promise1.catch(() => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error('Promise was rejected!')), 3000);
+  setTimeout(() => reject(new Error()), 3000);
 });
 
 promise2.then(() => {
@@ -43,13 +43,13 @@ promise2.then(() => {
   document.body.append(divSuccess);
 });
 
-promise2.catch((error) => {
+promise2.catch(() => {
   const divError = document.createElement('div');
 
   divError.classList.add('message');
   divError.classList.add('error-message');
 
-  divError.textContent = error.message;
+  divError.textContent = 'Promise was rejected!';
 
   document.body.append(divError);
 });
