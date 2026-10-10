@@ -12,7 +12,7 @@ const promise1 = new Promise((resolve) => {
 
 const promise2 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    reject(reject(new Error('Some text')));
+    reject(new Error('Some text'));
   }, 3000);
 });
 
