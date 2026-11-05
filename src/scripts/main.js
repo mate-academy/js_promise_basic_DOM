@@ -27,7 +27,7 @@ promise1
     const errorMessage = document.createElement('div');
 
     errorMessage.classList.add('message', 'error-message');
-    errorMessage.textContent = error;
+    errorMessage.textContent = error.message;
     document.body.append(errorMessage);
   });
 
@@ -43,6 +43,6 @@ promise2
     const errorMessage = document.createElement('div');
 
     errorMessage.classList.add('message', 'error-message');
-    errorMessage.textContent = error;
+    errorMessage.textContent = error.message;
     document.body.append(errorMessage);
   });
