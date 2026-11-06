@@ -30,5 +30,5 @@ const handleError = (error) => {
   document.body.append(message);
 };
 
-promise1.then(handleSuccess);
-promise2.catch(handleError);
+promise1.then(handleSuccess).catch(handleError);
+promise2.then(handleSuccess).catch(handleError);
